@@ -1,0 +1,53 @@
+/* Token dan dasar tampilan bersama (halaman portofolio + demo dashboard). Terang/gelap: tema mengikuti OS, tombol tema menang. */
+:root{
+  color-scheme:light;
+  --bg:#EEF1FA; --panel:#FFFFFF; --panel2:#F3F5FB; --line:#E2E6F0; --ink:#0F172A; --ink2:#475569; --ink3:#64748B;
+  --acc:#1E4FD8; --acc-soft:#DCE4FF; --acc-ink:#13317F; --rail:#0D111C; --rail-ink:#A7B0C4;
+  --ok:#15803D; --warn:#B45309; --bad:#B91C1C;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;                         /* seri grafik (palet tervalidasi, urutan tetap) */
+  --st-good:#0ca30c; --st-warn:#fab219; --st-serious:#ec835a; --st-crit:#d03b3b;  /* status: selalu dengan ikon + label */
+  --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781; --surface:#fcfcfb;
+  --shadow:0 1px 2px rgba(15,23,42,.06),0 8px 24px rgba(15,23,42,.06);
+  --r:22px;
+}
+@media (prefers-color-scheme:dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme:dark;
+    --bg:#0B1020; --panel:#131A2C; --panel2:#1A2238; --line:#263049; --ink:#E6ECFF; --ink2:#A9B4CC; --ink3:#8A96B0;
+    --acc:#6E8EF0; --acc-soft:#22305A; --acc-ink:#DCE4FF; --rail:#060912; --rail-ink:#8792AA;
+    --ok:#4ADE80; --warn:#FBBF24; --bad:#F87171;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+    --grid:#2c2c2a; --axis:#383835; --surface:#1a1a19;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0B1020; --panel:#131A2C; --panel2:#1A2238; --line:#263049; --ink:#E6ECFF; --ink2:#A9B4CC; --ink3:#8A96B0;
+  --acc:#6E8EF0; --acc-soft:#22305A; --acc-ink:#DCE4FF; --rail:#060912; --rail-ink:#8792AA;
+  --ok:#4ADE80; --warn:#FBBF24; --bad:#F87171;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+  --grid:#2c2c2a; --axis:#383835; --surface:#1a1a19;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Nunito,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Lexend,Nunito,system-ui,sans-serif;line-height:1.2;margin:0}
+a{color:var(--acc)}
+img{max-width:100%}
+.ph{vertical-align:-.125em;line-height:1}
+.lewati{position:absolute;left:-9999px;top:8px;z-index:100;background:var(--panel);color:var(--ink);padding:8px 14px;border-radius:10px}
+.lewati:focus{left:8px}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:14px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:800 14px Nunito,system-ui,sans-serif;text-decoration:none;cursor:pointer;transition:transform .15s,border-color .15s,background-color .15s}
+.btn:hover{border-color:var(--acc);transform:translateY(-1px)}
+.btn:active{transform:translateY(1px)}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:#fff}
+.btn .ph{font-size:18px}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink2);font:800 13px Nunito,system-ui,sans-serif;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+.kartu{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:20px}
+.muted{color:var(--ink3)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important;scroll-behavior:auto !important}}

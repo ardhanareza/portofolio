@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ardhana · Portofolio</title>
+<meta name="description" content="Portofolio Ardhana: dashboard operasional, analisis data, dan otomasi untuk operasi tambang.">
+<meta property="og:title" content="Ardhana · Portofolio">
+<meta property="og:description" content="Dashboard operasional, analisis data, dan otomasi untuk operasi tambang. Coba demo interaktifnya.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@600;700;800&family=Nunito:wght@600;700;800&display=swap">
+<link rel="stylesheet" href="assets/vendor/phosphor/phosphor.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="assets/ikon.svg" type="image/svg+xml">
+<style>
+.atas{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.atas .isi{max-width:1120px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:16px}
+.merek{display:flex;gap:10px;align-items:center;font:800 17px Lexend,sans-serif;color:var(--ink);text-decoration:none}
+.atas nav{display:flex;gap:4px;margin-left:auto}
+.atas nav a{color:var(--ink2);text-decoration:none;font-weight:800;font-size:14px;padding:8px 10px;border-radius:10px}
+.atas nav a:hover{color:var(--ink);background:var(--panel2)}
+.alat{display:flex;gap:6px;align-items:center}
+.bhs{display:flex;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)}
+.bhs button{border:0;background:none;color:var(--ink2);font:800 13px Nunito,sans-serif;min-width:40px;min-height:40px;cursor:pointer}
+.bhs button[aria-pressed="true"]{background:var(--acc);color:#fff}
+.ikonbtn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.ikonbtn .ph{font-size:18px}
+main{max-width:1120px;margin:0 auto;padding:0 20px}
+section{padding:56px 0 8px}
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:36px;align-items:center;padding-top:48px}
+.hero .label{display:inline-flex;gap:8px;align-items:center;background:var(--acc-soft);color:var(--acc-ink);border-radius:999px;padding:6px 14px;font-weight:800;font-size:13px}
+.hero h1{font-size:clamp(34px,5vw,52px);margin:14px 0 10px;letter-spacing:-.01em}
+.hero h1 span{color:var(--acc)}
+.hero p.lead{font-size:18px;color:var(--ink2);margin:0 0 22px;max-width:560px}
+.cta{display:flex;gap:10px;flex-wrap:wrap}
+.angka3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:26px;max-width:520px}
+.angka3 div{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+.angka3 b{display:block;font:700 24px Lexend,sans-serif}.angka3 span{font-size:13px;font-weight:700;color:var(--ink3)}
+/* pratinjau dashboard (mini, dari data dummy yang sama dengan demo) */
+.pratinjau{display:block;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);padding:16px;transition:transform .2s}
+.pratinjau:hover{transform:translateY(-4px)}
+.prv{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px}
+.prv-rail{background:var(--rail);border-radius:22px;padding:10px 0;display:flex;flex-direction:column;align-items:center;gap:10px}
+.prv-rail i{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:var(--rail-ink);font-size:15px}
+.prv-rail i.on{background:#DCE4FF;color:#13317F}
+.prv-kpi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:10px}
+.prv-kpi div{background:var(--panel2);border-radius:12px;padding:8px 10px}.prv-kpi small{display:block;font-size:10.5px;font-weight:800;color:var(--ink3);text-transform:uppercase}
+.prv-kpi b{font:700 16px Lexend,sans-serif}
+.prv-graf{background:var(--panel2);border-radius:14px;padding:8px}
+.prv-cta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-weight:800;color:var(--acc)}
+h2.judul{font-size:clamp(24px,3vw,32px);margin-bottom:6px}
+p.subjudul{color:var(--ink2);margin:0 0 22px;max-width:680px}
+.proyek{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.proyek article{display:flex;flex-direction:column;gap:10px}
+.proyek .ikon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--acc-soft);color:var(--acc);font-size:22px}
+.proyek h3{font-size:18px}
+.proyek dl{margin:0;display:grid;gap:6px;font-size:14px}
+.proyek dt{font-weight:800;color:var(--ink3);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.proyek dd{margin:0;color:var(--ink2)}
+.tag{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+.tag span{font-size:12px;font-weight:800;border-radius:999px;padding:3px 10px;background:var(--panel2);color:var(--ink2)}
+.keahlian{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.keahlian h3{font-size:15px;display:flex;gap:8px;align-items:center;margin-bottom:10px}.keahlian h3 .ph{color:var(--acc)}
+.keahlian .tag span{font-size:13px;padding:5px 12px}
+.garis-waktu{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.garis-waktu li{display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px}
+.garis-waktu time{font-weight:800;color:var(--ink3);font-size:14px;padding-top:2px}
+.garis-waktu h3{font-size:17px}.garis-waktu p{margin:4px 0 0;color:var(--ink2)}
+.kontak{display:flex;gap:10px;flex-wrap:wrap}
+.catatan{font-size:13px;color:var(--ink3);margin-top:10px}
+footer{max-width:1120px;margin:56px auto 0;padding:24px 20px 40px;border-top:1px solid var(--line);color:var(--ink3);font-size:13px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+@media (max-width:900px){.hero{grid-template-columns:1fr}.atas nav{display:none}.alat{margin-left:auto}}
+@media (max-width:560px){.garis-waktu li{grid-template-columns:1fr;gap:2px}.angka3 b{font-size:20px}section{padding-top:40px}}
+</style>
+</head>
+<body>
+<a class="lewati" href="#isi" data-i18n="lewati">Lewati ke isi</a>
+<header class="atas"><div class="isi">
+  <a class="merek" href="#"><img src="assets/ikon.svg" alt="" width="32" height="32">Ardhana</a>
+  <nav aria-label="Navigasi"><a href="#proyek" data-i18n="n_proyek">Proyek</a><a href="#keahlian" data-i18n="n_keahlian">Keahlian</a><a href="#pengalaman" data-i18n="n_pengalaman">Pengalaman</a><a href="#kontak" data-i18n="n_kontak">Kontak</a></nav>
+  <div class="alat"><div class="bhs" role="group" data-i18n-attr="aria-label:bahasa"><button type="button" data-lang-btn="id">ID</button><button type="button" data-lang-btn="en">EN</button></div>
+    <button type="button" class="ikonbtn" data-tema-btn data-i18n-attr="aria-label:tema"><i class="ph ph-moon" aria-hidden="true"></i></button></div>
+</div></header>
+<main id="isi">
+  <section class="hero">
+    <div>
+      <span class="label"><i class="ph ph-hard-hat" aria-hidden="true"></i><span data-i18n="h_label">Operasi tambang · Data · Dashboard</span></span>
+      <h1 data-i18n-html="h_judul">Mengubah data operasi tambang menjadi <span>keputusan harian</span>.</h1>
+      <p class="lead" data-i18n="h_lead">Saya membangun dashboard dan alat bantu yang dipakai tim dispatcher setiap shift: memantau produksi, kesiapan armada, jadwal kerja, dan performa tim di satu tempat.</p>
+      <div class="cta"><a class="btn pri" href="demo/"><i class="ph ph-play-circle" aria-hidden="true"></i><span data-i18n="h_demo">Coba demo dashboard</span></a>
+        <a class="btn" href="#proyek"><i class="ph ph-briefcase" aria-hidden="true"></i><span data-i18n="h_proyek">Lihat proyek</span></a>
+        <a class="btn" href="#kontak"><i class="ph ph-paper-plane-tilt" aria-hidden="true"></i><span data-i18n="h_kontak">Hubungi saya</span></a></div>
+      <div class="angka3"><div><b>[X]+</b><span data-i18n="h_a1">tahun di operasi tambang</span></div><div><b>[X]</b><span data-i18n="h_a2">dashboard & alat dibangun</span></div><div><b>[X]</b><span data-i18n="h_a3">pengguna harian</span></div></div>
+    </div>
+    <a class="pratinjau" href="demo/" data-i18n-attr="aria-label:h_demo">
+      <div class="prv" aria-hidden="true">
+        <div class="prv-rail"><i class="ph ph-chart-line-up on"></i><i class="ph ph-truck"></i><i class="ph ph-trophy"></i><i class="ph ph-calendar-blank"></i></div>
+        <div><div class="prv-kpi" id="prvKpi"></div><div class="prv-graf" id="prvGraf"></div></div>
+      </div>
+      <div class="prv-cta"><span data-i18n="p_cta">Demo interaktif · data dummy</span><i class="ph ph-arrow-right" aria-hidden="true"></i></div>
+    </a>
+  </section>
+
+  <section id="proyek">
+    <h2 class="judul" data-i18n="pr_judul">Proyek pilihan</h2>
+    <p class="subjudul" data-i18n="pr_sub">Contoh pekerjaan yang paling mewakili cara saya bekerja: memahami masalah di lapangan, lalu membangun alat yang benar-benar dipakai.</p>
+    <div class="proyek">
+      <article class="kartu"><span class="ikon"><i class="ph ph-squares-four" aria-hidden="true"></i></span><h3 data-i18n="p1_j">Dashboard operasional dispatcher</h3>
+        <dl><dt data-i18n="masalah">Masalah</dt><dd data-i18n="p1_m">Informasi shift tersebar di beberapa laporan dan grup chat, sehingga sulit melihat kondisi terkini dengan cepat.</dd>
+          <dt data-i18n="solusi">Yang saya buat</dt><dd data-i18n="p1_s">Dashboard berbasis web untuk dispatcher dan supervisor: daftar pekerjaan per shift, papan peringkat, dan notifikasi.</dd>
+          <dt data-i18n="hasil">Hasil</dt><dd data-i18n="p1_h">[Isi dengan hasil terukur, misalnya waktu respons atau tingkat penyelesaian pekerjaan.]</dd></dl>
+        <div class="tag"><span>Python</span><span>Flask</span><span>SQL Server</span><span>JavaScript</span></div>
+        <a class="btn" href="demo/"><i class="ph ph-play-circle" aria-hidden="true"></i><span data-i18n="lihat_demo">Lihat demo</span></a></article>
+      <article class="kartu"><span class="ikon"><i class="ph ph-calendar-check" aria-hidden="true"></i></span><h3 data-i18n="p2_j">Penyusun dan optimasi roster shift</h3>
+        <dl><dt data-i18n="masalah">Masalah</dt><dd data-i18n="p2_m">Roster 6:2:6:2 dan jadwal cuti disusun manual di spreadsheet; mudah terjadi shift kekurangan orang.</dd>
+          <dt data-i18n="solusi">Yang saya buat</dt><dd data-i18n="p2_s">Penyusun roster otomatis dengan optimasi (shift tanpa orang, pemerataan, overshift) dan alur pratinjau sebelum diterbitkan.</dd>
+          <dt data-i18n="hasil">Hasil</dt><dd data-i18n="p2_h">[Isi dengan hasil terukur, misalnya jam kerja admin yang dihemat.]</dd></dl>
+        <div class="tag"><span>Python</span><span data-i18n="t_optim">Optimasi</span><span>SQL</span></div>
+        <a class="btn" href="demo/#roster"><i class="ph ph-play-circle" aria-hidden="true"></i><span data-i18n="lihat_demo">Lihat demo</span></a></article>
+      <article class="kartu"><span class="ikon"><i class="ph ph-chart-line-up" aria-hidden="true"></i></span><h3 data-i18n="p3_j">Visualisasi produksi dan kesiapan alat</h3>
+        <dl><dt data-i18n="masalah">Masalah</dt><dd data-i18n="p3_m">Angka produksi dan availability baru terlihat di laporan akhir hari.</dd>
+          <dt data-i18n="solusi">Yang saya buat</dt><dd data-i18n="p3_s">Grafik produksi aktual terhadap rencana, availability per unit, dan ringkasan per pit yang bisa difilter.</dd>
+          <dt data-i18n="hasil">Hasil</dt><dd data-i18n="p3_h">[Isi dengan hasil terukur.]</dd></dl>
+        <div class="tag"><span>Data visualization</span><span>SQL</span><span>SVG</span></div>
+        <a class="btn" href="demo/#ringkasan"><i class="ph ph-play-circle" aria-hidden="true"></i><span data-i18n="lihat_demo">Lihat demo</span></a></article>
+      <article class="kartu"><span class="ikon"><i class="ph ph-gear-six" aria-hidden="true"></i></span><h3 data-i18n="p4_j">[Proyek keempat Anda]</h3>
+        <dl><dt data-i18n="masalah">Masalah</dt><dd data-i18n="p4_m">[Masalah apa yang Anda selesaikan?]</dd>
+          <dt data-i18n="solusi">Yang saya buat</dt><dd data-i18n="p4_s">[Apa yang Anda bangun atau lakukan?]</dd>
+          <dt data-i18n="hasil">Hasil</dt><dd data-i18n="p4_h">[Apa hasilnya, sebaiknya dengan angka?]</dd></dl>
+        <div class="tag"><span>[Teknologi]</span></div></article>
+    </div>
+  </section>
+
+  <section id="keahlian">
+    <h2 class="judul" data-i18n="k_judul">Keahlian</h2>
+    <div class="keahlian">
+      <div class="kartu"><h3><i class="ph ph-hard-hat" aria-hidden="true"></i><span data-i18n="k1">Operasi tambang</span></h3><div class="tag"><span data-i18n="k1a">Dispatch & fleet management</span><span data-i18n="k1b">Produksi vs rencana</span><span>PA / UA / MA</span><span data-i18n="k1c">Roster & shift</span></div></div>
+      <div class="kartu"><h3><i class="ph ph-database" aria-hidden="true"></i><span data-i18n="k2">Data</span></h3><div class="tag"><span>SQL Server</span><span>Python</span><span>Excel</span><span data-i18n="k2a">Visualisasi data</span></div></div>
+      <div class="kartu"><h3><i class="ph ph-code" aria-hidden="true"></i><span data-i18n="k3">Pengembangan web</span></h3><div class="tag"><span>Flask</span><span>JavaScript</span><span>HTML & CSS</span><span>Git</span></div></div>
+    </div>
+  </section>
+
+  <section id="pengalaman">
+    <h2 class="judul" data-i18n="e_judul">Pengalaman & pendidikan</h2>
+    <ol class="garis-waktu">
+      <li class="kartu"><time>[20XX – <span data-i18n="sekarang">sekarang</span>]</time><div><h3 data-i18n="e1_j">[Jabatan] · [Perusahaan]</h3><p data-i18n="e1_p">[Ringkasan tanggung jawab dan pencapaian utama, 1–2 kalimat.]</p></div></li>
+      <li class="kartu"><time>[20XX – 20XX]</time><div><h3 data-i18n="e2_j">[Jabatan] · [Perusahaan]</h3><p data-i18n="e2_p">[Ringkasan tanggung jawab dan pencapaian utama.]</p></div></li>
+      <li class="kartu"><time>[20XX – 20XX]</time><div><h3 data-i18n="e3_j">[Gelar] · [Universitas]</h3><p data-i18n="e3_p">[Jurusan, dan prestasi bila ada.]</p></div></li>
+    </ol>
+  </section>
+
+  <section id="kontak">
+    <h2 class="judul" data-i18n="c_judul">Mari berbincang</h2>
+    <p class="subjudul" data-i18n="c_sub">Terbuka untuk peran di operasi tambang, analisis data operasional, atau pengembangan alat internal.</p>
+    <div class="kontak"><a class="btn pri" href="mailto:email@domainanda.com"><i class="ph ph-envelope-simple" aria-hidden="true"></i>email@domainanda.com</a>
+      <a class="btn" href="https://www.linkedin.com/" rel="noopener" target="_blank"><i class="ph ph-linkedin-logo" aria-hidden="true"></i>LinkedIn</a>
+      <a class="btn" href="https://github.com/rezaardhana67-ai" rel="noopener" target="_blank"><i class="ph ph-github-logo" aria-hidden="true"></i>GitHub</a>
+      <a class="btn" href="#" aria-disabled="true"><i class="ph ph-file-pdf" aria-hidden="true"></i><span data-i18n="c_cv">Unduh CV</span></a></div>
+  </section>
+</main>
+<footer><span>© <span id="tahun"></span> Ardhana</span><span data-i18n="f_ket">Demo memakai data dummy; tidak ada data perusahaan yang ditampilkan.</span></footer>
+<script src="assets/umum.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/grafik.js"></script>
+<script>
+I18N.tambah({
+  id: {lewati: "Lewati ke isi", bahasa: "Bahasa", tema: "Ganti tema", n_proyek: "Proyek", n_keahlian: "Keahlian", n_pengalaman: "Pengalaman", n_kontak: "Kontak",
+    h_label: "Operasi tambang · Data · Dashboard", h_judul: "Mengubah data operasi tambang menjadi <span>keputusan harian</span>.",
+    h_lead: "Saya membangun dashboard dan alat bantu yang dipakai tim dispatcher setiap shift: memantau produksi, kesiapan armada, jadwal kerja, dan performa tim di satu tempat.",
+    h_demo: "Coba demo dashboard", h_proyek: "Lihat proyek", h_kontak: "Hubungi saya", h_a1: "tahun di operasi tambang", h_a2: "dashboard & alat dibangun", h_a3: "pengguna harian",
+    p_cta: "Demo interaktif · data dummy", pv_ob: "Overburden", pv_pa: "PA", pv_coal: "Batubara",
+    pr_judul: "Proyek pilihan", pr_sub: "Contoh pekerjaan yang paling mewakili cara saya bekerja: memahami masalah di lapangan, lalu membangun alat yang benar-benar dipakai.",
+    masalah: "Masalah", solusi: "Yang saya buat", hasil: "Hasil", lihat_demo: "Lihat demo", t_optim: "Optimasi",
+    p1_j: "Dashboard operasional dispatcher", p1_m: "Informasi shift tersebar di beberapa laporan dan grup chat, sehingga sulit melihat kondisi terkini dengan cepat.",
+    p1_s: "Dashboard berbasis web untuk dispatcher dan supervisor: daftar pekerjaan per shift, papan peringkat, dan notifikasi.", p1_h: "[Isi dengan hasil terukur, misalnya waktu respons atau tingkat penyelesaian pekerjaan.]",
+    p2_j: "Penyusun dan optimasi roster shift", p2_m: "Roster 6:2:6:2 dan jadwal cuti disusun manual di spreadsheet; mudah terjadi shift kekurangan orang.",
+    p2_s: "Penyusun roster otomatis dengan optimasi (shift tanpa orang, pemerataan, overshift) dan alur pratinjau sebelum diterbitkan.", p2_h: "[Isi dengan hasil terukur, misalnya jam kerja admin yang dihemat.]",
+    p3_j: "Visualisasi produksi dan kesiapan alat", p3_m: "Angka produksi dan availability baru terlihat di laporan akhir hari.",
+    p3_s: "Grafik produksi aktual terhadap rencana, availability per unit, dan ringkasan per pit yang bisa difilter.", p3_h: "[Isi dengan hasil terukur.]",
+    p4_j: "[Proyek keempat Anda]", p4_m: "[Masalah apa yang Anda selesaikan?]", p4_s: "[Apa yang Anda bangun atau lakukan?]", p4_h: "[Apa hasilnya, sebaiknya dengan angka?]",
+    k_judul: "Keahlian", k1: "Operasi tambang", k1a: "Dispatch & fleet management", k1b: "Produksi vs rencana", k1c: "Roster & shift", k2: "Data", k2a: "Visualisasi data", k3: "Pengembangan web",
+    e_judul: "Pengalaman & pendidikan", sekarang: "sekarang", e1_j: "[Jabatan] · [Perusahaan]", e1_p: "[Ringkasan tanggung jawab dan pencapaian utama, 1–2 kalimat.]",
+    e2_j: "[Jabatan] · [Perusahaan]", e2_p: "[Ringkasan tanggung jawab dan pencapaian utama.]", e3_j: "[Gelar] · [Universitas]", e3_p: "[Jurusan, dan prestasi bila ada.]",
+    c_judul: "Mari berbincang", c_sub: "Terbuka untuk peran di operasi tambang, analisis data operasional, atau pengembangan alat internal.", c_cv: "Unduh CV",
+    f_ket: "Demo memakai data dummy; tidak ada data perusahaan yang ditampilkan."},
+  en: {lewati: "Skip to content", bahasa: "Language", tema: "Toggle theme", n_proyek: "Projects", n_keahlian: "Skills", n_pengalaman: "Experience", n_kontak: "Contact",
+    h_label: "Mining operations · Data · Dashboards", h_judul: "Turning mine operations data into <span>daily decisions</span>.",
+    h_lead: "I build dashboards and tools that dispatch teams use every shift: production, fleet readiness, work schedules, and team performance in one place.",
+    h_demo: "Try the dashboard demo", h_proyek: "See projects", h_kontak: "Get in touch", h_a1: "years in mining operations", h_a2: "dashboards & tools built", h_a3: "daily users",
+    p_cta: "Interactive demo · dummy data", pv_ob: "Overburden", pv_pa: "PA", pv_coal: "Coal",
+    pr_judul: "Selected projects", pr_sub: "Work that best shows how I operate: understand the problem on site, then build tools people actually use.",
+    masalah: "Problem", solusi: "What I built", hasil: "Outcome", lihat_demo: "View demo", t_optim: "Optimization",
+    p1_j: "Dispatch operations dashboard", p1_m: "Shift information was scattered across reports and chat groups, making the current situation hard to see quickly.",
+    p1_s: "A web dashboard for dispatchers and supervisors: per-shift work lists, leaderboards, and notifications.", p1_h: "[Add a measurable outcome, e.g. response time or task completion rate.]",
+    p2_j: "Shift roster builder and optimizer", p2_m: "The 6:2:6:2 roster and leave schedule were built by hand in spreadsheets, often leaving shifts understaffed.",
+    p2_s: "An automatic roster builder with optimization (empty shifts, balancing, overshifts) and a preview-before-publish flow.", p2_h: "[Add a measurable outcome, e.g. admin hours saved.]",
+    p3_j: "Production and equipment availability visuals", p3_m: "Production and availability figures only surfaced in end-of-day reports.",
+    p3_s: "Charts of actual production against plan, availability per unit, and filterable per-pit summaries.", p3_h: "[Add a measurable outcome.]",
+    p4_j: "[Your fourth project]", p4_m: "[What problem did you solve?]", p4_s: "[What did you build or do?]", p4_h: "[What was the result, ideally with numbers?]",
+    k_judul: "Skills", k1: "Mining operations", k1a: "Dispatch & fleet management", k1b: "Production vs plan", k1c: "Rosters & shifts", k2: "Data", k2a: "Data visualization", k3: "Web development",
+    e_judul: "Experience & education", sekarang: "present", e1_j: "[Role] · [Company]", e1_p: "[Summary of responsibilities and key achievements, 1–2 sentences.]",
+    e2_j: "[Role] · [Company]", e2_p: "[Summary of responsibilities and key achievements.]", e3_j: "[Degree] · [University]", e3_p: "[Major, and honors if any.]",
+    c_judul: "Let's talk", c_sub: "Open to roles in mining operations, operational data analysis, or internal tool development.", c_cv: "Download CV",
+    f_ket: "The demo uses dummy data; no company data is shown."},
+});
+document.getElementById("tahun").textContent = new Date().getFullYear();
+/* pratinjau mini: angka dan garis 30 hari dari data dummy yang sama dengan demo */
+function pratinjau(){
+  const h = DATA.hari.slice(-30), j = a => a.reduce((p, q) => p + q, 0), ob = j(h.map(x => x.ob)), plan = j(h.map(x => x.ob_plan));
+  const kpi = [["pv_ob", I18N.angka(ob / 1e6, 2) + (I18N.lang === "id" ? " jt" : "M")], ["pv_pa", I18N.angka(h.reduce((p, x) => p + x.pa, 0) / h.length, 1) + "%"], ["pv_coal", I18N.angka(j(h.map(x => x.coal)) / 1e3, 0) + (I18N.lang === "id" ? " rb t" : "k t")]];
+  document.getElementById("prvKpi").innerHTML = kpi.map(k => `<div><small>${Grafik.esc(I18N.t(k[0]))}</small><b>${Grafik.esc(k[1])}</b></div>`).join("");
+  document.getElementById("prvGraf").innerHTML = Grafik.spark(h.map(x => x.ob), "var(--s1)", 300, 90).replace('width="300"', 'width="100%"');
+}
+I18N.saatGanti(pratinjau); document.addEventListener("DOMContentLoaded", pratinjau);
+</script>
+</body>
+</html>
