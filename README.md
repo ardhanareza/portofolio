@@ -4,6 +4,10 @@ Website portofolio statis dengan animasi "agen" yang membangun halaman, ditambah
 
 - `index.html`: halaman portofolio (hasil ekspor design tool). Dua bahasa (ID/EN), tombol di kanan atas.
   `support.js` adalah runtime ekspor tersebut. Jangan diedit.
+- `studi-kasus-database.html`: studi kasus proyek 01 (Database & validation redesign), hasil ekspor design tool yang sama,
+  dua bahasa. Dibuka dari kartu proyek 01 di halaman utama.
+  Screenshot di bagian "The validator's view" (`assets/studi-kasus/`) adalah rekonstruksi layar Timesheet Validation
+  dengan **data dummy**: frontend aslinya dijalankan, semua panggilan API dijawab data karangan. Tidak ada kode aplikasi di repo ini.
 - `demo/`: demo dashboard (ringkasan produksi, armada, performa tim, roster shift).
   **Semua data di demo adalah data dummy** (`assets/data.js`).
 - `assets/CV-Muhammad-Reza-Ardhana.pdf`: CV untuk tombol "Unduh CV".
