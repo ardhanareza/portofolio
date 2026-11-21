@@ -8,6 +8,10 @@ Website portofolio statis dengan animasi "agen" yang membangun halaman, ditambah
   dua bahasa. Dibuka dari kartu proyek 01 di halaman utama.
   Screenshot di bagian "The validator's view" (`assets/studi-kasus/`) adalah rekonstruksi layar Timesheet Validation
   dengan **data dummy**: frontend aslinya dijalankan, semua panggilan API dijawab data karangan. Tidak ada kode aplikasi di repo ini.
+- `studi-kasus-dispatcher.html`: studi kasus proyek 02 (Dispatcher performance monitoring), dua bahasa.
+  Dibuka dari kartu proyek 02 dan dari tautan "Berikutnya · 02" di studi kasus 01.
+  Screenshot di bagian "Inside the dispatch app" (`assets/studi-kasus/dispatcher-fig*.webp`) adalah rekonstruksi
+  Dashboard Dispatcher dengan **data dummy** (nama, unit, skor, dan pendingan karangan), dengan cara yang sama.
 - `demo/`: demo dashboard (ringkasan produksi, armada, performa tim, roster shift).
   **Semua data di demo adalah data dummy** (`assets/data.js`).
 - `assets/CV-Muhammad-Reza-Ardhana.pdf`: CV untuk tombol "Unduh CV".
