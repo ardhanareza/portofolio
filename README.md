@@ -12,6 +12,10 @@ Website portofolio statis dengan animasi "agen" yang membangun halaman, ditambah
   Dibuka dari kartu proyek 02 dan dari tautan "Berikutnya · 02" di studi kasus 01.
   Screenshot di bagian "Inside the dispatch app" (`assets/studi-kasus/dispatcher-fig*.webp`) adalah rekonstruksi
   Dashboard Dispatcher dengan **data dummy** (nama, unit, skor, dan pendingan karangan), dengan cara yang sama.
+- `studi-kasus-shift-change.html`: studi kasus proyek 03 (Automated shift-change scheduling), dua bahasa
+  (termasuk label diagram simulasi). Dibuka dari kartu proyek 03 dan dari tautan "Berikutnya" di studi kasus 02.
+  Screenshot di bagian "Auto setting change shift" (`assets/studi-kasus/changeshift-fig*.webp`) adalah rekonstruksi
+  alat Setting Change Shift dengan **data dummy** (lokasi CS, kode unit, kapasitas, dan prediksi karangan).
 - `demo/`: demo dashboard (ringkasan produksi, armada, performa tim, roster shift).
   **Semua data di demo adalah data dummy** (`assets/data.js`).
 - `assets/CV-Muhammad-Reza-Ardhana.pdf`: CV untuk tombol "Unduh CV".
