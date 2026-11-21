@@ -23,11 +23,11 @@ lalu buka http://localhost:8000.
 
 - Teks halaman utama: objek `KAMUS` (`en` dan `id`) di bagian `<script type="text/x-dc">` di `index.html`.
   Markup memakai `{{ t.kunci }}`. Nama, istilah teknis, dan kontak ditulis langsung di markup.
-- Foto ada di folder `foto/`. Isinya masih gambar dummy. Timpa dengan foto Anda **dengan nama file yang sama persis**:
-  - `foto/profil.png`: foto besar di hero. Sebaiknya PNG latar transparan (badan saja, tanpa background), potret ±3:4,
-    lebar minimal 900 px. Bagian bawah foto menempel ke dasar layar.
-  - `foto/tentang.jpg`: foto di bagian About. Rasio 4:5 (misalnya 840×1050 px), bebas foto di lapangan atau di kantor.
-  Kalau nama atau formatnya beda (misalnya `.jpeg` atau `.webp`), ubah `src` pada `<img>` di `index.html`.
+- Foto ada di folder `foto/`. Untuk mengganti, timpa dengan **nama file yang sama persis**:
+  - `foto/profil.webp`: foto besar di hero. WebP latar transparan, rasio ±0,68 (1000×1470), dipotong dari atas kepala
+    sampai paha. Bagian bawah foto menempel ke dasar hero (di HP: di bawah tulisan PORTOFOLIO).
+  - `foto/tentang.jpg`: foto di bagian About. Rasio 4:5 (840×1050). Isi layar monitor sengaja diburamkan.
+  Kalau nama atau formatnya beda, ubah `src` pada `<img>` di `index.html`.
   Kompres foto dulu (misalnya di squoosh.app), usahakan di bawah 300 KB supaya halaman cepat terbuka.
 - Data dummy demo: `assets/data.js`.
 
