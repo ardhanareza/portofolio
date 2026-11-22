@@ -1,6 +1,6 @@
 # Portofolio · Reza Ardhana
 
-Website portofolio statis dengan animasi "agen" yang membangun halaman, ditambah demo dashboard operasi tambang yang interaktif.
+Website portofolio statis dengan animasi "agen" yang membangun halaman, dengan lima halaman studi kasus proyek.
 
 - `index.html`: halaman portofolio (hasil ekspor design tool). Dua bahasa (ID/EN), tombol di kanan atas.
   `support.js` adalah runtime ekspor tersebut. Jangan diedit.
@@ -21,12 +21,10 @@ Website portofolio statis dengan animasi "agen" yang membangun halaman, ditambah
   Dibuka dari kartu proyek 04 dan dari tautan "Berikutnya" di studi kasus 03.
 - `studi-kasus-simulasi.html`: studi kasus proyek 05 (Production simulation tool), dipasang apa adanya dari ekspor design tool,
   dua bahasa, tanpa screenshot. Dibuka dari kartu proyek 05 dan dari tautan "Berikutnya" di studi kasus 04.
-- `demo/`: demo dashboard (ringkasan produksi, armada, performa tim, roster shift).
-  **Semua data di demo adalah data dummy** (`assets/data.js`).
 - `assets/CV-Muhammad-Reza-Ardhana.pdf`: CV untuk tombol "Unduh CV".
 
 Catatan teknis: `index.html` memuat React dan Babel dari unpkg.com saat dibuka, lalu mengompilasi halaman di browser.
-Kalau unpkg sedang gangguan, halaman utama tidak tampil (demo tetap jalan karena tanpa framework).
+Kalau unpkg sedang gangguan, halaman tidak tampil.
 
 ## Menjalankan di komputer sendiri
 
@@ -46,6 +44,3 @@ lalu buka http://localhost:8000.
   - `foto/tentang.jpg`: foto di bagian About. Rasio 4:5 (840×1050). Isi layar monitor sengaja diburamkan.
   Kalau nama atau formatnya beda, ubah `src` pada `<img>` di `index.html`.
   Kompres foto dulu (misalnya di squoosh.app), usahakan di bawah 300 KB supaya halaman cepat terbuka.
-- Data dummy demo: `assets/data.js`.
-
-Ikon demo: [Phosphor Icons](https://phosphoricons.com) (MIT).

@@ -26,6 +26,17 @@ input,textarea,button{font-family:inherit}
 @media (max-width:900px){.nav-utama{display:none!important}.bahasa{margin-left:auto}
   .potret{top:190px;bottom:auto!important;height:38vh!important;width:min(80vw,300px)!important}}
 @media (max-width:560px){.status-atas{display:none!important}.hud{overflow-x:auto}}
+
+/* tombol: panah bergerak saat hover, sedikit turun saat ditekan, outline saat fokus keyboard */
+.tombol,.kembali,.nav-studi a{transition:background-color .2s,border-color .2s,color .2s,transform .1s}
+.tombol .panah,.kembali .panah,.nav-studi .panah{display:inline-block;transition:transform .2s}
+.tombol:hover .panah,.kartu-studi:hover .tombol .panah,.nav-studi .lanjut:hover .panah{transform:translateX(4px)}
+.tombol.unduh:hover .panah{transform:translateY(3px)}
+.kembali:hover .panah,.nav-studi .mundur:hover .panah{transform:translateX(-4px)}
+.kartu-studi:hover .tombol.utama{background:#FFC266!important}
+.tombol:active,.kembali:active,.nav-studi a:active{transform:translateY(1px)}
+.tombol:focus-visible,.kembali:focus-visible,.nav-studi a:focus-visible{outline:2px solid #F2A93B;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.tombol,.kembali,.nav-studi a,.tombol .panah,.kembali .panah,.nav-studi .panah{transition:none}}
 </style>
 </helmet>
 <div ref="{{ rootRef }}" style="position:relative;min-height:100vh;background:#0B0C10;color:#EDEBE6;overflow-x:clip">
@@ -34,7 +45,7 @@ input,textarea,button{font-family:inherit}
   <a href="#top" data-build="logo" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:22px;letter-spacing:.01em;text-transform:uppercase;display:flex;align-items:center;gap:6px">Reza Ardhana<span style="width:7px;height:7px;border-radius:50%;background:#F2A93B;display:block"></span></a>
   <div data-build="status" class="status-atas" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.5">{{ t.status }}<br>Pontianak, Indonesia</div>
   <nav data-build="nav" class="nav-utama" style="margin-left:auto;display:flex;gap:22px;font-size:14px;font-weight:500;flex-wrap:wrap;justify-content:flex-end">
-    <a href="#expertise">{{ t.nav_exp }}</a><a href="#experience">{{ t.nav_car }}</a><a href="#work">{{ t.nav_work }}</a><a href="#stack">{{ t.nav_stack }}</a><a href="#contact">{{ t.nav_contact }}</a><a href="demo/?lang={{ lang }}" style="color:#F2A93B">{{ t.nav_demo }} ↗</a>
+    <a href="#expertise">{{ t.nav_exp }}</a><a href="#experience">{{ t.nav_car }}</a><a href="#work">{{ t.nav_work }}</a><a href="#stack">{{ t.nav_stack }}</a><a href="#contact">{{ t.nav_contact }}</a>
   </nav>
   <div data-build="lang" class="bahasa" role="group" aria-label="Language / Bahasa" style="display:flex;flex:none;border:1px solid rgba(255,255,255,.16);border-radius:999px;overflow:hidden"><button onClick="{{ setId }}" aria-pressed="{{ isId }}" style="height:38px;min-width:42px;border:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;background:{{ idBg }};color:{{ idFg }}">ID</button><button onClick="{{ setEn }}" aria-pressed="{{ isEn }}" style="height:38px;min-width:42px;border:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;background:{{ enBg }};color:{{ enFg }}">EN</button></div>
   <button onClick="{{ openMenu }}" aria-label="{{ t.a_open }}" style="width:40px;height:40px;flex:none;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:#12141A;color:#EDEBE6;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px" style-hover="border-color:#F2A93B"><span style="width:14px;height:1.5px;background:currentColor;display:block"></span><span style="width:14px;height:1.5px;background:currentColor;display:block"></span></button>
@@ -58,8 +69,8 @@ input,textarea,button{font-family:inherit}
       </div>
       <p data-build="p.summary" style="margin:0;font-size:15px;line-height:1.55;color:#BDBCC2;text-wrap:pretty;max-width:380px">{{ t.summary }}</p>
       <div data-build="cta" style="display:flex;gap:10px;flex-wrap:wrap">
-        <a href="#work" style="display:flex;align-items:center;gap:10px;padding:13px 20px;background:#F2A93B;color:#0B0C10;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="background:#FFC266;color:#0B0C10">{{ t.view_work }}<span>→</span></a>
-        <a href="assets/CV-Muhammad-Reza-Ardhana.pdf" download="" style="display:flex;align-items:center;gap:10px;padding:12px 20px;border:1px solid rgba(255,255,255,.22);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="border-color:#F2A93B">{{ t.cv }}<span>↓</span></a>
+        <a href="#work" style="display:flex;align-items:center;gap:10px;padding:13px 20px;background:#F2A93B;color:#0B0C10;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="background:#FFC266;color:#0B0C10" class="tombol">{{ t.view_work }}<span class="panah" aria-hidden="true">→</span></a>
+        <a href="assets/CV-Muhammad-Reza-Ardhana.pdf" download="" class="tombol unduh" style="display:flex;align-items:center;gap:10px;padding:12px 20px;background:#12141A;border:1px solid #EDEBE6;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="border-color:#F2A93B;color:#F2A93B">{{ t.cv }}<span class="panah" aria-hidden="true">↓</span></a>
       </div>
     </div>
     <div style="flex:0 1 220px;display:flex;flex-direction:column;gap:14px">
@@ -156,7 +167,7 @@ input,textarea,button{font-family:inherit}
         <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">SQL Server</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w1t2 }}</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w1t3 }}</span></div>
         <h3 style="margin:0;font-size:clamp(24px,2.4vw,32px);font-weight:700;line-height:1.15;letter-spacing:-.01em">{{ t.w1 }}</h3>
         <p style="margin:0;font-size:15px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.w1p }}</p>
-        <a href="studi-kasus-database.html?lang={{ lang }}" style="position:relative;z-index:2;align-self:flex-start;display:flex;align-items:center;gap:10px;padding:11px 18px;border:1px solid rgba(255,255,255,.22);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="border-color:#F2A93B">{{ t.read_cs }} <span>→</span></a>
+        <a href="studi-kasus-database.html?lang={{ lang }}" class="tombol utama" style="position:relative;z-index:2;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:13px 20px;background:#F2A93B;color:#0B0C10;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="background:#FFC266;color:#0B0C10">{{ t.read_cs }} <span class="panah" aria-hidden="true">→</span></a>
         <a href="studi-kasus-database.html?lang={{ lang }}" aria-hidden="true" tabindex="-1" style="position:absolute;inset:0;z-index:1"></a>
         <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:20px">
           <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.w1m }}</div>
@@ -173,7 +184,7 @@ input,textarea,button{font-family:inherit}
         <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">Web app</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w2t2 }}</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w2t3 }}</span></div>
         <h3 style="margin:0;font-size:clamp(24px,2.4vw,32px);font-weight:700;line-height:1.15;letter-spacing:-.01em">{{ t.w2 }}</h3>
         <p style="margin:0;font-size:15px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.w2p }}</p>
-        <a href="studi-kasus-dispatcher.html?lang={{ lang }}" style="position:relative;z-index:2;align-self:flex-start;display:flex;align-items:center;gap:10px;padding:11px 18px;border:1px solid rgba(255,255,255,.22);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="border-color:#F2A93B">{{ t.read_cs }} <span>→</span></a>
+        <a href="studi-kasus-dispatcher.html?lang={{ lang }}" class="tombol utama" style="position:relative;z-index:2;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:13px 20px;background:#F2A93B;color:#0B0C10;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="background:#FFC266;color:#0B0C10">{{ t.read_cs }} <span class="panah" aria-hidden="true">→</span></a>
         <a href="studi-kasus-dispatcher.html?lang={{ lang }}" aria-hidden="true" tabindex="-1" style="position:absolute;inset:0;z-index:1"></a>
         <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:20px">
           <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.w2m }}</div>
@@ -190,7 +201,7 @@ input,textarea,button{font-family:inherit}
         <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">Haul trucks</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w3t2 }}</span></div>
         <h3 style="margin:0;font-size:clamp(24px,2.4vw,32px);font-weight:700;line-height:1.15;letter-spacing:-.01em">{{ t.w3 }}</h3>
         <p style="margin:0;font-size:15px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.w3p }}</p>
-        <a href="studi-kasus-shift-change.html?lang={{ lang }}" style="position:relative;z-index:2;align-self:flex-start;display:flex;align-items:center;gap:10px;padding:11px 18px;border:1px solid rgba(255,255,255,.22);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="border-color:#F2A93B">{{ t.read_cs }} <span>→</span></a>
+        <a href="studi-kasus-shift-change.html?lang={{ lang }}" class="tombol utama" style="position:relative;z-index:2;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:13px 20px;background:#F2A93B;color:#0B0C10;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="background:#FFC266;color:#0B0C10">{{ t.read_cs }} <span class="panah" aria-hidden="true">→</span></a>
         <a href="studi-kasus-shift-change.html?lang={{ lang }}" aria-hidden="true" tabindex="-1" style="position:absolute;inset:0;z-index:1"></a>
         <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:20px">
           <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.w3m }}</div>
@@ -207,13 +218,13 @@ input,textarea,button{font-family:inherit}
         <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w4t1 }}</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w4t2 }}</span></div>
         <h3 style="margin:0;font-size:clamp(24px,2.4vw,32px);font-weight:700;line-height:1.15;letter-spacing:-.01em">{{ t.w4 }}</h3>
         <p style="margin:0;font-size:15px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.w4p }}</p>
+        <a href="studi-kasus-fms.html?lang={{ lang }}" class="tombol utama" style="position:relative;z-index:2;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:13px 20px;background:#F2A93B;color:#0B0C10;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="background:#FFC266;color:#0B0C10">{{ t.read_cs }} <span class="panah" aria-hidden="true">→</span></a>
         <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:20px">
           <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.w4m }}</div>
           <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.before }}</span><div style="height:10px;background:rgba(255,255,255,.18);width:100%"></div><span style="text-align:right">{{ t.w4b }}</span></div>
           <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.after }}</span><div style="height:10px;background:#F2A93B;width:16%"></div><span style="text-align:right">{{ t.w4a }}</span></div>
           <div style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:44px;line-height:1;color:#F2A93B;margin-top:6px">{{ t.w4big }}</div>
         </div>
-        <a href="studi-kasus-fms.html?lang={{ lang }}" style="position:relative;z-index:2;align-self:flex-start;display:flex;align-items:center;gap:10px;padding:11px 18px;border:1px solid rgba(255,255,255,.22);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="border-color:#F2A93B">{{ t.read_cs }} <span>→</span></a>
         <a href="studi-kasus-fms.html?lang={{ lang }}" aria-hidden="true" tabindex="-1" style="position:absolute;inset:0;z-index:1"></a>
       </div>
     </div>
@@ -224,7 +235,7 @@ input,textarea,button{font-family:inherit}
         <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w5t1 }}</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w5t2 }}</span></div>
         <h3 style="margin:0;font-size:clamp(24px,2.4vw,32px);font-weight:700;line-height:1.15;letter-spacing:-.01em">{{ t.w5 }}</h3>
         <p style="margin:0;font-size:15px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.w5p }}</p>
-        <a href="studi-kasus-simulasi.html?lang={{ lang }}" style="position:relative;z-index:2;align-self:flex-start;display:flex;align-items:center;gap:10px;padding:11px 18px;border:1px solid rgba(255,255,255,.22);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="border-color:#F2A93B">{{ t.read_cs }} <span>→</span></a>
+        <a href="studi-kasus-simulasi.html?lang={{ lang }}" class="tombol utama" style="position:relative;z-index:2;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:13px 20px;background:#F2A93B;color:#0B0C10;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="background:#FFC266;color:#0B0C10">{{ t.read_cs }} <span class="panah" aria-hidden="true">→</span></a>
         <a href="studi-kasus-simulasi.html?lang={{ lang }}" aria-hidden="true" tabindex="-1" style="position:absolute;inset:0;z-index:1"></a>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:20px;font-size:13px;font-weight:600">
           <span style="border:1px solid rgba(255,255,255,.18);padding:10px 14px">{{ t.w5a }}</span><span style="color:#9A9BA3">+</span><span style="border:1px solid rgba(255,255,255,.18);padding:10px 14px">{{ t.w5b }}</span><span style="color:#F2A93B">→</span><span style="background:#F2A93B;color:#0B0C10;padding:10px 14px">{{ t.w5c }}</span>
@@ -232,7 +243,6 @@ input,textarea,button{font-family:inherit}
       </div>
     </div>
   </div>
-  <a data-build="cta.demo" href="demo/?lang={{ lang }}" style="margin-top:80px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;padding:clamp(22px,3vw,36px);background:#12141A;border:1px solid rgba(242,169,59,.45)" style-hover="border-color:#F2A93B;color:#EDEBE6"><span style="display:flex;flex-direction:column;gap:12px;max-width:640px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#F2A93B">{{ t.demo_lbl }}</span><span style="font-size:clamp(24px,2.4vw,32px);font-weight:700;line-height:1.15">{{ t.demo_h }}</span><span style="font-size:15px;line-height:1.6;color:#BDBCC2">{{ t.demo_p }}</span></span><span style="display:flex;align-items:center;gap:10px;padding:13px 20px;background:#F2A93B;color:#0B0C10;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase">{{ t.demo_btn }} <span>→</span></span></a>
 </section>
 
 <section id="about" data-screen-label="About" style="max-width:1360px;margin:0 auto;padding:80px clamp(20px,4vw,56px) 110px">
@@ -297,7 +307,7 @@ input,textarea,button{font-family:inherit}
   <div style="position:relative;max-width:1360px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:40px">
     <div style="display:flex;flex-direction:column;gap:28px">
       <h2 data-build="h2.footer" style="margin:0;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(64px,9vw,140px);line-height:.86;text-transform:uppercase">{{ t.ft1 }}<br><span style="color:#F2A93B">{{ t.ft2 }}</span><br><span style="color:#F2A93B">{{ t.ft3 }}</span></h2>
-      <a data-build="cta.footer" href="assets/CV-Muhammad-Reza-Ardhana.pdf" download="" style="align-self:flex-start;display:flex;gap:10px;padding:12px 20px;border:1px solid rgba(255,255,255,.22);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="border-color:#F2A93B">{{ t.cv }}<span>↓</span></a>
+      <a data-build="cta.footer" href="assets/CV-Muhammad-Reza-Ardhana.pdf" download="" class="tombol unduh utama" style="align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:13px 20px;background:#F2A93B;color:#0B0C10;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="background:#FFC266;color:#0B0C10">{{ t.cv }}<span class="panah" aria-hidden="true">↓</span></a>
     </div>
     <div data-build="footer.meta" style="display:flex;flex-direction:column;gap:10px;text-align:right;font-size:14px">
       <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.nav_contact }}</span>
@@ -319,7 +329,6 @@ input,textarea,button{font-family:inherit}
     <a href="#experience" onClick="{{ closeMenu }}" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(48px,8vw,96px);line-height:1;text-transform:uppercase">{{ t.nav_car }}</a>
     <a href="#work" onClick="{{ closeMenu }}" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(48px,8vw,96px);line-height:1;text-transform:uppercase">{{ t.nav_work }}</a>
     <a href="#stack" onClick="{{ closeMenu }}" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(48px,8vw,96px);line-height:1;text-transform:uppercase">{{ t.nav_stack }}</a>
-    <a href="demo/?lang={{ lang }}" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(48px,8vw,96px);line-height:1;text-transform:uppercase">{{ t.nav_demo }} ↗</a>
     <a href="#contact" onClick="{{ closeMenu }}" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(48px,8vw,96px);line-height:1;text-transform:uppercase;color:#F2A93B">{{ t.nav_contact }}</a>
   </div>
 </sc-if>
@@ -522,12 +531,7 @@ const KAMUS = {
 "show": "Show",
 "send": "Send message →",
 "sending": "Opening your email app…",
-"mail_subj": "Portfolio inquiry from ",
-"nav_demo": "Demo",
-"demo_lbl": "✦ Live demo · dummy data",
-"demo_h": "Try the operations dashboard",
-"demo_p": "An interactive mine-operations dashboard: production vs plan, fleet status, team performance, and shift roster. All figures are made up.",
-"demo_btn": "Open demo"
+"mail_subj": "Portfolio inquiry from "
 },
 "id": {
 "read_cs": "Baca studi kasus",
@@ -696,12 +700,7 @@ const KAMUS = {
 "show": "Tampilkan",
 "send": "Kirim pesan →",
 "sending": "Membuka aplikasi email…",
-"mail_subj": "Pertanyaan dari portofolio: ",
-"nav_demo": "Demo",
-"demo_lbl": "✦ Demo interaktif · data dummy",
-"demo_h": "Coba dashboard operasinya",
-"demo_p": "Dashboard operasi tambang interaktif: produksi vs rencana, status armada, performa tim, dan roster shift. Semua angkanya karangan.",
-"demo_btn": "Buka demo"
+"mail_subj": "Pertanyaan dari portofolio: "
 }
 };
 const bacaLang = () => { const u = new URLSearchParams(location.search).get('lang'); if (u === 'id' || u === 'en') return u;

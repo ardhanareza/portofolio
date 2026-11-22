@@ -21,19 +21,32 @@ a:hover{color:#F2A93B}
 ::selection{background:#4C8DFF;color:#fff}
 
 /* desain asli tanpa breakpoint: di layar sempit menu bagian disembunyikan, tombol kembali + bahasa tetap */
-@media (max-width:1100px){.nav-utama{display:none!important}.kembali{margin-left:auto}}
-@media (max-width:560px){.status-atas{display:none!important}.kembali{padding:8px 12px!important}}
+@media (max-width:1100px){.nav-utama{display:none!important}.bahasa{margin-left:auto}}
+@media (max-width:560px){.status-atas,.logo{display:none!important}}
+.nav-studi a{min-height:180px;box-sizing:border-box}
+@media (max-width:640px){.nav-studi{grid-template-columns:1fr!important}.nav-studi .kosong{display:none}.nav-studi a{min-height:124px}}
+/* tombol: panah bergerak saat hover, sedikit turun saat ditekan, outline saat fokus keyboard */
+.tombol,.kembali,.nav-studi a{transition:background-color .2s,border-color .2s,color .2s,transform .1s}
+.tombol .panah,.kembali .panah,.nav-studi .panah{display:inline-block;transition:transform .2s}
+.tombol:hover .panah,.kartu-studi:hover .tombol .panah,.nav-studi .lanjut:hover .panah{transform:translateX(4px)}
+.tombol.unduh:hover .panah{transform:translateY(3px)}
+.kembali:hover .panah,.nav-studi .mundur:hover .panah{transform:translateX(-4px)}
+.kartu-studi:hover .tombol.utama{background:#FFC266!important}
+.tombol:active,.kembali:active,.nav-studi a:active{transform:translateY(1px)}
+.tombol:focus-visible,.kembali:focus-visible,.nav-studi a:focus-visible{outline:2px solid #F2A93B;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.tombol,.kembali,.nav-studi a,.tombol .panah,.kembali .panah,.nav-studi .panah{transition:none}}
+
 </style>
 </helmet>
 <div ref="{{ rootRef }}" style="position:relative;min-height:100vh;background:#0B0C10;color:#EDEBE6;overflow-x:clip">
 
 <header style="position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;gap:24px;padding:16px clamp(20px,4vw,56px);background:linear-gradient(#0B0C10 30%,rgba(11,12,16,0))">
-  <a data-build="logo" href="./?lang={{ lang }}" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:22px;letter-spacing:.01em;text-transform:uppercase;display:flex;align-items:center;gap:6px">Reza Ardhana<span style="width:7px;height:7px;border-radius:50%;background:#F2A93B;display:block"></span></a>
+  <a data-build="back" class="kembali" href="./?lang={{ lang }}#work" style="flex:none;display:flex;align-items:center;gap:8px;padding:10px 16px 10px 14px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:13px;font-weight:600;background:#12141A;white-space:nowrap" style-hover="border-color:#F2A93B;color:#F2A93B"><span class="panah" aria-hidden="true">←</span>{{ t.kbl }}</a>
+  <a data-build="logo" class="logo" href="./?lang={{ lang }}" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:22px;letter-spacing:.01em;text-transform:uppercase;display:flex;align-items:center;gap:6px">Reza Ardhana<span style="width:7px;height:7px;border-radius:50%;background:#F2A93B;display:block"></span></a>
   <div data-build="meta" class="status-atas" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.5">{{ t.meta1 }}<br><span style="color:#EDEBE6">{{ t.meta2 }}</span></div>
   <nav data-build="nav" class="nav-utama" style="margin-left:auto;display:flex;gap:22px;font-size:14px;font-weight:500;flex-wrap:wrap;justify-content:flex-end">
     <a href="#problem">{{ t.n_prob }}</a><a href="#fms">FMS</a><a href="#architecture">{{ t.n_arch }}</a><a href="#validation">{{ t.n_val }}</a><a href="#outcome">{{ t.n_out }}</a><a href="#dashboard">Dashboard</a>
   </nav>
-  <a data-build="back" class="kembali" href="./?lang={{ lang }}#work" style="flex:none;display:flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid rgba(255,255,255,.16);border-radius:999px;font-size:13px;font-weight:600;background:#12141A" style-hover="border-color:#F2A93B">{{ t.back }}</a>
   <div data-build="lang" class="bahasa" role="group" aria-label="Language / Bahasa" style="display:flex;flex:none;border:1px solid rgba(255,255,255,.16);border-radius:999px;overflow:hidden"><button onClick="{{ setId }}" aria-pressed="{{ isId }}" style="height:38px;min-width:42px;border:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;background:{{ idBg }};color:{{ idFg }}">ID</button><button onClick="{{ setEn }}" aria-pressed="{{ isEn }}" style="height:38px;min-width:42px;border:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;background:{{ enBg }};color:{{ enFg }}">EN</button></div>
   <sc-if value="{{ showProgress }}" hint-placeholder-val="{{ true }}">
     <div style="position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(255,255,255,.06)"><div ref="{{ progRef }}" style="height:100%;background:#F2A93B;transform-origin:0 50%;transform:scaleX(0)"></div></div>
@@ -297,18 +310,12 @@ a:hover{color:#F2A93B}
 </section>
 
 <footer data-screen-label="Footer" style="position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,.08);padding:100px clamp(20px,4vw,56px) 40px">
-  <div style="position:relative;max-width:1360px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:40px">
-    <a data-build="next" href="studi-kasus-dispatcher.html?lang={{ lang }}" style="display:flex;flex-direction:column;gap:14px" style-hover="color:#F2A93B">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.next }}</span>
-      <span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(48px,7vw,104px);line-height:.86;text-transform:uppercase">{{ t.next1 }}<br>{{ t.next2 }}</span>
-    </a>
-    <div style="display:flex;flex-direction:column;gap:10px;text-align:right;font-size:14px">
-      <a href="./?lang={{ lang }}">{{ t.backp }}</a>
-      <a href="mailto:rezaardhana67@gmail.com">rezaardhana67@gmail.com</a>
-    </div>
-  </div>
+  <nav class="nav-studi" aria-label="{{ t.nvl }}" style="position:relative;max-width:1360px;margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+    <div class="kosong" aria-hidden="true"></div>
+    <a data-build="next" class="lanjut" href="studi-kasus-dispatcher.html?lang={{ lang }}" style="display:flex;flex-direction:column;gap:14px;padding:clamp(22px,3vw,36px);background:#12141A;border:1px solid rgba(255,255,255,.16);align-items:flex-end;text-align:right" style-hover="border-color:#F2A93B"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.nvn }} · 02 <span class="panah" aria-hidden="true">→</span></span><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(26px,3vw,44px);line-height:.9;text-transform:uppercase">{{ t.nvnt }}</span></a>
+  </nav>
   <div style="max-width:1360px;margin:64px auto 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">
-    <span>© 2026 Muhammad Reza Ardhana</span><span>{{ t.simnote }}</span>
+    <span>© 2026 Muhammad Reza Ardhana</span><a href="mailto:rezaardhana67@gmail.com" style="color:#EDEBE6">rezaardhana67@gmail.com</a><span>{{ t.simnote }}</span>
   </div>
   <div style="height:56px"></div>
 </footer>
@@ -745,6 +752,7 @@ const bacaLang = () => { const u = new URLSearchParams(location.search).get('lan
   try { const s = localStorage.getItem('lang'); if (s === 'id' || s === 'en') return s; } catch (e) {}
   return (navigator.language || 'en').toLowerCase().startsWith('id') ? 'id' : 'en'; };
 const GERAK_MIN = matchMedia('(prefers-reduced-motion: reduce)').matches;
+Object.assign(KAMUS.en, {"kbl": "Back to portfolio", "nvp": "Previous", "nvn": "Next", "nvl": "Case studies", "nvnt": "Dispatcher performance monitoring"}); Object.assign(KAMUS.id, {"kbl": "Kembali ke portofolio", "nvp": "Sebelumnya", "nvn": "Berikutnya", "nvl": "Studi kasus", "nvnt": "Pemantauan kinerja dispatcher"});
 class Component extends DCLogic {
   state = { lang: bacaLang(), feed: [], rows: [], phase: 'load', batchNo: 1, db: 0, loading: (this.props.agents ?? true) && !this.props.skipIntro && !GERAK_MIN, scanPct: 0, built: 0, total: 0, status: 'Scanning', paused: false, hidden: false };
   rootRef = React.createRef(); paperRef = React.createRef(); progRef = React.createRef();
