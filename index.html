@@ -25,7 +25,8 @@ input,textarea,button{font-family:inherit}
 .kartu-studi{transition:border-color .2s}.kartu-studi:hover{border-color:rgba(242,169,59,.6)!important}
 @media (max-width:900px){.nav-utama{display:none!important}.bahasa{margin-left:auto}
   .potret{top:190px;bottom:auto!important;height:38vh!important;width:min(80vw,300px)!important}}
-@media (max-width:560px){.status-atas{display:none!important}.hud{overflow-x:auto}}
+@media (max-width:560px){.status-atas,.hud{display:none!important}}
+@media (max-width:640px){.baris-stack{grid-template-columns:1fr!important;gap:12px!important}.baris-award{grid-template-columns:36px minmax(0,1fr)!important}.baris-award>span:last-child{grid-column:2}}
 
 /* tombol: panah bergerak saat hover, sedikit turun saat ditekan, outline saat fokus keyboard */
 .tombol,.kembali,.nav-studi a{transition:background-color .2s,border-color .2s,color .2s,transform .1s}
@@ -43,7 +44,7 @@ input,textarea,button{font-family:inherit}
 
 <header style="position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;gap:24px;padding:16px clamp(20px,4vw,56px);background:linear-gradient(#0B0C10 30%,rgba(11,12,16,0));">
   <a href="#top" data-build="logo" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:22px;letter-spacing:.01em;text-transform:uppercase;display:flex;align-items:center;gap:6px">Reza Ardhana<span style="width:7px;height:7px;border-radius:50%;background:#F2A93B;display:block"></span></a>
-  <div data-build="status" class="status-atas" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.5">{{ t.status }}<br>Pontianak, Indonesia</div>
+  <div data-build="status" class="status-atas" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.5">{{ t.status }}<br>Pontianak, Indonesia</div>
   <nav data-build="nav" class="nav-utama" style="margin-left:auto;display:flex;gap:22px;font-size:14px;font-weight:500;flex-wrap:wrap;justify-content:flex-end">
     <a href="#expertise">{{ t.nav_exp }}</a><a href="#experience">{{ t.nav_car }}</a><a href="#work">{{ t.nav_work }}</a><a href="#stack">{{ t.nav_stack }}</a><a href="#contact">{{ t.nav_contact }}</a>
   </nav>
@@ -74,21 +75,21 @@ input,textarea,button{font-family:inherit}
       </div>
     </div>
     <div style="flex:0 1 220px;display:flex;flex-direction:column;gap:14px">
-      <div data-build="stat.years" style="display:flex;align-items:baseline;gap:14px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:48px;line-height:1">3<span style="color:#F2A93B">+</span></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.4">{{ t.st_years1 }}<br>{{ t.st_years2 }}</span></div>
-      <div data-build="stat.units" style="display:flex;align-items:baseline;gap:14px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:48px;line-height:1">500<span style="color:#F2A93B">+</span></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.4">{{ t.st_units1 }}<br>{{ t.st_units2 }}</span></div>
-      <div data-build="stat.input" style="display:flex;align-items:baseline;gap:14px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:48px;line-height:1">65<span style="color:#F2A93B">%</span></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.4">{{ t.st_input1 }}<br>{{ t.st_input2 }}</span></div>
-      <div data-build="stat.team" style="display:flex;align-items:baseline;gap:14px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:48px;line-height:1">30<span style="color:#F2A93B">+</span></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.4">{{ t.st_team1 }}<br>{{ t.st_team2 }}</span></div>
+      <div data-build="stat.years" style="display:flex;align-items:baseline;gap:14px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:48px;line-height:1">3<span style="color:#F2A93B">+</span></span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.4">{{ t.st_years1 }}<br>{{ t.st_years2 }}</span></div>
+      <div data-build="stat.units" style="display:flex;align-items:baseline;gap:14px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:48px;line-height:1">500<span style="color:#F2A93B">+</span></span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.4">{{ t.st_units1 }}<br>{{ t.st_units2 }}</span></div>
+      <div data-build="stat.input" style="display:flex;align-items:baseline;gap:14px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:48px;line-height:1">65<span style="color:#F2A93B">%</span></span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.4">{{ t.st_input1 }}<br>{{ t.st_input2 }}</span></div>
+      <div data-build="stat.team" style="display:flex;align-items:baseline;gap:14px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:48px;line-height:1">30<span style="color:#F2A93B">+</span></span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.4">{{ t.st_team1 }}<br>{{ t.st_team2 }}</span></div>
     </div>
   </div>
-  <div style="display:flex;justify-content:space-between;gap:16px;margin-top:28px;position:relative;z-index:2;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#9A9BA3">
+  <div style="display:flex;justify-content:space-between;gap:16px;margin-top:28px;position:relative;z-index:2;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#9A9BA3">
     <span data-build="loc">● Pontianak, Indonesia</span><span data-build="scroll">{{ t.scroll }}</span>
   </div>
 </section>
 
 <div data-build="marquee" style="border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);overflow:hidden;padding:22px 0;white-space:nowrap">
   <div ref="{{ marqueeRef }}" style="display:inline-flex;gap:40px;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:800;font-size:clamp(40px,5vw,72px);text-transform:uppercase;line-height:1;will-change:transform">
-    <span>{{ t.mq1 }}</span><span style="color:#F2A93B">✦</span><span>{{ t.mq2 }}</span><span style="color:#F2A93B">✦</span><span>{{ t.mq3 }}</span><span style="color:#F2A93B">✦</span><span>{{ t.mq4 }}</span><span style="color:#F2A93B">✦</span>
-    <span>{{ t.mq1 }}</span><span style="color:#F2A93B">✦</span><span>{{ t.mq2 }}</span><span style="color:#F2A93B">✦</span><span>{{ t.mq3 }}</span><span style="color:#F2A93B">✦</span><span>{{ t.mq4 }}</span><span style="color:#F2A93B">✦</span>
+    <span>{{ t.mq1 }}</span><span style="color:#F2A93B">•</span><span>{{ t.mq2 }}</span><span style="color:#F2A93B">•</span><span>{{ t.mq3 }}</span><span style="color:#F2A93B">•</span><span>{{ t.mq4 }}</span><span style="color:#F2A93B">•</span>
+    <span>{{ t.mq1 }}</span><span style="color:#F2A93B">•</span><span>{{ t.mq2 }}</span><span style="color:#F2A93B">•</span><span>{{ t.mq3 }}</span><span style="color:#F2A93B">•</span><span>{{ t.mq4 }}</span><span style="color:#F2A93B">•</span>
   </div>
 </div>
 
@@ -138,17 +139,17 @@ input,textarea,button{font-family:inherit}
   <div style="display:flex;flex-direction:column">
     <div data-build="job.pama" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px 40px;padding:30px 0;border-top:1px solid rgba(255,255,255,.1)">
       <div><div style="font-size:20px;font-weight:700;line-height:1.25">Operation Research Expert</div><div style="font-size:14px;color:#9A9BA3;margin-top:6px">{{ t.job1_dept }}</div></div>
-      <div style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:800;font-size:30px;text-transform:uppercase;line-height:1">Jul 2023 — <span style="color:#F2A93B">{{ t.present }}</span></div>
-      <p style="margin:0;font-size:14px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.job1p }}</p>
+      <div style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:800;font-size:30px;text-transform:uppercase;line-height:1">Jul 2023 – <span style="color:#F2A93B">{{ t.present }}</span></div>
+      <p style="margin:0;font-size:15px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.job1p }}</p>
     </div>
     <div data-build="job.colearn" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px 40px;padding:30px 0;border-top:1px solid rgba(255,255,255,.1)">
       <div><div style="font-size:20px;font-weight:700;line-height:1.25">{{ t.job2 }}</div><div style="font-size:14px;color:#9A9BA3;margin-top:6px">Co-Learn</div></div>
       <div style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:800;font-size:30px;text-transform:uppercase;line-height:1">{{ t.job2d }}</div>
-      <p style="margin:0;font-size:14px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.job2p }}</p>
+      <p style="margin:0;font-size:15px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.job2p }}</p>
     </div>
     <div data-build="edu.ipb" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px 40px;padding:30px 0;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1)">
       <div><div style="font-size:20px;font-weight:700;line-height:1.25">{{ t.edu }}</div><div style="font-size:14px;color:#9A9BA3;margin-top:6px">IPB University, Bogor</div></div>
-      <div style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:800;font-size:30px;text-transform:uppercase;line-height:1">2018 — 2022</div>
+      <div style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:800;font-size:30px;text-transform:uppercase;line-height:1">2018 – 2022</div>
       <p style="margin:0;font-size:14px;line-height:1.6;color:#BDBCC2">{{ t.gpa }}</p>
     </div>
   </div>
@@ -156,7 +157,7 @@ input,textarea,button{font-family:inherit}
 
 <section id="work" data-screen-label="Selected work" style="max-width:1360px;margin:0 auto;padding:40px clamp(20px,4vw,56px) 80px;scroll-margin-top:60px">
   <div data-build="h2.work" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:64px">
-    <h2 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(56px,8vw,128px);line-height:.86;text-transform:uppercase">{{ t.w_h1 }}<br><span style="color:#F2A93B">{{ t.w_h2 }}</span> /</h2>
+    <h2 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(56px,8vw,128px);line-height:.86;text-transform:uppercase">{{ t.w_h1 }}<br><span style="color:#F2A93B">{{ t.w_h2 }}</span>.</h2>
     <span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:800;font-size:clamp(40px,5vw,72px);line-height:1">( 5 )</span>
   </div>
 
@@ -164,13 +165,13 @@ input,textarea,button{font-family:inherit}
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px 48px;align-items:start">
       <div data-build="num.01" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(120px,15vw,240px);line-height:.8">01<span style="color:#F2A93B">.</span></div>
       <div data-build="card.database" class="kartu-studi" style="position:relative;background:#12141A;border:1px solid rgba(255,255,255,.08);padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:22px">
-        <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">SQL Server</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w1t2 }}</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w1t3 }}</span></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">SQL Server</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w1t2 }}</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w1t3 }}</span></div>
         <h3 style="margin:0;font-size:clamp(24px,2.4vw,32px);font-weight:700;line-height:1.15;letter-spacing:-.01em">{{ t.w1 }}</h3>
         <p style="margin:0;font-size:15px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.w1p }}</p>
         <a href="studi-kasus-database.html?lang={{ lang }}" class="tombol utama" style="position:relative;z-index:2;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:13px 20px;background:#F2A93B;color:#0B0C10;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="background:#FFC266;color:#0B0C10">{{ t.read_cs }} <span class="panah" aria-hidden="true">→</span></a>
         <a href="studi-kasus-database.html?lang={{ lang }}" aria-hidden="true" tabindex="-1" style="position:absolute;inset:0;z-index:1"></a>
         <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:20px">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.w1m }}</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.w1m }}</div>
           <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.before }}</span><div style="height:10px;background:rgba(255,255,255,.18);width:100%"></div><span style="text-align:right">{{ t.w1b }}</span></div>
           <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.after }}</span><div style="height:10px;background:#F2A93B;width:35%"></div><span style="text-align:right">{{ t.w1a }}</span></div>
           <div style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:44px;line-height:1;color:#F2A93B;margin-top:6px">−65%</div>
@@ -181,13 +182,13 @@ input,textarea,button{font-family:inherit}
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px 48px;align-items:start">
       <div data-build="num.02" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(120px,15vw,240px);line-height:.8">02<span style="color:#F2A93B">.</span></div>
       <div data-build="card.dispatcher" class="kartu-studi" style="position:relative;background:#12141A;border:1px solid rgba(255,255,255,.08);padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:22px">
-        <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">Web app</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w2t2 }}</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w2t3 }}</span></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">Web app</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w2t2 }}</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w2t3 }}</span></div>
         <h3 style="margin:0;font-size:clamp(24px,2.4vw,32px);font-weight:700;line-height:1.15;letter-spacing:-.01em">{{ t.w2 }}</h3>
         <p style="margin:0;font-size:15px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.w2p }}</p>
         <a href="studi-kasus-dispatcher.html?lang={{ lang }}" class="tombol utama" style="position:relative;z-index:2;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:13px 20px;background:#F2A93B;color:#0B0C10;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="background:#FFC266;color:#0B0C10">{{ t.read_cs }} <span class="panah" aria-hidden="true">→</span></a>
         <a href="studi-kasus-dispatcher.html?lang={{ lang }}" aria-hidden="true" tabindex="-1" style="position:absolute;inset:0;z-index:1"></a>
         <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:20px">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.w2m }}</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.w2m }}</div>
           <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.before }}</span><div style="height:10px;background:rgba(255,255,255,.18);width:71%"></div><span style="text-align:right">{{ t.w2b }}</span></div>
           <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.after }}</span><div style="height:10px;background:#F2A93B;width:100%"></div><span style="text-align:right">+40%</span></div>
           <div style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:44px;line-height:1;color:#F2A93B;margin-top:6px">≈ +40%</div>
@@ -198,13 +199,13 @@ input,textarea,button{font-family:inherit}
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px 48px;align-items:start">
       <div data-build="num.03" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(120px,15vw,240px);line-height:.8">03<span style="color:#F2A93B">.</span></div>
       <div data-build="card.shift" class="kartu-studi" style="position:relative;background:#12141A;border:1px solid rgba(255,255,255,.08);padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:22px">
-        <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">Haul trucks</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w3t2 }}</span></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">Haul trucks</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w3t2 }}</span></div>
         <h3 style="margin:0;font-size:clamp(24px,2.4vw,32px);font-weight:700;line-height:1.15;letter-spacing:-.01em">{{ t.w3 }}</h3>
         <p style="margin:0;font-size:15px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.w3p }}</p>
         <a href="studi-kasus-shift-change.html?lang={{ lang }}" class="tombol utama" style="position:relative;z-index:2;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:13px 20px;background:#F2A93B;color:#0B0C10;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="background:#FFC266;color:#0B0C10">{{ t.read_cs }} <span class="panah" aria-hidden="true">→</span></a>
         <a href="studi-kasus-shift-change.html?lang={{ lang }}" aria-hidden="true" tabindex="-1" style="position:absolute;inset:0;z-index:1"></a>
         <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:20px">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.w3m }}</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.w3m }}</div>
           <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.before }}</span><div style="height:10px;background:rgba(255,255,255,.18);width:100%"></div><span style="text-align:right">{{ t.w3b }}</span></div>
           <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.after }}</span><div style="height:10px;background:#F2A93B;width:20%"></div><span style="text-align:right">{{ t.w3a }}</span></div>
           <div style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:44px;line-height:1;color:#F2A93B;margin-top:6px">{{ t.w3big }}</div>
@@ -215,12 +216,12 @@ input,textarea,button{font-family:inherit}
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px 48px;align-items:start">
       <div data-build="num.04" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(120px,15vw,240px);line-height:.8">04<span style="color:#F2A93B">.</span></div>
       <div data-build="card.mttr" class="kartu-studi" style="position:relative;background:#12141A;border:1px solid rgba(255,255,255,.08);padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:22px">
-        <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w4t1 }}</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w4t2 }}</span></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w4t1 }}</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w4t2 }}</span></div>
         <h3 style="margin:0;font-size:clamp(24px,2.4vw,32px);font-weight:700;line-height:1.15;letter-spacing:-.01em">{{ t.w4 }}</h3>
         <p style="margin:0;font-size:15px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.w4p }}</p>
         <a href="studi-kasus-fms.html?lang={{ lang }}" class="tombol utama" style="position:relative;z-index:2;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:13px 20px;background:#F2A93B;color:#0B0C10;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="background:#FFC266;color:#0B0C10">{{ t.read_cs }} <span class="panah" aria-hidden="true">→</span></a>
         <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:20px">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.w4m }}</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.w4m }}</div>
           <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.before }}</span><div style="height:10px;background:rgba(255,255,255,.18);width:100%"></div><span style="text-align:right">{{ t.w4b }}</span></div>
           <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.after }}</span><div style="height:10px;background:#F2A93B;width:16%"></div><span style="text-align:right">{{ t.w4a }}</span></div>
           <div style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:44px;line-height:1;color:#F2A93B;margin-top:6px">{{ t.w4big }}</div>
@@ -232,7 +233,7 @@ input,textarea,button{font-family:inherit}
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px 48px;align-items:start">
       <div data-build="num.05" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(120px,15vw,240px);line-height:.8">05<span style="color:#F2A93B">.</span></div>
       <div data-build="card.simulation" class="kartu-studi" style="position:relative;background:#12141A;border:1px solid rgba(255,255,255,.08);padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:22px">
-        <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w5t1 }}</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w5t2 }}</span></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w5t1 }}</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w5t2 }}</span></div>
         <h3 style="margin:0;font-size:clamp(24px,2.4vw,32px);font-weight:700;line-height:1.15;letter-spacing:-.01em">{{ t.w5 }}</h3>
         <p style="margin:0;font-size:15px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.w5p }}</p>
         <a href="studi-kasus-simulasi.html?lang={{ lang }}" class="tombol utama" style="position:relative;z-index:2;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:13px 20px;background:#F2A93B;color:#0B0C10;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="background:#FFC266;color:#0B0C10">{{ t.read_cs }} <span class="panah" aria-hidden="true">→</span></a>
@@ -261,23 +262,23 @@ input,textarea,button{font-family:inherit}
 <section id="stack" data-screen-label="Stack" style="max-width:1360px;margin:0 auto;padding:40px clamp(20px,4vw,56px) 110px;scroll-margin-top:60px">
   <div data-build="label.stack" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;margin-bottom:40px">{{ t.lbl_st1 }}<span style="color:#F2A93B">{{ t.lbl_st2 }}</span></div>
   <div style="display:flex;flex-direction:column">
-    <div data-build="stack.db" style="display:grid;grid-template-columns:minmax(140px,240px) minmax(0,1fr);gap:16px 32px;padding:22px 0;border-top:1px solid rgba(255,255,255,.1);align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Database</span><div style="display:flex;flex-wrap:wrap;gap:8px;font-size:14px;font-weight:600"><span style="background:#F2A93B;color:#0B0C10;padding:8px 12px">SQL Server</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">{{ t.s1b }}</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">CRUD</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">{{ t.s1d }}</span></div></div>
-    <div data-build="stack.excel" style="display:grid;grid-template-columns:minmax(140px,240px) minmax(0,1fr);gap:16px 32px;padding:22px 0;border-top:1px solid rgba(255,255,255,.1);align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Spreadsheet</span><div style="display:flex;flex-wrap:wrap;gap:8px;font-size:14px;font-weight:600"><span style="background:#F2A93B;color:#0B0C10;padding:8px 12px">Microsoft Excel</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">Pivot Table</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">XLOOKUP / VLOOKUP</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">SUMIFS</span></div></div>
-    <div data-build="stack.python" style="display:grid;grid-template-columns:minmax(140px,240px) minmax(0,1fr);gap:16px 32px;padding:22px 0;border-top:1px solid rgba(255,255,255,.1);align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.s3 }}</span><div style="display:flex;flex-wrap:wrap;gap:8px;font-size:14px;font-weight:600"><span style="background:#F2A93B;color:#0B0C10;padding:8px 12px">Python</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">{{ t.s3a }}</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">{{ t.s3b }}</span></div></div>
-    <div data-build="stack.bi" style="display:grid;grid-template-columns:minmax(140px,240px) minmax(0,1fr);gap:16px 32px;padding:22px 0;border-top:1px solid rgba(255,255,255,.1);align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.s4 }}</span><div style="display:flex;flex-wrap:wrap;gap:8px;font-size:14px;font-weight:600"><span style="background:#F2A93B;color:#0B0C10;padding:8px 12px">Power BI</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">{{ t.s4a }}</span></div></div>
-    <div data-build="stack.mining" style="display:grid;grid-template-columns:minmax(140px,240px) minmax(0,1fr);gap:16px 32px;padding:22px 0;border-top:1px solid rgba(255,255,255,.1);align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.s5 }}</span><div style="display:flex;flex-wrap:wrap;gap:8px;font-size:14px;font-weight:600"><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">Fleet Management System (FMS)</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">{{ t.s5b }}</span></div></div>
-    <div data-build="stack.analytics" style="display:grid;grid-template-columns:minmax(140px,240px) minmax(0,1fr);gap:16px 32px;padding:22px 0;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1);align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.s6 }}</span><div style="display:flex;flex-wrap:wrap;gap:8px;font-size:14px;font-weight:600"><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">{{ t.s6a }}</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">Linear programming</span></div></div>
+    <div data-build="stack.db" class="baris-stack" style="display:grid;grid-template-columns:minmax(140px,240px) minmax(0,1fr);gap:16px 32px;padding:22px 0;border-top:1px solid rgba(255,255,255,.1);align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Database</span><div style="display:flex;flex-wrap:wrap;gap:8px;font-size:14px;font-weight:600"><span style="background:#F2A93B;color:#0B0C10;padding:8px 12px">SQL Server</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">{{ t.s1b }}</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">CRUD</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">{{ t.s1d }}</span></div></div>
+    <div data-build="stack.excel" class="baris-stack" style="display:grid;grid-template-columns:minmax(140px,240px) minmax(0,1fr);gap:16px 32px;padding:22px 0;border-top:1px solid rgba(255,255,255,.1);align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Spreadsheet</span><div style="display:flex;flex-wrap:wrap;gap:8px;font-size:14px;font-weight:600"><span style="background:#F2A93B;color:#0B0C10;padding:8px 12px">Microsoft Excel</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">Pivot Table</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">XLOOKUP / VLOOKUP</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">SUMIFS</span></div></div>
+    <div data-build="stack.python" class="baris-stack" style="display:grid;grid-template-columns:minmax(140px,240px) minmax(0,1fr);gap:16px 32px;padding:22px 0;border-top:1px solid rgba(255,255,255,.1);align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.s3 }}</span><div style="display:flex;flex-wrap:wrap;gap:8px;font-size:14px;font-weight:600"><span style="background:#F2A93B;color:#0B0C10;padding:8px 12px">Python</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">{{ t.s3a }}</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">{{ t.s3b }}</span></div></div>
+    <div data-build="stack.bi" class="baris-stack" style="display:grid;grid-template-columns:minmax(140px,240px) minmax(0,1fr);gap:16px 32px;padding:22px 0;border-top:1px solid rgba(255,255,255,.1);align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.s4 }}</span><div style="display:flex;flex-wrap:wrap;gap:8px;font-size:14px;font-weight:600"><span style="background:#F2A93B;color:#0B0C10;padding:8px 12px">Power BI</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">{{ t.s4a }}</span></div></div>
+    <div data-build="stack.mining" class="baris-stack" style="display:grid;grid-template-columns:minmax(140px,240px) minmax(0,1fr);gap:16px 32px;padding:22px 0;border-top:1px solid rgba(255,255,255,.1);align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.s5 }}</span><div style="display:flex;flex-wrap:wrap;gap:8px;font-size:14px;font-weight:600"><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">Fleet Management System (FMS)</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">{{ t.s5b }}</span></div></div>
+    <div data-build="stack.analytics" class="baris-stack" style="display:grid;grid-template-columns:minmax(140px,240px) minmax(0,1fr);gap:16px 32px;padding:22px 0;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1);align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.s6 }}</span><div style="display:flex;flex-wrap:wrap;gap:8px;font-size:14px;font-weight:600"><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">{{ t.s6a }}</span><span style="border:1px solid rgba(255,255,255,.16);padding:7px 12px">Linear programming</span></div></div>
   </div>
 </section>
 
 <section id="recognition" data-screen-label="Recognition" style="max-width:1360px;margin:0 auto;padding:40px clamp(20px,4vw,56px) 120px">
   <div data-build="label.recognition" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;margin-bottom:32px">{{ t.lbl_rec1 }}<span style="color:#F2A93B">{{ t.lbl_rec2 }}</span></div>
   <div style="display:flex;flex-direction:column">
-    <div data-build="award.ucl" style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:20px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9A9BA3">01.</span><div><div style="font-size:clamp(18px,2vw,26px);font-weight:600">{{ t.a1 }}</div><div style="font-size:13px;color:#9A9BA3;margin-top:4px">University College London</div></div><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#F2A93B">{{ t.award }}</span></div>
-    <div data-build="award.knmipa" style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:20px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9A9BA3">02.</span><div><div style="font-size:clamp(18px,2vw,26px);font-weight:600">{{ t.a2 }}</div><div style="font-size:13px;color:#9A9BA3;margin-top:4px">{{ t.a2s }}</div></div><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#F2A93B">{{ t.award }}</span></div>
-    <div data-build="award.president" style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:20px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9A9BA3">03.</span><div><div style="font-size:clamp(18px,2vw,26px);font-weight:600">{{ t.a3 }}</div><div style="font-size:13px;color:#9A9BA3;margin-top:4px">IPB University</div></div><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.lead }}</span></div>
-    <div data-build="cert.pop" style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:20px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9A9BA3">04.</span><div><div style="font-size:clamp(18px,2vw,26px);font-weight:600">Pengawas Operasional Pertama (POP)</div><div style="font-size:13px;color:#9A9BA3;margin-top:4px">{{ t.a4s }}</div></div><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.cert }}</span></div>
-    <div data-build="cert.fasttrack" style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:20px 0;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1)"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9A9BA3">05.</span><div><div style="font-size:clamp(18px,2vw,26px);font-weight:600">{{ t.a5 }}</div><div style="font-size:13px;color:#9A9BA3;margin-top:4px">{{ t.a5s }}</div></div><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.cert }}</span></div>
+    <div data-build="award.ucl" class="baris-award" style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:20px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9A9BA3">01.</span><div><div style="font-size:clamp(18px,2vw,26px);font-weight:600">{{ t.a1 }}</div><div style="font-size:13px;color:#9A9BA3;margin-top:4px">University College London</div></div><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#F2A93B">{{ t.award }}</span></div>
+    <div data-build="award.knmipa" class="baris-award" style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:20px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9A9BA3">02.</span><div><div style="font-size:clamp(18px,2vw,26px);font-weight:600">{{ t.a2 }}</div><div style="font-size:13px;color:#9A9BA3;margin-top:4px">{{ t.a2s }}</div></div><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#F2A93B">{{ t.award }}</span></div>
+    <div data-build="award.president" class="baris-award" style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:20px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9A9BA3">03.</span><div><div style="font-size:clamp(18px,2vw,26px);font-weight:600">{{ t.a3 }}</div><div style="font-size:13px;color:#9A9BA3;margin-top:4px">IPB University</div></div><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.lead }}</span></div>
+    <div data-build="cert.pop" class="baris-award" style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:20px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9A9BA3">04.</span><div><div style="font-size:clamp(18px,2vw,26px);font-weight:600">Pengawas Operasional Pertama (POP)</div><div style="font-size:13px;color:#9A9BA3;margin-top:4px">{{ t.a4s }}</div></div><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.cert }}</span></div>
+    <div data-build="cert.fasttrack" class="baris-award" style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:20px 0;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1)"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9A9BA3">05.</span><div><div style="font-size:clamp(18px,2vw,26px);font-weight:600">{{ t.a5 }}</div><div style="font-size:13px;color:#9A9BA3;margin-top:4px">{{ t.a5s }}</div></div><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.cert }}</span></div>
   </div>
 </section>
 
@@ -288,15 +289,15 @@ input,textarea,button{font-family:inherit}
       <h2 data-build="h2.contact" style="margin:0;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(60px,8vw,120px);line-height:.86;text-transform:uppercase">{{ t.c_h1 }}<br><span style="color:#F2A93B">{{ t.c_h2 }}</span></h2>
       <p data-build="p.contact" style="margin:0;max-width:440px;font-size:16px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.c_p }}</p>
       <div data-build="contact.list" style="display:flex;flex-direction:column;gap:12px;font-size:15px">
-        <a href="mailto:rezaardhana67@gmail.com" style="display:flex;gap:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;width:72px;padding-top:3px">Email</span>rezaardhana67@gmail.com</a>
-        <a href="tel:+6289689343008" style="display:flex;gap:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;width:72px;padding-top:3px">{{ t.phone }}</span>+62 896-8934-3008</a>
-        <a href="https://linkedin.com/in/muhammad-reza-ardhana" target="_blank" style="display:flex;gap:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;width:72px;padding-top:3px">LinkedIn</span>muhammad-reza-ardhana ↗</a>
+        <a href="mailto:rezaardhana67@gmail.com" style="display:flex;gap:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;width:72px;padding-top:3px">Email</span>rezaardhana67@gmail.com</a>
+        <a href="tel:+6289689343008" style="display:flex;gap:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;width:72px;padding-top:3px">{{ t.phone }}</span>+62 896-8934-3008</a>
+        <a href="https://linkedin.com/in/muhammad-reza-ardhana" target="_blank" style="display:flex;gap:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;width:72px;padding-top:3px">LinkedIn</span>muhammad-reza-ardhana ↗</a>
       </div>
     </div>
     <form data-build="form.contact" onSubmit="{{ onSend }}" style="background:#12141A;border:1px solid rgba(255,255,255,.08);padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:20px">
-      <label style="display:flex;flex-direction:column;gap:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.f_name }}</span><input name="name" required="" placeholder="{{ t.ph_name }}" style="background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.18);padding:10px 0;color:#EDEBE6;font-size:16px;outline:none" style-focus="border-bottom-color:#F2A93B"></label>
-      <label style="display:flex;flex-direction:column;gap:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Email</span><input name="email" type="email" required="" placeholder="{{ t.ph_email }}" style="background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.18);padding:10px 0;color:#EDEBE6;font-size:16px;outline:none" style-focus="border-bottom-color:#F2A93B"></label>
-      <label style="display:flex;flex-direction:column;gap:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.f_msg }}</span><textarea name="message" rows="4" placeholder="{{ t.ph_msg }}" style="background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.18);padding:10px 0;color:#EDEBE6;font-size:16px;outline:none;resize:vertical" style-focus="border-bottom-color:#F2A93B"></textarea></label>
+      <label style="display:flex;flex-direction:column;gap:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.f_name }}</span><input name="name" required="" placeholder="{{ t.ph_name }}" style="background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.18);padding:10px 0;color:#EDEBE6;font-size:16px;outline:none" style-focus="border-bottom-color:#F2A93B"></label>
+      <label style="display:flex;flex-direction:column;gap:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Email</span><input name="email" type="email" required="" placeholder="{{ t.ph_email }}" style="background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.18);padding:10px 0;color:#EDEBE6;font-size:16px;outline:none" style-focus="border-bottom-color:#F2A93B"></label>
+      <label style="display:flex;flex-direction:column;gap:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.f_msg }}</span><textarea name="message" rows="4" placeholder="{{ t.ph_msg }}" style="background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.18);padding:10px 0;color:#EDEBE6;font-size:16px;outline:none;resize:vertical" style-focus="border-bottom-color:#F2A93B"></textarea></label>
       <button type="submit" style="align-self:flex-start;padding:14px 22px;background:#F2A93B;color:#0B0C10;border:0;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer" style-hover="background:#FFC266">{{ sendLabel }}</button>
     </form>
   </div>
@@ -310,12 +311,12 @@ input,textarea,button{font-family:inherit}
       <a data-build="cta.footer" href="assets/CV-Muhammad-Reza-Ardhana.pdf" download="" class="tombol unduh utama" style="align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:13px 20px;background:#F2A93B;color:#0B0C10;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="background:#FFC266;color:#0B0C10">{{ t.cv }}<span class="panah" aria-hidden="true">↓</span></a>
     </div>
     <div data-build="footer.meta" style="display:flex;flex-direction:column;gap:10px;text-align:right;font-size:14px">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.nav_contact }}</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.nav_contact }}</span>
       <a href="mailto:rezaardhana67@gmail.com">rezaardhana67@gmail.com</a>
       <a href="https://linkedin.com/in/muhammad-reza-ardhana" target="_blank">LinkedIn ↗</a>
     </div>
   </div>
-  <div style="position:relative;max-width:1360px;margin:80px auto 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;padding-bottom:64px">
+  <div style="position:relative;max-width:1360px;margin:80px auto 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;padding-bottom:64px">
     <span>© 2026 Muhammad Reza Ardhana</span><span>Pontianak, Indonesia</span>
   </div>
 </footer>
@@ -346,13 +347,13 @@ input,textarea,button{font-family:inherit}
 </sc-if>
 
 <sc-if value="{{ showHud }}" hint-placeholder-val="{{ true }}">
-  <div style="position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:70;display:flex;align-items:center;gap:12px;padding:7px 8px 7px 12px;background:rgba(18,20,26,.9);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#9A9BA3;white-space:nowrap;max-width:calc(100vw - 24px)" class="hud">
+  <div class="hud" style="position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:70;display:flex;align-items:center;gap:12px;padding:7px 8px 7px 12px;background:rgba(18,20,26,.9);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#9A9BA3;white-space:nowrap;max-width:calc(100vw - 24px)" class="hud">
     <div style="display:flex">
       <span style="width:12px;height:12px;border-radius:50%;background:#F2A93B;border:2px solid #12141A;display:block"></span><span style="width:12px;height:12px;border-radius:50%;background:#4C8DFF;border:2px solid #12141A;margin-left:-5px;display:block"></span><span style="width:12px;height:12px;border-radius:50%;background:#3DD6A3;border:2px solid #12141A;margin-left:-5px;display:block"></span><span style="width:12px;height:12px;border-radius:50%;background:#FF6B5A;border:2px solid #12141A;margin-left:-5px;display:block"></span><span style="width:12px;height:12px;border-radius:50%;background:#A78BFA;border:2px solid #12141A;margin-left:-5px;display:block"></span>
     </div>
     <span><span style="color:#EDEBE6">{{ agentCount }}</span>{{ t.agents }}</span>
     <span style="width:1px;height:14px;background:rgba(255,255,255,.12);display:block"></span>
-    <span><span style="color:#EDEBE6">{{ built }}</span> / {{ total }} layers</span>
+    <span><span style="color:#EDEBE6">{{ built }}</span> / {{ total }} {{ t.layers }}</span>
     <span style="width:64px;height:3px;background:rgba(255,255,255,.1);position:relative;display:block"><span style="position:absolute;left:0;top:0;bottom:0;width:{{ pct }}%;background:#4C8DFF;display:block"></span></span>
     <span style="display:flex;align-items:center;gap:6px;padding:4px 9px;border-radius:999px;background:rgba(76,141,255,.14);color:#8DB5FF"><span style="width:6px;height:6px;border-radius:50%;background:#4C8DFF;display:block"></span>{{ status }}</span>
     <button onClick="{{ togglePause }}" title="{{ t.ti_pause }}" style="height:28px;padding:0 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#EDEBE6;font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer" style-hover="border-color:#4C8DFF">{{ pauseLabel }}</button>
@@ -375,7 +376,7 @@ const KAMUS = {
 "eyebrow": "Operational Data & Database Specialist",
 "industry": "Mining Industry",
 "dept": "Mine Optimization Dept.",
-"since": "2023 — Present",
+"since": "2023 – Present",
 "bigword": "Portfolio",
 "hello": "Hello, I'm",
 "summary": "Mining data professional turning FMS and timesheet records from a 500+ unit fleet into accurate, on-time operational reporting.",
@@ -389,42 +390,42 @@ const KAMUS = {
 "st_input2": "input time",
 "st_team1": "Dispatchers",
 "st_team2": "led",
-"scroll": "Scroll to explore ↓",
+"scroll": "Scroll down ↓",
 "mq1": "Operational Data",
 "mq2": "Database Design",
 "mq3": "PA / UA Reporting",
 "mq4": "Data Validation",
-"lbl_do1": "✦ What I ",
+"lbl_do1": "What I ",
 "lbl_do2": "do",
-"exp_lead": "Reliable operational numbers do not happen by chance. They come from validated sources, well-designed databases, and workflows people can follow every shift.",
+"exp_lead": "Good operational numbers start with clean data. Most of my work happens before the report is made: checking the sources, fixing the database, and setting up a workflow every shift can actually follow.",
 "r1": "Operational Reporting",
-"r1p": "Calculate and report daily and monthly Working Hours (WH), Physical Availability (PA), and Utilization Availability (UA) for 500+ operational units.",
+"r1p": "I calculate and report daily and monthly Working Hours (WH), Physical Availability (PA), and Utilization Availability (UA) for 500+ units.",
 "r1a": "→ WH reporting",
 "r1b": "→ PA / UA calculation",
 "r1c": "→ Timesheet management",
 "r2": "Data Validation & Reconciliation",
-"r2p": "Validate timesheet data against FMS records, and identify and resolve discrepancies so that operational data is accurate, complete, and on time.",
+"r2p": "I check timesheets against FMS records and fix any gaps, so the numbers operations rely on are complete and correct.",
 "r2a": "→ Discrepancy analysis",
 "r2b": "→ Data quality control",
 "r2c": "→ FMS records",
 "r3": "Database Design & Automation",
-"r3p": "Redesigned the SQL Server database architecture and validation workflow, and built Python automation tools for data entry, cleansing, and processing.",
+"r3p": "I redesigned the SQL Server database and its validation workflow, and built Python tools for data entry, cleaning, and processing.",
 "r3a": "→ SQL Server design",
 "r3b": "→ Python automation",
 "r3c": "→ FMS data-cleaning features",
 "r4": "Team Supervision & SOPs",
-"r4p": "Lead 30+ dispatchers and oversee data input staff; revised SOPs and work instructions for dispatch and data handling processes.",
+"r4p": "I lead 30+ dispatchers, oversee the data input team, and rewrote the SOPs and work instructions for dispatch and data handling.",
 "r4a": "→ SOP development",
 "r4b": "→ Performance monitoring",
 "r4c": "→ HSE (K3L) compliance",
-"lbl_car1": "✦ Career & ",
+"lbl_car1": "Career & ",
 "lbl_car2": "education",
 "job1_dept": "PT Pamapersada Nusantara · Mine Optimization Dept.",
 "present": "Present",
 "job1p": "Central data hub consolidating FMS and timesheet data for 500+ units. Built Power BI dashboards, Python tools, and an internal dispatcher monitoring system.",
 "job2": "Mathematics Instructor",
-"job2d": "Dec 2022 — Jul 2023",
-"job2p": "Delivered structured mathematics and problem-solving instruction to students.",
+"job2d": "Dec 2022 – Jul 2023",
+"job2p": "Taught mathematics and problem solving to students.",
 "edu": "B.Sc. Mathematics",
 "gpa": "GPA 3.85 / 4.00",
 "w_h1": "Selected",
@@ -436,17 +437,17 @@ const KAMUS = {
 "w1m": "Data input time per shift",
 "before": "Before",
 "after": "After",
-"w1b": "~10 h",
+"w1b": "≈10 h",
 "w1a": "3.5 h",
 "w2t2": "Job tracking",
 "w2t3": "Timeliness scoring",
 "w2": "Dispatcher performance monitoring",
-"w2p": "An internal web-based system that tracks jobs and pending tasks and scores timeliness for 30+ dispatchers.",
+"w2p": "An internal web app that tracks each dispatcher's jobs and pending tasks and scores their timeliness. Used by 30+ dispatchers.",
 "w2m": "On-time completion & activity score",
 "w2b": "base",
 "w3t2": "Scheduling",
 "w3": "Automated shift-change scheduling",
-"w3p": "Automated shift-change scheduling for haul trucks based on analysis of operational data.",
+"w3p": "Plans each haul truck's shift change from its FMS cycle time, so units stop piling up at one point.",
 "w3m": "Shift-change delay",
 "w3b": "30 min",
 "w3a": "6 min",
@@ -454,7 +455,7 @@ const KAMUS = {
 "w4t1": "FMS infrastructure",
 "w4t2": "Maintenance",
 "w4": "FMS maintenance monitoring",
-"w4p": "A maintenance monitoring system for FMS infrastructure that shortens time to repair.",
+"w4p": "Work orders now go straight from dispatch to the mechanics' portal, so FMS hardware gets fixed much faster.",
 "w4m": "Mean time to repair (MTTR)",
 "w4b": "4–6 h",
 "w4a": "< 1 h",
@@ -462,19 +463,19 @@ const KAMUS = {
 "w5t1": "Simulation",
 "w5t2": "Forecasting",
 "w5": "Production simulation tool",
-"w5p": "Uses loader and haul truck performance data to forecast production and identify bottlenecks.",
+"w5p": "Simulates a shift from loader and haul truck data to forecast production and spot bottlenecks.",
 "w5a": "Loader performance",
 "w5b": "Haul truck performance",
 "w5c": "Forecast & bottlenecks",
 "ab1": "Mathematician, ",
 "ab2": "data specialist",
-"ab3": ", problem-solver/",
-"abp": "Mining data professional with 3+ years in the Mine Optimization Department of PT Pamapersada Nusantara, the central data hub that consolidates FMS and timesheet data for a fleet of 500+ units. Redesigned the database architecture and validation workflow, cutting data input time from about 10 hours to 3.5 hours per shift.",
-"lang_id": "Indonesian — ",
+"ab3": ", problem solver.",
+"abp": "I studied mathematics at IPB University and have spent the last 3+ years in the Mine Optimization Department at PT Pamapersada Nusantara, where FMS and timesheet data for 500+ units come together. My best-known work there is the database and validation redesign that cut data input from about 10 hours to 3.5 hours per shift.",
+"lang_id": "Indonesian · ",
 "native": "Native",
-"lang_en": "English — ",
+"lang_en": "English · ",
 "pro": "Professional",
-"lbl_st1": "✦ My ",
+"lbl_st1": "My ",
 "lbl_st2": "stack",
 "s1b": "Database design",
 "s1d": "Analytical queries",
@@ -487,19 +488,19 @@ const KAMUS = {
 "s5b": "FMS dispatch operations",
 "s6": "Analytics",
 "s6a": "Production data analysis",
-"lbl_rec1": "✦ Recognition & ",
+"lbl_rec1": "Recognition & ",
 "lbl_rec2": "certifications",
-"a1": "Third Prize — International Mathematics Competition",
+"a1": "Third Prize, International Mathematics Competition",
 "award": "Award",
-"a2": "Bronze Medalist — KNMIPA",
+"a2": "Bronze Medal, KNMIPA",
 "a2s": "National Mathematics and Natural Sciences Olympiad",
-"a3": "President — Mathematics Student Association",
+"a3": "President, Mathematics Student Association",
 "lead": "Leadership",
 "a4s": "First-Level Mining Operations Supervisor Certification",
 "cert": "Certification",
 "a5": "Data Analyst Fast Track Training",
 "a5s": "PT Pamapersada Nusantara · Aug 2023 – Mar 2024",
-"lbl_c1": "✦ Get in ",
+"lbl_c1": "Get in ",
 "lbl_c2": "touch",
 "c_h1": "Let's talk",
 "c_h2": "about your data.",
@@ -531,11 +532,12 @@ const KAMUS = {
 "show": "Show",
 "send": "Send message →",
 "sending": "Opening your email app…",
-"mail_subj": "Portfolio inquiry from "
+"mail_subj": "Portfolio inquiry from ",
+"layers": "layers"
 },
 "id": {
 "read_cs": "Baca studi kasus",
-"status": "Terbuka untuk peluang",
+"status": "Terbuka untuk peluang kerja",
 "nav_exp": "Keahlian",
 "nav_car": "Pengalaman",
 "nav_work": "Proyek",
@@ -544,10 +546,10 @@ const KAMUS = {
 "eyebrow": "Spesialis Data Operasional & Database",
 "industry": "Industri Pertambangan",
 "dept": "Dept. Mine Optimization",
-"since": "2023 — Sekarang",
+"since": "2023 – Sekarang",
 "bigword": "Portofolio",
 "hello": "Halo, saya",
-"summary": "Profesional data tambang yang mengolah data FMS dan timesheet dari 500+ unit armada menjadi laporan operasional yang akurat dan tepat waktu.",
+"summary": "Profesional data tambang yang mengolah data FMS dan timesheet dari armada 500+ unit menjadi laporan operasional yang akurat dan tepat waktu.",
 "view_work": "Lihat proyek ",
 "cv": "Unduh CV ",
 "st_years1": "Tahun di mine",
@@ -558,42 +560,42 @@ const KAMUS = {
 "st_input2": "data berkurang",
 "st_team1": "Dispatcher",
 "st_team2": "dipimpin",
-"scroll": "Gulir untuk menjelajah ↓",
+"scroll": "Gulir ke bawah ↓",
 "mq1": "Data Operasional",
 "mq2": "Desain Database",
 "mq3": "Pelaporan PA / UA",
 "mq4": "Validasi Data",
-"lbl_do1": "✦ Yang saya ",
+"lbl_do1": "Yang saya ",
 "lbl_do2": "kerjakan",
-"exp_lead": "Angka operasional yang andal tidak muncul begitu saja. Angka itu lahir dari sumber yang tervalidasi, database yang dirancang dengan baik, dan alur kerja yang bisa diikuti setiap shift.",
+"exp_lead": "Angka operasional yang bagus berawal dari data yang bersih. Sebagian besar pekerjaan saya justru terjadi sebelum laporan dibuat: mengecek sumber data, membenahi database, dan menyusun alur kerja yang benar-benar bisa dijalankan tiap shift.",
 "r1": "Pelaporan Operasional",
-"r1p": "Menghitung dan melaporkan Working Hours (WH), Physical Availability (PA), dan Utilization Availability (UA) harian dan bulanan untuk 500+ unit operasional.",
+"r1p": "Saya menghitung dan melaporkan Working Hours (WH), Physical Availability (PA), dan Utilization Availability (UA) harian maupun bulanan untuk 500+ unit.",
 "r1a": "→ Pelaporan WH",
 "r1b": "→ Perhitungan PA / UA",
 "r1c": "→ Pengelolaan timesheet",
 "r2": "Validasi & Rekonsiliasi Data",
-"r2p": "Memvalidasi data timesheet terhadap catatan FMS, lalu menemukan dan menyelesaikan selisih agar data operasional akurat, lengkap, dan tepat waktu.",
+"r2p": "Saya mencocokkan timesheet dengan catatan FMS dan membereskan selisihnya, supaya angka yang dipakai tim operasional lengkap dan benar.",
 "r2a": "→ Analisis selisih",
 "r2b": "→ Kontrol kualitas data",
 "r2c": "→ Catatan FMS",
 "r3": "Desain Database & Otomasi",
-"r3p": "Merancang ulang arsitektur database SQL Server dan alur validasi, serta membangun alat otomasi Python untuk input, pembersihan, dan pengolahan data.",
+"r3p": "Saya merancang ulang database SQL Server beserta alur validasinya, lalu membuat alat Python untuk input, pembersihan, dan pengolahan data.",
 "r3a": "→ Desain SQL Server",
 "r3b": "→ Otomasi Python",
 "r3c": "→ Fitur pembersihan data FMS",
 "r4": "Supervisi Tim & SOP",
-"r4p": "Memimpin 30+ dispatcher dan mengawasi staf input data; merevisi SOP dan instruksi kerja untuk proses dispatch dan penanganan data.",
+"r4p": "Saya memimpin 30+ dispatcher, mengawasi tim input data, dan menyusun ulang SOP serta instruksi kerja untuk dispatch dan pengelolaan data.",
 "r4a": "→ Penyusunan SOP",
 "r4b": "→ Pemantauan kinerja",
 "r4c": "→ Kepatuhan K3L",
-"lbl_car1": "✦ Karier & ",
+"lbl_car1": "Karier & ",
 "lbl_car2": "pendidikan",
 "job1_dept": "PT Pamapersada Nusantara · Dept. Mine Optimization",
 "present": "Sekarang",
 "job1p": "Pusat data yang mengonsolidasikan data FMS dan timesheet untuk 500+ unit. Membangun dashboard Power BI, alat Python, dan sistem pemantauan dispatcher internal.",
 "job2": "Pengajar Matematika",
-"job2d": "Des 2022 — Jul 2023",
-"job2p": "Mengajar matematika dan pemecahan masalah secara terstruktur kepada siswa.",
+"job2d": "Des 2022 – Jul 2023",
+"job2p": "Mengajar matematika dan pemecahan masalah kepada siswa.",
 "edu": "S1 Matematika",
 "gpa": "IPK 3,85 / 4,00",
 "w_h1": "Proyek",
@@ -605,17 +607,17 @@ const KAMUS = {
 "w1m": "Waktu input data per shift",
 "before": "Sebelum",
 "after": "Sesudah",
-"w1b": "~10 jam",
+"w1b": "≈10 jam",
 "w1a": "3,5 jam",
 "w2t2": "Pelacakan pekerjaan",
 "w2t3": "Skor ketepatan waktu",
 "w2": "Pemantauan kinerja dispatcher",
-"w2p": "Sistem internal berbasis web yang melacak pekerjaan dan tugas tertunda, serta memberi skor ketepatan waktu untuk 30+ dispatcher.",
+"w2p": "Aplikasi web internal yang mencatat pekerjaan dan tugas tertunda tiap dispatcher, lalu memberi skor ketepatan waktu. Dipakai oleh 30+ dispatcher.",
 "w2m": "Penyelesaian tepat waktu & skor keaktifan",
 "w2b": "awal",
 "w3t2": "Penjadwalan",
 "w3": "Penjadwalan pergantian shift otomatis",
-"w3p": "Penjadwalan pergantian shift otomatis untuk haul truck berdasarkan analisis data operasional.",
+"w3p": "Menyusun jadwal change shift tiap haul truck dari cycle time FMS, supaya unit tidak lagi menumpuk di satu titik.",
 "w3m": "Keterlambatan pergantian shift",
 "w3b": "30 menit",
 "w3a": "6 menit",
@@ -623,7 +625,7 @@ const KAMUS = {
 "w4t1": "Infrastruktur FMS",
 "w4t2": "Perawatan",
 "w4": "Pemantauan perawatan FMS",
-"w4p": "Sistem pemantauan perawatan infrastruktur FMS yang mempersingkat waktu perbaikan.",
+"w4p": "Work order kini langsung masuk dari dispatch ke portal mekanik, sehingga perangkat FMS diperbaiki jauh lebih cepat.",
 "w4m": "Rata-rata waktu perbaikan (MTTR)",
 "w4b": "4–6 jam",
 "w4a": "< 1 jam",
@@ -631,19 +633,19 @@ const KAMUS = {
 "w5t1": "Simulasi",
 "w5t2": "Peramalan",
 "w5": "Alat simulasi produksi",
-"w5p": "Memakai data kinerja loader dan haul truck untuk meramalkan produksi dan menemukan bottleneck.",
+"w5p": "Menyimulasikan satu shift dari data loader dan haul truck untuk meramalkan produksi dan menemukan bottleneck.",
 "w5a": "Kinerja loader",
 "w5b": "Kinerja haul truck",
 "w5c": "Peramalan & bottleneck",
 "ab1": "Matematikawan, ",
 "ab2": "spesialis data",
-"ab3": ", pemecah masalah/",
-"abp": "Profesional data tambang dengan pengalaman 3+ tahun di Departemen Mine Optimization PT Pamapersada Nusantara, pusat data yang mengonsolidasikan data FMS dan timesheet untuk armada 500+ unit. Merancang ulang arsitektur database dan alur validasi, memangkas waktu input data dari sekitar 10 jam menjadi 3,5 jam per shift.",
-"lang_id": "Bahasa Indonesia — ",
+"ab3": ", pemecah masalah.",
+"abp": "Saya lulusan Matematika IPB University dan sudah 3+ tahun bekerja di Departemen Mine Optimization PT Pamapersada Nusantara, tempat data FMS dan timesheet dari 500+ unit dikumpulkan. Salah satu hasil kerja saya di sana adalah desain ulang database dan alur validasi yang memangkas waktu input data dari sekitar 10 jam menjadi 3,5 jam per shift.",
+"lang_id": "Bahasa Indonesia · ",
 "native": "Bahasa ibu",
-"lang_en": "Bahasa Inggris — ",
+"lang_en": "Bahasa Inggris · ",
 "pro": "Profesional",
-"lbl_st1": "✦ Tools ",
+"lbl_st1": "Tools ",
 "lbl_st2": "saya",
 "s1b": "Desain database",
 "s1d": "Query analitis",
@@ -656,29 +658,29 @@ const KAMUS = {
 "s5b": "Operasi dispatch FMS",
 "s6": "Analitik",
 "s6a": "Analisis data produksi",
-"lbl_rec1": "✦ Penghargaan & ",
+"lbl_rec1": "Penghargaan & ",
 "lbl_rec2": "sertifikasi",
-"a1": "Juara 3 — International Mathematics Competition",
+"a1": "Juara 3 International Mathematics Competition",
 "award": "Penghargaan",
-"a2": "Medali Perunggu — KNMIPA",
+"a2": "Medali Perunggu KNMIPA",
 "a2s": "Olimpiade Nasional Matematika dan Ilmu Pengetahuan Alam",
-"a3": "Ketua — Himpunan Mahasiswa Matematika",
+"a3": "Ketua Himpunan Mahasiswa Matematika",
 "lead": "Kepemimpinan",
 "a4s": "Sertifikasi Pengawas Operasional Tambang Tingkat Pertama",
 "cert": "Sertifikasi",
 "a5": "Pelatihan Data Analyst Fast Track",
 "a5s": "PT Pamapersada Nusantara · Agu 2023 – Mar 2024",
-"lbl_c1": "✦ Hubungi ",
+"lbl_c1": "Hubungi ",
 "lbl_c2": "saya",
 "c_h1": "Mari bicara",
 "c_h2": "soal data Anda.",
-"c_p": "Punya masalah pelaporan operasional, database, atau otomasi? Kirim pesan singkat dan saya akan membalas.",
+"c_p": "Punya masalah di pelaporan operasional, database, atau otomasi? Kirim pesan singkat, nanti saya balas.",
 "phone": "Telepon",
 "f_name": "Nama",
 "f_msg": "Pesan",
-"ft1": "Mari bangun",
-"ft2": "data yang",
-"ft3": "lebih baik.",
+"ft1": "Mari kita",
+"ft2": "rapikan",
+"ft3": "datanya.",
 "scan": "Memindai halaman…",
 "agents": " agen",
 "rebuild": "Bangun ulang",
@@ -700,7 +702,8 @@ const KAMUS = {
 "show": "Tampilkan",
 "send": "Kirim pesan →",
 "sending": "Membuka aplikasi email…",
-"mail_subj": "Pertanyaan dari portofolio: "
+"mail_subj": "Pertanyaan dari portofolio: ",
+"layers": "lapisan"
 }
 };
 const bacaLang = () => { const u = new URLSearchParams(location.search).get('lang'); if (u === 'id' || u === 'en') return u;
@@ -931,6 +934,7 @@ class Component extends DCLogic {
       this.lastSync = now;
       const working = this.agents.some(a => a.state === 'travel' || a.state === 'work');
       const status = (this.queue.length || working) ? 'Building' : 'Touring';
+      if (this.layer) { this.layer.style.transition = 'opacity .6s'; this.layer.style.opacity = status === 'Touring' ? '0' : '1'; }
       if (status !== this.state.status || this.built.size !== this.state.built) this.setState({ status, built: this.built.size });
     }
   };
@@ -970,7 +974,7 @@ class Component extends DCLogic {
       rootRef: this.rootRef, layerRef: this.layerRef, loaderRef: this.loaderRef, marqueeRef: this.marqueeRef,
       loading: s.loading, scanPct: s.scanPct, built: s.built, total: s.total, status: t[s.paused ? 'Paused' : s.status],
       pct: s.total ? Math.round(s.built / s.total * 100) : 0, agentCount: n,
-      showHud: this.props.showHud ?? true,
+      showHud: (this.props.showHud ?? true) && s.status !== 'Touring',
       pauseLabel: s.paused ? t.resume : t.pause, hideLabel: s.hidden ? t.show : t.hide,
       t, lang: s.lang, isId: s.lang === 'id', isEn: s.lang === 'en',
       idBg: s.lang === 'id' ? '#F2A93B' : 'transparent', idFg: s.lang === 'id' ? '#0B0C10' : '#EDEBE6',
