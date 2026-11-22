@@ -17,7 +17,8 @@ Website portofolio statis dengan animasi "agen" yang membangun halaman, ditambah
   Screenshot di bagian "Auto setting change shift" (`assets/studi-kasus/changeshift-fig*.webp`) adalah rekonstruksi
   alat Setting Change Shift dengan **data dummy** (lokasi CS, kode unit, kapasitas, dan prediksi karangan).
 - `studi-kasus-fms.html`: studi kasus proyek 04 (FMS maintenance monitoring), dipasang apa adanya dari ekspor design tool
-  (hanya bahasa Inggris, tanpa screenshot; "ADS" diganti "FMS"). Dibuka dari kartu proyek 04 dan dari tautan "Berikutnya" di studi kasus 03.
+  (dua bahasa, tanpa screenshot; "ADS" diganti "FMS"; angka MTTR disamakan dengan CV: 4–6 jam menjadi di bawah 1 jam).
+  Dibuka dari kartu proyek 04 dan dari tautan "Berikutnya" di studi kasus 03.
 - `demo/`: demo dashboard (ringkasan produksi, armada, performa tim, roster shift).
   **Semua data di demo adalah data dummy** (`assets/data.js`).
 - `assets/CV-Muhammad-Reza-Ardhana.pdf`: CV untuk tombol "Unduh CV".

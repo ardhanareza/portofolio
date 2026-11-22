@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Case Study · FMS Maintenance Monitoring · Reza Ardhana</title>
-<meta name="description" content="Case study: a maintenance monitoring system for FMS infrastructure that shortens time to repair.">
+<title>Studi Kasus · Pemantauan Perawatan FMS · Reza Ardhana</title>
+<meta name="description" content="Case study: a maintenance monitoring system for FMS hardware on 500+ units that cut mean time to repair from 4–6 hours to under 1 hour.">
 <link rel="icon" href="assets/ikon.svg" type="image/svg+xml">
 <script src="./support.js"></script>
 </head>
@@ -19,19 +19,24 @@ body{margin:0;background:#0B0C10;color:#EDEBE6;font-family:'Archivo',sans-serif;
 a{color:#EDEBE6;text-decoration:none}
 a:hover{color:#F2A93B}
 ::selection{background:#4C8DFF;color:#fff}
+
+/* desain asli tanpa breakpoint: di layar sempit menu bagian disembunyikan, tombol kembali + bahasa tetap */
 @media (max-width:1100px){.nav-utama{display:none!important}.kembali{margin-left:auto}}
 @media (max-width:560px){.status-atas{display:none!important}.kembali{padding:8px 12px!important}}
+/* ID: '< 1 jam' lebih panjang dari '< 1 h', supaya angka dampak tetap satu baris */
+html[lang=id] .angka-dampak{font-size:clamp(44px,4.6vw,68px)!important}
 </style>
 </helmet>
 <div ref="{{ rootRef }}" style="position:relative;min-height:100vh;background:#0B0C10;color:#EDEBE6;overflow-x:clip">
 
 <header style="position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;gap:24px;padding:16px clamp(20px,4vw,56px);background:linear-gradient(#0B0C10 30%,rgba(11,12,16,0))">
-  <a data-build="logo" href="./" style="flex:none;white-space:nowrap;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:22px;letter-spacing:.01em;text-transform:uppercase;display:flex;align-items:center;gap:6px">Reza Ardhana<span style="width:7px;height:7px;border-radius:50%;background:#F2A93B;display:block"></span></a>
-  <div data-build="meta" class="status-atas" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.5">Case study 04<br><span style="color:#EDEBE6">FMS maintenance</span></div>
+  <a data-build="logo" href="./?lang={{ lang }}" style="flex:none;white-space:nowrap;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:22px;letter-spacing:.01em;text-transform:uppercase;display:flex;align-items:center;gap:6px">Reza Ardhana<span style="width:7px;height:7px;border-radius:50%;background:#F2A93B;display:block"></span></a>
+  <div data-build="meta" class="status-atas" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.5">{{ t.k0 }}<br><span style="color:#EDEBE6">{{ t.k1 }}</span></div>
   <nav data-build="nav" class="nav-utama" style="margin-left:auto;display:flex;gap:22px;font-size:14px;font-weight:500;flex-wrap:wrap;justify-content:flex-end">
-    <a href="#hardware">Hardware</a><a href="#chain">Data chain</a><a href="#scale">Scale</a><a href="#leadtime">Lead time</a><a href="#system">System</a><a href="#dashboard">Dashboard</a>
+    <a href="#hardware">{{ t.k2 }}</a><a href="#chain">{{ t.k3 }}</a><a href="#scale">{{ t.k4 }}</a><a href="#leadtime">{{ t.k5 }}</a><a href="#system">{{ t.k6 }}</a><a href="#dashboard">Dashboard</a>
   </nav>
-  <a data-build="back" class="kembali" href="./#work" style="flex:none;display:flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid rgba(255,255,255,.16);border-radius:999px;font-size:13px;font-weight:600;background:#12141A" style-hover="border-color:#F2A93B">← Portfolio</a>
+  <a data-build="back" class="kembali" href="./?lang={{ lang }}#work" style="flex:none;display:flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid rgba(255,255,255,.16);border-radius:999px;font-size:13px;font-weight:600;background:#12141A" style-hover="border-color:#F2A93B">{{ t.k7 }}</a>
+  <div data-build="lang" class="bahasa" role="group" aria-label="Language / Bahasa" style="display:flex;flex:none;border:1px solid rgba(255,255,255,.16);border-radius:999px;overflow:hidden"><button onClick="{{ setId }}" aria-pressed="{{ isId }}" style="height:38px;min-width:42px;border:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;background:{{ idBg }};color:{{ idFg }}">ID</button><button onClick="{{ setEn }}" aria-pressed="{{ isEn }}" style="height:38px;min-width:42px;border:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;background:{{ enBg }};color:{{ enFg }}">EN</button></div>
   <sc-if value="{{ showProgress }}" hint-placeholder-val="{{ true }}">
     <div style="position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(255,255,255,.06)"><div ref="{{ progRef }}" style="height:100%;background:#F2A93B;transform-origin:0 50%;transform:scaleX(0)"></div></div>
   </sc-if>
@@ -39,40 +44,40 @@ a:hover{color:#F2A93B}
 
 <section data-screen-label="Hero" style="position:relative;min-height:100vh;box-sizing:border-box;padding:120px clamp(20px,4vw,56px) 40px;display:flex;flex-direction:column;overflow:hidden">
   <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(76,141,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(76,141,255,.05) 1px,transparent 1px);background-size:48px 48px;pointer-events:none"></div>
-  <div data-reveal="0" style="position:relative;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.6">Case study 04 · FMS hardware maintenance<br><span style="color:#EDEBE6">PT Pamapersada Nusantara</span></div>
-  <h1 data-reveal="80" style="position:relative;margin:40px 0 0;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(72px,12vw,200px);line-height:.84;text-transform:uppercase;letter-spacing:-.005em">Keep the data<br><span style="color:#F2A93B">flowing.</span></h1>
+  <div data-reveal="0" style="position:relative;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.6">{{ t.k8 }}<br><span style="color:#EDEBE6">PT Pamapersada Nusantara</span></div>
+  <h1 data-reveal="80" style="position:relative;margin:40px 0 0;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(72px,12vw,200px);line-height:.84;text-transform:uppercase;letter-spacing:-.005em">{{ t.k9 }}<br><span style="color:#F2A93B">{{ t.k10 }}</span></h1>
   <div style="position:relative;margin-top:auto;padding-top:56px;display:flex;flex-wrap:wrap;gap:40px 64px;align-items:flex-end;justify-content:space-between">
     <div data-reveal="160" style="flex:1 1 340px;max-width:520px;display:flex;flex-direction:column;gap:16px">
-      <div style="font-size:clamp(22px,2.2vw,28px);font-weight:700;letter-spacing:-.01em">FMS maintenance monitoring</div>
-      <p style="margin:0;font-size:16px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">A maintenance system for the FMS hardware on 500+ units: automatic work orders from dispatch to mechanics in one portal, clear evaluation of mechanic performance, and repeat-failure analysis that turns corrective repairs into scheduled preventive maintenance.</p>
+      <div style="font-size:clamp(22px,2.2vw,28px);font-weight:700;letter-spacing:-.01em">{{ t.k11 }}</div>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.k12 }}</p>
     </div>
     <div style="flex:0 1 640px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px">
-      <div data-reveal="220" style="border-top:1px solid rgba(255,255,255,.12);padding-top:12px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(36px,4vw,56px);line-height:1"><span data-count="6">6</span><span style="color:#9A9BA3"> h</span></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.4">Avg repair lead<br>time, before</span></div>
-      <div data-reveal="270" style="border-top:1px solid rgba(255,255,255,.12);padding-top:12px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(36px,4vw,56px);line-height:1;color:#F2A93B">1.5 h</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.4">Report to RFU,<br>after</span></div>
-      <div data-reveal="320" style="border-top:1px solid rgba(255,255,255,.12);padding-top:12px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(36px,4vw,56px);line-height:1">≈<span data-count="15">15</span>′</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.4">Info chain<br>+ take-up</span></div>
-      <div data-reveal="370" style="border-top:1px solid rgba(255,255,255,.12);padding-top:12px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(36px,4vw,56px);line-height:1"><span data-count="500">500</span><span style="color:#F2A93B">+</span></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.4">Units with<br>FMS hardware</span></div>
+      <div data-reveal="220" style="border-top:1px solid rgba(255,255,255,.12);padding-top:12px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(36px,4vw,56px);line-height:1">4–6<span style="color:#9A9BA3"> {{ t.k13 }}</span></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.4">{{ t.k15 }}<br>{{ t.k16 }}</span></div>
+      <div data-reveal="270" style="border-top:1px solid rgba(255,255,255,.12);padding-top:12px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(36px,4vw,56px);line-height:1;color:#F2A93B">{{ t.k14 }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.4">{{ t.k17 }}<br>{{ t.k18 }}</span></div>
+      <div data-reveal="320" style="border-top:1px solid rgba(255,255,255,.12);padding-top:12px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(36px,4vw,56px);line-height:1">≈<span data-count="15">15</span>′</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.4">{{ t.k19 }}<br>+ take-up</span></div>
+      <div data-reveal="370" style="border-top:1px solid rgba(255,255,255,.12);padding-top:12px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(36px,4vw,56px);line-height:1"><span data-count="500">500</span><span style="color:#F2A93B">+</span></span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;line-height:1.4">{{ t.k20 }}<br>{{ t.k21 }}</span></div>
     </div>
   </div>
   <div data-reveal="420" style="position:relative;margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px 40px;border-top:1px solid rgba(255,255,255,.08);padding-top:18px">
-    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Role</span><span style="font-size:14px;font-weight:600">Maintenance scheme · Portal &amp; evaluation system</span></div>
-    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Hardware</span><span style="font-size:14px;font-weight:600">Unit wiring · UMPC · CPE</span></div>
-    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Users</span><span style="font-size:14px;font-weight:600">Dispatchers · FMS mechanics · Supervisors</span></div>
-    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Shift in approach</span><span style="font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px"><span data-pulse="" style="width:7px;height:7px;border-radius:50%;background:#3DD6A3;display:block"></span>Corrective → preventive</span></div>
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k22 }}</span><span style="font-size:14px;font-weight:600">{{ t.k23 }}</span></div>
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k2 }}</span><span style="font-size:14px;font-weight:600">{{ t.k24 }}</span></div>
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k25 }}</span><span style="font-size:14px;font-weight:600">{{ t.k26 }}</span></div>
+    <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k27 }}</span><span style="font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px"><span data-pulse="" style="width:7px;height:7px;border-radius:50%;background:#3DD6A3;display:block"></span>{{ t.k28 }}</span></div>
   </div>
 </section>
 
 <section id="hardware" data-screen-label="01 Hardware" style="max-width:1360px;margin:0 auto;padding:120px clamp(20px,4vw,56px) 80px;scroll-margin-top:60px">
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px 64px;align-items:end;margin-bottom:48px">
     <div style="display:flex;flex-direction:column;gap:20px">
-      <div data-reveal="0" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">( 01 ) The <span style="color:#F2A93B">hardware</span></div>
-      <h2 data-reveal="60" style="margin:0;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(52px,7vw,104px);line-height:.86;text-transform:uppercase">Two devices<br><span style="color:#F2A93B">on every unit.</span></h2>
+      <div data-reveal="0" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k29 }} <span style="color:#F2A93B">{{ t.k30 }}</span></div>
+      <h2 data-reveal="60" style="margin:0;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(52px,7vw,104px);line-height:.86;text-transform:uppercase">{{ t.k31 }}<br><span style="color:#F2A93B">{{ t.k32 }}</span></h2>
     </div>
-    <p data-reveal="120" style="margin:0;max-width:520px;font-size:17px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">To run FMS, each unit carries extra hardware. A UMPC in the cab runs the FMS application, and a CPE connects the unit to the network so FMS can send its data to the database.</p>
+    <p data-reveal="120" style="margin:0;max-width:520px;font-size:17px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.k33 }}</p>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:24px">
     <div data-reveal="0" style="background:#12141A;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column">
       <div style="position:relative;height:320px;display:flex;align-items:center;justify-content:center;background-image:linear-gradient(rgba(76,141,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(76,141,255,.05) 1px,transparent 1px);background-size:24px 24px;border-bottom:1px solid rgba(255,255,255,.06);overflow:hidden">
-        <span style="position:absolute;left:16px;top:14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Inside the cab · illustration</span>
+        <span style="position:absolute;left:16px;top:14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k34 }}</span>
         <div style="display:flex;flex-direction:column;align-items:center">
           <div style="position:relative;width:300px;height:196px;box-sizing:border-box;background:#23262E;border-radius:22px;padding:14px 44px 14px 14px;box-shadow:inset 0 0 0 2px #31343D,0 24px 40px rgba(0,0,0,.55)">
             <span style="position:absolute;left:-5px;top:-5px;width:40px;height:40px;border-radius:24px 8px 8px 8px;background:#3A3D46;display:block"></span>
@@ -96,14 +101,14 @@ a:hover{color:#F2A93B}
         </div>
       </div>
       <div style="padding:22px 24px;display:flex;flex-direction:column;gap:12px">
-        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:40px;line-height:1;text-transform:uppercase">UMPC</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Ultra-mobile PC · in the cab</span></div>
-        <p style="margin:0;font-size:15px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">A rugged in-cab computer that runs the FMS application. It receives the unit's sensor data through the wiring, takes operator input, and processes the data before it is sent.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;font-size:13px;font-weight:600"><span style="border:1px solid rgba(255,255,255,.16);padding:6px 10px">Receives sensor data</span><span style="border:1px solid rgba(255,255,255,.16);padding:6px 10px">Runs FMS</span><span style="border:1px solid rgba(255,255,255,.16);padding:6px 10px">Operator login &amp; status</span></div>
+        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:40px;line-height:1;text-transform:uppercase">UMPC</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k35 }}</span></div>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.k36 }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;font-size:13px;font-weight:600"><span style="border:1px solid rgba(255,255,255,.16);padding:6px 10px">{{ t.k37 }}</span><span style="border:1px solid rgba(255,255,255,.16);padding:6px 10px">{{ t.k38 }}</span><span style="border:1px solid rgba(255,255,255,.16);padding:6px 10px">{{ t.k39 }}</span></div>
       </div>
     </div>
     <div data-reveal="80" style="background:#12141A;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column">
       <div style="position:relative;height:320px;display:flex;align-items:flex-end;justify-content:center;background-image:linear-gradient(rgba(76,141,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(76,141,255,.05) 1px,transparent 1px);background-size:24px 24px;border-bottom:1px solid rgba(255,255,255,.06);overflow:hidden">
-        <span style="position:absolute;left:16px;top:14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">On the cab roof · illustration</span>
+        <span style="position:absolute;left:16px;top:14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k40 }}</span>
         <div style="position:relative;display:flex;flex-direction:column;align-items:center;padding-bottom:28px">
           <div style="position:relative;width:200px;height:90px;margin-bottom:-6px">
             <span data-wave="" style="position:absolute;left:50%;bottom:0;width:180px;height:180px;margin-left:-90px;margin-bottom:-90px;border-radius:50%;border:2px solid transparent;border-top-color:#4C8DFF;box-sizing:border-box;display:block"></span>
@@ -118,14 +123,14 @@ a:hover{color:#F2A93B}
           <div style="width:28px;height:10px;background:#3A3D46"></div>
           <div style="width:12px;height:46px;background:#31343D"></div>
           <div style="width:260px;height:18px;border-radius:9px 9px 3px 3px;background:#1C1F27;box-shadow:inset 0 2px 0 #2A2D36"></div>
-          <span style="position:absolute;left:50%;bottom:6px;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;color:#6B6C73;white-space:nowrap">CAB ROOF</span>
+          <span style="position:absolute;left:50%;bottom:6px;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;color:#6B6C73;white-space:nowrap">{{ t.k41 }}</span>
         </div>
         <div style="position:absolute;right:18px;top:44px;display:flex;flex-direction:column;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#9A9BA3;text-align:right"><span>LINK <span style="color:#3DD6A3">UP</span></span><span>TX <span style="color:#EDEBE6">{{ cpeTx }}</span> pkt</span></div>
       </div>
       <div style="padding:22px 24px;display:flex;flex-direction:column;gap:12px">
-        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:40px;line-height:1;text-transform:uppercase">CPE</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Customer premises equipment · on the roof</span></div>
-        <p style="margin:0;font-size:15px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">The unit's network bridge. It connects the UMPC to the internet connection so the data FMS has processed can be sent to the database.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;font-size:13px;font-weight:600"><span style="border:1px solid rgba(255,255,255,.16);padding:6px 10px">Network link</span><span style="border:1px solid rgba(255,255,255,.16);padding:6px 10px">Sends FMS data</span><span style="border:1px solid rgba(255,255,255,.16);padding:6px 10px">Unit → database</span></div>
+        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:40px;line-height:1;text-transform:uppercase">CPE</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k42 }}</span></div>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.k43 }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;font-size:13px;font-weight:600"><span style="border:1px solid rgba(255,255,255,.16);padding:6px 10px">{{ t.k44 }}</span><span style="border:1px solid rgba(255,255,255,.16);padding:6px 10px">{{ t.k45 }}</span><span style="border:1px solid rgba(255,255,255,.16);padding:6px 10px">Unit → database</span></div>
       </div>
     </div>
   </div>
@@ -134,44 +139,44 @@ a:hover{color:#F2A93B}
 <section id="chain" data-screen-label="02 Data chain" style="max-width:1360px;margin:0 auto;padding:80px clamp(20px,4vw,56px) 80px;scroll-margin-top:60px">
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px 64px;align-items:end;margin-bottom:48px">
     <div style="display:flex;flex-direction:column;gap:20px">
-      <div data-reveal="0" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">( 02 ) The data <span style="color:#F2A93B">chain</span></div>
-      <h2 data-reveal="60" style="margin:0;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(52px,7vw,104px);line-height:.86;text-transform:uppercase">Three links<br><span style="color:#F2A93B">must hold.</span></h2>
+      <div data-reveal="0" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k46 }} <span style="color:#F2A93B">{{ t.k47 }}</span></div>
+      <h2 data-reveal="60" style="margin:0;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(52px,7vw,104px);line-height:.86;text-transform:uppercase">{{ t.k48 }}<br><span style="color:#F2A93B">{{ t.k49 }}</span></h2>
     </div>
-    <p data-reveal="120" style="margin:0;max-width:520px;font-size:17px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">For data to flow smoothly from the unit's sensors to the database, every link in the chain has to be in good condition: the wiring, the UMPC, and the CPE.</p>
+    <p data-reveal="120" style="margin:0;max-width:520px;font-size:17px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.k50 }}</p>
   </div>
   <div data-reveal="0" style="overflow-x:auto;padding-bottom:8px">
     <div style="min-width:1040px;display:flex;align-items:flex-start">
-      <div style="flex:none;width:136px;background:#12141A;border:1px solid rgba(255,255,255,.1);padding:14px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#9A9BA3">01</span><span style="font-size:15px;font-weight:700;line-height:1.2">Unit sensors</span><span style="font-size:12px;line-height:1.45;color:#9A9BA3">Engine, payload, GPS and status signals</span></div>
+      <div style="flex:none;width:136px;background:#12141A;border:1px solid rgba(255,255,255,.1);padding:14px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#9A9BA3">01</span><span style="font-size:15px;font-weight:700;line-height:1.2">{{ t.k51 }}</span><span style="font-size:12px;line-height:1.45;color:#9A9BA3">{{ t.k52 }}</span></div>
       <div data-flow="" style="position:relative;flex:1;height:2px;margin-top:36px;background:rgba(255,255,255,.12)"></div>
-      <div style="flex:none;width:136px;background:#12141A;border:1px solid #F2A93B;padding:14px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#F2A93B">02 · check</span><span style="font-size:15px;font-weight:700;line-height:1.2">Wiring</span><span style="font-size:12px;line-height:1.45;color:#9A9BA3">Carries sensor signals to the UMPC</span></div>
+      <div style="flex:none;width:136px;background:#12141A;border:1px solid #F2A93B;padding:14px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#F2A93B">{{ t.k53 }}</span><span style="font-size:15px;font-weight:700;line-height:1.2">Wiring</span><span style="font-size:12px;line-height:1.45;color:#9A9BA3">{{ t.k56 }}</span></div>
       <div data-flow="" style="position:relative;flex:1;height:2px;margin-top:36px;background:rgba(255,255,255,.12)"></div>
-      <div style="flex:none;width:136px;background:#12141A;border:1px solid #F2A93B;padding:14px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#F2A93B">03 · check</span><span style="font-size:15px;font-weight:700;line-height:1.2">UMPC</span><span style="font-size:12px;line-height:1.45;color:#9A9BA3">Runs FMS and processes the data</span></div>
+      <div style="flex:none;width:136px;background:#12141A;border:1px solid #F2A93B;padding:14px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#F2A93B">{{ t.k54 }}</span><span style="font-size:15px;font-weight:700;line-height:1.2">UMPC</span><span style="font-size:12px;line-height:1.45;color:#9A9BA3">{{ t.k57 }}</span></div>
       <div data-flow="" style="position:relative;flex:1;height:2px;margin-top:36px;background:rgba(255,255,255,.12)"></div>
-      <div style="flex:none;width:136px;background:#12141A;border:1px solid #F2A93B;padding:14px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#F2A93B">04 · check</span><span style="font-size:15px;font-weight:700;line-height:1.2">CPE</span><span style="font-size:12px;line-height:1.45;color:#9A9BA3">Sends processed data out of the unit</span></div>
+      <div style="flex:none;width:136px;background:#12141A;border:1px solid #F2A93B;padding:14px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#F2A93B">{{ t.k55 }}</span><span style="font-size:15px;font-weight:700;line-height:1.2">CPE</span><span style="font-size:12px;line-height:1.45;color:#9A9BA3">{{ t.k58 }}</span></div>
       <div data-flow="" style="position:relative;flex:1;height:2px;margin-top:36px;background:rgba(255,255,255,.12)"></div>
-      <div style="flex:none;width:136px;background:#12141A;border:1px solid rgba(255,255,255,.1);padding:14px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#9A9BA3">05</span><span style="font-size:15px;font-weight:700;line-height:1.2">Network</span><span style="font-size:12px;line-height:1.45;color:#9A9BA3">Internet connection on site</span></div>
+      <div style="flex:none;width:136px;background:#12141A;border:1px solid rgba(255,255,255,.1);padding:14px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#9A9BA3">05</span><span style="font-size:15px;font-weight:700;line-height:1.2">{{ t.k59 }}</span><span style="font-size:12px;line-height:1.45;color:#9A9BA3">{{ t.k60 }}</span></div>
       <div data-flow="" style="position:relative;flex:1;height:2px;margin-top:36px;background:rgba(255,255,255,.12)"></div>
-      <div style="flex:none;width:136px;background:#12141A;border:1px solid #3DD6A3;padding:14px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#3DD6A3">06</span><span style="font-size:15px;font-weight:700;line-height:1.2">Database</span><span style="font-size:12px;line-height:1.45;color:#9A9BA3">Where operational data is stored</span></div>
+      <div style="flex:none;width:136px;background:#12141A;border:1px solid #3DD6A3;padding:14px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#3DD6A3">06</span><span style="font-size:15px;font-weight:700;line-height:1.2">Database</span><span style="font-size:12px;line-height:1.45;color:#9A9BA3">{{ t.k61 }}</span></div>
     </div>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:0;border-top:1px solid rgba(255,255,255,.1);margin-top:40px">
-    <div data-reveal="0" style="padding:24px 24px 24px 0;display:flex;flex-direction:column;gap:10px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:56px;line-height:.9">A<span style="color:#F2A93B">.</span></span><span style="font-size:18px;font-weight:700">Wiring in good condition</span><span style="font-size:14px;line-height:1.55;color:#BDBCC2">So the data from the unit's sensors is received by the UMPC properly.</span></div>
-    <div data-reveal="80" style="padding:24px 24px 24px 0;display:flex;flex-direction:column;gap:10px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:56px;line-height:.9">B<span style="color:#F2A93B">.</span></span><span style="font-size:18px;font-weight:700">UMPC in good condition</span><span style="font-size:14px;line-height:1.55;color:#BDBCC2">So it can process the volume of data coming in from the sensors.</span></div>
-    <div data-reveal="160" style="padding:24px 24px 24px 0;display:flex;flex-direction:column;gap:10px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:56px;line-height:.9">C<span style="color:#F2A93B">.</span></span><span style="font-size:18px;font-weight:700">CPE in good condition</span><span style="font-size:14px;line-height:1.55;color:#BDBCC2">So the data processed by FMS on the UMPC is sent to the database as it should be.</span></div>
+    <div data-reveal="0" style="padding:24px 24px 24px 0;display:flex;flex-direction:column;gap:10px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:56px;line-height:.9">A<span style="color:#F2A93B">.</span></span><span style="font-size:18px;font-weight:700">{{ t.k62 }}</span><span style="font-size:14px;line-height:1.55;color:#BDBCC2">{{ t.k63 }}</span></div>
+    <div data-reveal="80" style="padding:24px 24px 24px 0;display:flex;flex-direction:column;gap:10px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:56px;line-height:.9">B<span style="color:#F2A93B">.</span></span><span style="font-size:18px;font-weight:700">{{ t.k64 }}</span><span style="font-size:14px;line-height:1.55;color:#BDBCC2">{{ t.k65 }}</span></div>
+    <div data-reveal="160" style="padding:24px 24px 24px 0;display:flex;flex-direction:column;gap:10px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:56px;line-height:.9">C<span style="color:#F2A93B">.</span></span><span style="font-size:18px;font-weight:700">{{ t.k66 }}</span><span style="font-size:14px;line-height:1.55;color:#BDBCC2">{{ t.k67 }}</span></div>
   </div>
 </section>
 
 <section id="gigo" data-screen-label="03 GIGO" style="max-width:1360px;margin:0 auto;padding:80px clamp(20px,4vw,56px) 80px;scroll-margin-top:60px">
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px 64px;align-items:end;margin-bottom:48px">
     <div style="display:flex;flex-direction:column;gap:20px">
-      <div data-reveal="0" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">( 03 ) When one <span style="color:#F2A93B">breaks</span></div>
+      <div data-reveal="0" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k68 }} <span style="color:#F2A93B">{{ t.k69 }}</span></div>
       <h2 data-reveal="60" style="margin:0;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(52px,7vw,104px);line-height:.86;text-transform:uppercase">Garbage in,<br><span style="color:#FF6B5A">garbage out.</span></h2>
     </div>
-    <p data-reveal="120" style="margin:0;max-width:520px;font-size:17px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">If any one component stops working, the data will not reach the database correctly. It either never arrives or arrives broken, and every report built on it inherits the problem.</p>
+    <p data-reveal="120" style="margin:0;max-width:520px;font-size:17px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.k70 }}</p>
   </div>
   <div data-reveal="0" style="background:#12141A;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column">
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.08)">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Try breaking a component · simulated</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k71 }}</span>
       <div style="margin-left:auto;display:flex;flex-wrap:wrap;gap:6px">
         <sc-for list="{{ gBtns }}" as="b" hint-placeholder-count="4">
           <button onClick="{{ b.on }}" style="flex:none;white-space:nowrap;padding:8px 12px;border:1px solid {{ b.bd }};background:{{ b.bg }};color:{{ b.fg }};font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer;transition:background .2s,color .2s">{{ b.label }}</button>
@@ -180,7 +185,7 @@ a:hover{color:#F2A93B}
     </div>
     <div style="overflow-x:auto;padding:28px 18px 20px">
       <div style="min-width:760px;display:flex;align-items:flex-start">
-        <div style="flex:none;width:120px;border:2px solid {{ gB0 }};padding:12px;display:flex;flex-direction:column;gap:6px;transition:border-color .3s"><span style="font-size:14px;font-weight:700">Sensors</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:{{ gC0 }}">{{ gS0 }}</span></div>
+        <div style="flex:none;width:120px;border:2px solid {{ gB0 }};padding:12px;display:flex;flex-direction:column;gap:6px;transition:border-color .3s"><span style="font-size:14px;font-weight:700">{{ t.k72 }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:{{ gC0 }}">{{ gS0 }}</span></div>
         <div data-gconn="0" style="position:relative;flex:1;height:2px;margin-top:30px;background:rgba(255,255,255,.12)"></div>
         <div style="flex:none;width:120px;border:2px solid {{ gB1 }};padding:12px;display:flex;flex-direction:column;gap:6px;transition:border-color .3s"><span style="font-size:14px;font-weight:700">Wiring</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:{{ gC1 }}">{{ gS1 }}</span></div>
         <div data-gconn="1" style="position:relative;flex:1;height:2px;margin-top:30px;background:rgba(255,255,255,.12)"></div>
@@ -193,7 +198,7 @@ a:hover{color:#F2A93B}
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:0;border-top:1px solid rgba(255,255,255,.08)">
       <div style="flex:2 1 460px;min-width:0;display:flex;flex-direction:column">
-        <div style="display:grid;grid-template-columns:70px 84px minmax(0,1fr);gap:12px;padding:10px 18px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;border-bottom:1px solid rgba(255,255,255,.06)"><span>Time</span><span>Unit</span><span>Record in database</span></div>
+        <div style="display:grid;grid-template-columns:70px 84px minmax(0,1fr);gap:12px;padding:10px 18px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3;border-bottom:1px solid rgba(255,255,255,.06)"><span>{{ t.k73 }}</span><span>Unit</span><span>{{ t.k74 }}</span></div>
         <div style="min-height:246px">
           <sc-for list="{{ db }}" as="r" hint-placeholder-count="6">
             <div style="display:grid;grid-template-columns:70px 84px minmax(0,1fr);gap:12px;padding:10px 18px;border-bottom:1px solid rgba(255,255,255,.04);font-family:'JetBrains Mono',monospace;font-size:12px;background:{{ r.bg }}"><span style="color:#9A9BA3">{{ r.t }}</span><span>{{ r.unit }}</span><span style="color:{{ r.color }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.val }}</span></div>
@@ -203,8 +208,8 @@ a:hover{color:#F2A93B}
       <div style="flex:1 1 260px;padding:18px;display:flex;flex-direction:column;gap:16px;border-left:1px solid rgba(255,255,255,.06)">
         <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
           <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:32px;line-height:1;color:#3DD6A3">{{ gOk }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Valid</span></div>
-          <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:32px;line-height:1;color:#FF6B5A">{{ gBad }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Corrupt</span></div>
-          <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:32px;line-height:1;color:#9A9BA3">{{ gMiss }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Missing</span></div>
+          <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:32px;line-height:1;color:#FF6B5A">{{ gBad }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k75 }}</span></div>
+          <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:32px;line-height:1;color:#9A9BA3">{{ gMiss }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k76 }}</span></div>
         </div>
         <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:14px;display:flex;flex-direction:column;gap:6px"><span style="font-size:16px;font-weight:700;color:{{ gMsgColor }}">{{ gTitle }}</span><span style="font-size:14px;line-height:1.55;color:#BDBCC2">{{ gMsg }}</span></div>
       </div>
@@ -214,48 +219,48 @@ a:hover{color:#F2A93B}
 <section id="scale" data-screen-label="04 Scale" style="max-width:1360px;margin:0 auto;padding:80px clamp(20px,4vw,56px) 80px;scroll-margin-top:60px">
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px 64px;align-items:end;margin-bottom:48px">
     <div style="display:flex;flex-direction:column;gap:20px">
-      <div data-reveal="0" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">( 04 ) Maintenance at <span style="color:#F2A93B">scale</span></div>
-      <h2 data-reveal="60" style="margin:0;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(52px,7vw,104px);line-height:.86;text-transform:uppercase">500+ units.<br><span style="color:#F2A93B">A small team.</span></h2>
+      <div data-reveal="0" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k77 }} <span style="color:#F2A93B">{{ t.k78 }}</span></div>
+      <h2 data-reveal="60" style="margin:0;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(52px,7vw,104px);line-height:.86;text-transform:uppercase">{{ t.k79 }}<br><span style="color:#F2A93B">{{ t.k80 }}</span></h2>
     </div>
-    <p data-reveal="120" style="margin:0;max-width:520px;font-size:17px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">Keeping FMS data accurate and intact needs a proper maintenance scheme for the FMS hardware. Across a wide work area with more than 500 units, and only a limited number of mechanics dedicated to FMS, that is a real challenge.</p>
+    <p data-reveal="120" style="margin:0;max-width:520px;font-size:17px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.k81 }}</p>
   </div>
   <div data-reveal="0" data-simcard="map" style="background:#12141A;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column">
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.08)">
-      <span style="font-size:15px;font-weight:700">Site overview</span>
-      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">520 units · 3 FMS mechanics · simulated</span>
+      <span style="font-size:15px;font-weight:700">{{ t.k82 }}</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k83 }}</span>
       <span style="margin-left:auto;display:flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:rgba(255,107,90,.12);color:#FF8A7D;font-family:'JetBrains Mono',monospace;font-size:11px"><span style="width:6px;height:6px;border-radius:50%;background:#FF6B5A;display:block"></span><span data-mstat="down">0</span> FMS down</span>
     </div>
     <div ref="{{ mapRef }}" data-sim="" style="padding:8px clamp(8px,2vw,20px) 0"></div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;border-top:1px solid rgba(255,255,255,.08)">
-      <div style="padding:14px 18px;display:flex;flex-direction:column;gap:4px;border-right:1px solid rgba(255,255,255,.06)"><span data-mstat="wait" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:30px;line-height:1;color:#FF6B5A">0</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Waiting for a mechanic</span></div>
-      <div style="padding:14px 18px;display:flex;flex-direction:column;gap:4px;border-right:1px solid rgba(255,255,255,.06)"><span data-mstat="busy" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:30px;line-height:1;color:#8DB5FF">0 / 3</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Mechanics busy</span></div>
-      <div style="padding:14px 18px;display:flex;flex-direction:column;gap:4px;border-right:1px solid rgba(255,255,255,.06)"><span data-mstat="dist" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:30px;line-height:1">0.0 km</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Driven by mechanics</span></div>
-      <div style="padding:14px 18px;display:flex;flex-direction:column;gap:4px"><span data-mstat="fixed" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:30px;line-height:1;color:#3DD6A3">0</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Back to RFU</span></div>
+      <div style="padding:14px 18px;display:flex;flex-direction:column;gap:4px;border-right:1px solid rgba(255,255,255,.06)"><span data-mstat="wait" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:30px;line-height:1;color:#FF6B5A">0</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k84 }}</span></div>
+      <div style="padding:14px 18px;display:flex;flex-direction:column;gap:4px;border-right:1px solid rgba(255,255,255,.06)"><span data-mstat="busy" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:30px;line-height:1;color:#8DB5FF">0 / 3</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k85 }}</span></div>
+      <div style="padding:14px 18px;display:flex;flex-direction:column;gap:4px;border-right:1px solid rgba(255,255,255,.06)"><span data-mstat="dist" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:30px;line-height:1">0.0 km</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k86 }}</span></div>
+      <div style="padding:14px 18px;display:flex;flex-direction:column;gap:4px"><span data-mstat="fixed" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:30px;line-height:1;color:#3DD6A3">0</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k87 }}</span></div>
     </div>
   </div>
   <div data-reveal="0" style="display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">
     <span style="display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:#4A4D57;display:block"></span>Unit · FMS OK</span>
     <span style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:#FF6B5A;display:block"></span>FMS down</span>
-    <span style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:#F2A93B;display:block"></span>Mechanic assigned</span>
+    <span style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:#F2A93B;display:block"></span>{{ t.k88 }}</span>
     <span style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:#38D0E8;display:block"></span>Take-up</span>
-    <span style="display:flex;align-items:center;gap:8px"><span style="width:12px;height:12px;border-radius:3px;background:#4C8DFF;display:block"></span>FMS mechanic</span>
+    <span style="display:flex;align-items:center;gap:8px"><span style="width:12px;height:12px;border-radius:3px;background:#4C8DFF;display:block"></span>{{ t.k89 }}</span>
   </div>
 </section>
 
 <section id="leadtime" data-screen-label="05 Lead time" style="max-width:1360px;margin:0 auto;padding:80px clamp(20px,4vw,56px) 80px;scroll-margin-top:60px">
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px 64px;align-items:end;margin-bottom:48px">
     <div style="display:flex;flex-direction:column;gap:20px">
-      <div data-reveal="0" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">( 05 ) Repair <span style="color:#F2A93B">lead time</span></div>
-      <h2 data-reveal="60" style="margin:0;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(52px,7vw,104px);line-height:.86;text-transform:uppercase">From 6 hours<br><span style="color:#F2A93B">to 1.5.</span></h2>
+      <div data-reveal="0" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k90 }} <span style="color:#F2A93B">{{ t.k91 }}</span></div>
+      <h2 data-reveal="60" style="margin:0;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(52px,7vw,104px);line-height:.86;text-transform:uppercase">{{ t.k92 }}<br><span style="color:#F2A93B">{{ t.k93 }}</span></h2>
     </div>
-    <p data-reveal="120" style="margin:0;max-width:520px;font-size:17px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">Before the system, a repair took an average of 6 hours: from the breakdown, reporting to dispatch, writing a work order, the mechanic driving out and taking up the unit, until FMS was ready for use again. With auto work orders in one portal and clear mechanic evaluation, report to RFU now averages 1.5 hours. Most of that is travel across the site. The information chain and take-up together take about 15 minutes.</p>
+    <p data-reveal="120" style="margin:0;max-width:520px;font-size:17px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.k94 }}</p>
   </div>
   <div data-reveal="0" style="background:#12141A;border:1px solid rgba(255,255,255,.08);padding:clamp(18px,3vw,32px);display:flex;flex-direction:column;gap:28px">
-    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span>One repair, two systems · same time scale</span><span>Elapsed <span style="color:#EDEBE6">{{ ltClock }}</span></span></div>
+    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span>{{ t.k95 }}</span><span>{{ t.k96 }} <span style="color:#EDEBE6">{{ ltClock }}</span></span></div>
     <div style="position:relative;display:flex;flex-direction:column;gap:30px">
       <div style="position:absolute;top:0;bottom:0;left:{{ ltPct }}%;border-left:1.5px solid #4C8DFF;z-index:2;pointer-events:none"><span style="position:absolute;top:-6px;left:-4px;width:7px;height:7px;border-radius:50%;background:#4C8DFF;display:block"></span></div>
       <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><span style="font-size:15px;font-weight:700">Before · manual chain</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#FF8A7D">{{ ltBefore }}</span></div>
+        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><span style="font-size:15px;font-weight:700">{{ t.k97 }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#FF8A7D">{{ ltBefore }}</span></div>
         <div style="display:flex;height:34px;gap:2px">
           <div style="width:12%;background:rgba(255,107,90,.55)"></div>
           <div style="width:18%;background:rgba(255,107,90,.42)"></div>
@@ -264,47 +269,47 @@ a:hover{color:#F2A93B}
           <div style="width:10%;background:rgba(255,107,90,.3)"></div>
         </div>
         <div style="display:flex;gap:2px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:#9A9BA3">
-          <span style="width:12%">Report to dispatch</span><span style="width:18%">WO to mechanic</span><span style="width:38%">Mechanic travels</span><span style="width:22%">Take-up</span><span style="width:10%">RFU</span>
+          <span style="width:12%">{{ t.k98 }}</span><span style="width:18%">{{ t.k99 }}</span><span style="width:38%">{{ t.k100 }}</span><span style="width:22%">Take-up</span><span style="width:10%">RFU</span>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><span style="font-size:15px;font-weight:700">After · auto WO portal</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#3DD6A3">{{ ltAfter }}</span></div>
+        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><span style="font-size:15px;font-weight:700">{{ t.k101 }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#3DD6A3">{{ ltAfter }}</span></div>
         <div style="display:flex;height:34px;gap:2px">
           <div style="width:1.4%;background:#F2A93B"></div>
-          <div style="width:20.8%;background:rgba(255,255,255,.16)"></div>
+          <div style="width:11.1%;background:rgba(255,255,255,.16)"></div>
           <div style="width:2.8%;background:#F2A93B"></div>
-          <div style="flex:1;border:1px dashed rgba(61,214,163,.25);display:flex;align-items:center;padding-left:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#3DD6A3">FMS back in service · 4.5 h earlier</div>
+          <div style="flex:1;border:1px dashed rgba(61,214,163,.25);display:flex;align-items:center;padding-left:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#3DD6A3">{{ t.k102 }}</div>
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:8px 24px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:#9A9BA3">
-          <span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;background:#F2A93B;display:block"></span>Report → auto WO + take-up ≈ 15 min</span>
-          <span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;background:rgba(255,255,255,.16);display:block"></span>Travel across the site ≈ 75 min</span>
+          <span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;background:#F2A93B;display:block"></span>{{ t.k103 }}</span>
+          <span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;background:rgba(255,255,255,.16);display:block"></span>{{ t.k104 }}</span>
         </div>
       </div>
-      <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;color:#6B6C73;border-top:1px solid rgba(255,255,255,.08);padding-top:8px"><span>0 h</span><span>1 h</span><span>2 h</span><span>3 h</span><span>4 h</span><span>5 h</span><span>6 h</span></div>
+      <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;color:#6B6C73;border-top:1px solid rgba(255,255,255,.08);padding-top:8px"><span>{{ t.k106 }}</span><span>{{ t.k107 }}</span><span>{{ t.k108 }}</span><span>{{ t.k109 }}</span><span>{{ t.k110 }}</span><span>{{ t.k111 }}</span><span>{{ t.k112 }}</span></div>
     </div>
-    <span style="font-size:13px;color:#9A9BA3">The stage split in the "before" bar is illustrative; the 6-hour total is the measured average.</span>
+    <span style="font-size:13px;color:#9A9BA3">{{ t.k105 }}</span>
   </div>
 </section>
 <section id="system" data-screen-label="06 System" style="max-width:1360px;margin:0 auto;padding:80px clamp(20px,4vw,56px) 80px;scroll-margin-top:60px">
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px 64px;align-items:end;margin-bottom:48px">
     <div style="display:flex;flex-direction:column;gap:20px">
-      <div data-reveal="0" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">( 06 ) The <span style="color:#F2A93B">system</span></div>
-      <h2 data-reveal="60" style="margin:0;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(52px,7vw,104px);line-height:.86;text-transform:uppercase">One portal<br><span style="color:#F2A93B">for every repair.</span></h2>
+      <div data-reveal="0" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k113 }} <span style="color:#F2A93B">{{ t.k114 }}</span></div>
+      <h2 data-reveal="60" style="margin:0;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(52px,7vw,104px);line-height:.86;text-transform:uppercase">{{ t.k115 }}<br><span style="color:#F2A93B">{{ t.k116 }}</span></h2>
     </div>
-    <p data-reveal="120" style="margin:0;max-width:520px;font-size:17px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">Beyond speeding up the information chain, the system evaluates mechanic performance, analyses repeat failures so preventive action can be taken, makes take-ups traceable, and lets mechanics hand pending jobs to the opposite shift.</p>
+    <p data-reveal="120" style="margin:0;max-width:520px;font-size:17px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.k117 }}</p>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:24px">
     <div data-reveal="0" style="background:#12141A;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column">
       <div style="padding:22px 20px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;min-height:150px;box-sizing:border-box">
         <div style="flex:1;display:flex;align-items:center">
-          <div style="flex:none;width:96px;border:1px solid rgba(255,255,255,.16);padding:10px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#9A9BA3">DISPATCH</span><span style="font-size:12px;font-weight:700">Down report form</span></div>
+          <div style="flex:none;width:96px;border:1px solid rgba(255,255,255,.16);padding:10px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#9A9BA3">DISPATCH</span><span style="font-size:12px;font-weight:700">{{ t.k118 }}</span></div>
           <div data-flow="" data-flow-color="#F2A93B" style="position:relative;flex:1;height:2px;background:rgba(255,255,255,.12)"></div>
-          <div style="flex:none;width:96px;border:1px solid #F2A93B;padding:10px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#F2A93B">AUTO</span><span style="font-size:12px;font-weight:700">{{ woId }}</span></div>
+          <div style="flex:none;width:96px;border:1px solid #F2A93B;padding:10px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#F2A93B">{{ t.k119 }}</span><span style="font-size:12px;font-weight:700">{{ woId }}</span></div>
           <div data-flow="" data-flow-color="#F2A93B" style="position:relative;flex:1;height:2px;background:rgba(255,255,255,.12)"></div>
-          <div style="flex:none;width:96px;border:1px solid #4C8DFF;padding:10px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#8DB5FF">MECHANIC</span><span style="font-size:12px;font-weight:700">Portal queue</span></div>
+          <div style="flex:none;width:96px;border:1px solid #4C8DFF;padding:10px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#8DB5FF">{{ t.k120 }}</span><span style="font-size:12px;font-weight:700">{{ t.k121 }}</span></div>
         </div>
       </div>
-      <div style="padding:20px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#F2A93B">01 · Auto WO dispatch</span><span style="font-size:20px;font-weight:700">Report once, the mechanic knows</span><span style="font-size:14px;line-height:1.55;color:#BDBCC2">Dispatchers report a down unit through a form. A work order is created automatically and appears in the mechanics' portal, with no calls or manual WO in between.</span></div>
+      <div style="padding:20px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#F2A93B">{{ t.k122 }}</span><span style="font-size:20px;font-weight:700">{{ t.k123 }}</span><span style="font-size:14px;line-height:1.55;color:#BDBCC2">{{ t.k124 }}</span></div>
     </div>
     <div data-reveal="80" style="background:#12141A;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column">
       <div style="padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;gap:10px;justify-content:center;min-height:150px;box-sizing:border-box">
@@ -312,19 +317,19 @@ a:hover{color:#F2A93B}
           <div style="display:grid;grid-template-columns:56px minmax(0,1fr) 34px;gap:10px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px"><span>{{ m.id }}</span><div style="height:8px;background:rgba(255,255,255,.06)"><div style="height:100%;width:{{ m.score }}%;background:{{ m.color }};transition:width 1s cubic-bezier(.65,0,.35,1)"></div></div><span style="text-align:right">{{ m.score }}</span></div>
         </sc-for>
       </div>
-      <div style="padding:20px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#F2A93B">02 · Mechanic evaluation</span><span style="font-size:20px;font-weight:700">Performance you can measure</span><span style="font-size:14px;line-height:1.55;color:#BDBCC2">Response time, take-up time, first-time fixes, and repeat repairs are recorded for every mechanic, giving supervisors a fair and organised evaluation.</span></div>
+      <div style="padding:20px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#F2A93B">{{ t.k125 }}</span><span style="font-size:20px;font-weight:700">{{ t.k126 }}</span><span style="font-size:14px;line-height:1.55;color:#BDBCC2">{{ t.k127 }}</span></div>
     </div>
     <div data-reveal="0" style="background:#12141A;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column">
       <div style="padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;gap:10px;justify-content:center;min-height:150px;box-sizing:border-box">
-        <div style="display:flex;justify-content:space-between;gap:8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#9A9BA3"><span>HT-0412 · 14 days</span><span style="color:{{ pmColor }}">{{ pmLabel }}</span></div>
+        <div style="display:flex;justify-content:space-between;gap:8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#9A9BA3"><span>{{ t.k128 }}</span><span style="color:{{ pmColor }}">{{ pmLabel }}</span></div>
         <div style="display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:3px">
           <sc-for list="{{ pmDays }}" as="d" hint-placeholder-count="14">
             <div style="height:34px;background:{{ d.bg }};border:1px solid {{ d.bd }};display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:600;color:{{ d.fg }};transition:background .4s,border-color .4s">{{ d.t }}</div>
           </sc-for>
         </div>
-        <div style="display:flex;gap:16px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:#9A9BA3"><span style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;background:#FF6B5A;display:block"></span>Corrective</span><span style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;background:#4C8DFF;display:block"></span>Preventive</span></div>
+        <div style="display:flex;gap:16px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:#9A9BA3"><span style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;background:#FF6B5A;display:block"></span>{{ t.k129 }}</span><span style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;background:#4C8DFF;display:block"></span>{{ t.k130 }}</span></div>
       </div>
-      <div style="padding:20px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#F2A93B">03 · Repeat-failure analysis</span><span style="font-size:20px;font-weight:700">From corrective to preventive</span><span style="font-size:14px;line-height:1.55;color:#BDBCC2">Mechanics used to work only correctively. Repeat failures are now evaluated per unit and component, so scheduled preventive maintenance happens before the next breakdown.</span></div>
+      <div style="padding:20px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#F2A93B">{{ t.k131 }}</span><span style="font-size:20px;font-weight:700">{{ t.k132 }}</span><span style="font-size:14px;line-height:1.55;color:#BDBCC2">{{ t.k133 }}</span></div>
     </div>
     <div data-reveal="80" style="background:#12141A;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column">
       <div style="padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;justify-content:center;min-height:150px;box-sizing:border-box">
@@ -332,46 +337,46 @@ a:hover{color:#F2A93B}
           <div style="display:grid;grid-template-columns:14px 64px minmax(0,1fr) 48px;gap:10px;align-items:center;padding:5px 0;font-family:'JetBrains Mono',monospace;font-size:11px;opacity:{{ r.op }};transition:opacity .3s"><span style="width:8px;height:8px;border-radius:50%;background:{{ r.dot }};display:block"></span><span style="color:#9A9BA3">{{ r.d }}</span><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.a }}</span><span style="color:#8DB5FF;text-align:right">{{ r.m }}</span></div>
         </sc-for>
       </div>
-      <div style="padding:20px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#F2A93B">04 · Take-up tracing</span><span style="font-size:20px;font-weight:700">Every take-up on record</span><span style="font-size:14px;line-height:1.55;color:#BDBCC2">Each unit has a full history of take-ups: what was done, which component, and by whom, so tracing a repair takes seconds.</span></div>
+      <div style="padding:20px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#F2A93B">{{ t.k134 }}</span><span style="font-size:20px;font-weight:700">{{ t.k135 }}</span><span style="font-size:14px;line-height:1.55;color:#BDBCC2">{{ t.k136 }}</span></div>
     </div>
     <div data-reveal="0" style="background:#12141A;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column">
       <div style="padding:22px 20px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;gap:14px;justify-content:center;min-height:150px;box-sizing:border-box">
         <div style="display:flex;align-items:center">
-          <span style="flex:none;padding:7px 10px;border:1px solid rgba(255,255,255,.16);font-size:12px;font-weight:700">Day mechanic</span>
+          <span style="flex:none;padding:7px 10px;border:1px solid rgba(255,255,255,.16);font-size:12px;font-weight:700">{{ t.k137 }}</span>
           <div data-flow="" data-flow-color="#A78BFA" style="position:relative;flex:1;height:2px;background:rgba(255,255,255,.12)"></div>
-          <span style="flex:none;padding:7px 10px;border:1px solid #A78BFA;font-size:12px;font-weight:700;color:#C9B8FF">Night mechanic</span>
+          <span style="flex:none;padding:7px 10px;border:1px solid #A78BFA;font-size:12px;font-weight:700;color:#C9B8FF">{{ t.k138 }}</span>
         </div>
-        <div style="display:flex;flex-direction:column;gap:4px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#BDBCC2"><span>HT-0517 · GPS bracket ordered, fit on arrival</span><span>EX-108 · Recheck CPE mount after rain</span></div>
+        <div style="display:flex;flex-direction:column;gap:4px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#BDBCC2"><span>{{ t.k139 }}</span><span>{{ t.k140 }}</span></div>
       </div>
-      <div style="padding:20px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#F2A93B">05 · Mechanic pending jobs</span><span style="font-size:20px;font-weight:700">Handover between shifts</span><span style="font-size:14px;line-height:1.55;color:#BDBCC2">Mechanics leave pending jobs on a unit for their opposite-shift colleague in the portal, so unfinished work continues without gaps.</span></div>
+      <div style="padding:20px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#F2A93B">{{ t.k141 }}</span><span style="font-size:20px;font-weight:700">{{ t.k142 }}</span><span style="font-size:14px;line-height:1.55;color:#BDBCC2">{{ t.k143 }}</span></div>
     </div>
   </div>
 </section>
 
 <section id="impact" data-screen-label="07 Impact" style="max-width:1360px;margin:0 auto;padding:80px clamp(20px,4vw,56px) 80px;scroll-margin-top:60px">
   <div style="display:flex;flex-direction:column;gap:20px;margin-bottom:48px">
-    <div data-reveal="0" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">( 07 ) The <span style="color:#F2A93B">impact</span></div>
-    <h2 data-reveal="60" style="margin:0;max-width:1100px;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(52px,7vw,104px);line-height:.86;text-transform:uppercase">Faster repairs, <span style="color:#F2A93B">fewer repeats.</span></h2>
+    <div data-reveal="0" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k144 }} <span style="color:#F2A93B">{{ t.k145 }}</span></div>
+    <h2 data-reveal="60" style="margin:0;max-width:1100px;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(52px,7vw,104px);line-height:.86;text-transform:uppercase">{{ t.k146 }} <span style="color:#F2A93B">{{ t.k147 }}</span></h2>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px">
     <div data-reveal="0" style="background:#12141A;border:1px solid rgba(255,255,255,.08);padding:clamp(22px,3vw,32px);display:flex;flex-direction:column;gap:18px">
-      <span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(56px,6vw,88px);line-height:.85"><span style="color:#9A9BA3">6</span> → <span style="color:#F2A93B">1.5 h</span></span>
+      <span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(56px,6vw,88px);line-height:.85" class="angka-dampak"><span style="color:#9A9BA3">4–6</span> → <span style="color:#F2A93B">{{ t.k14 }}</span></span>
       <div style="display:flex;flex-direction:column;gap:8px">
-        <div style="display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px;align-items:center;font-size:12px"><span style="color:#9A9BA3">Before</span><div style="height:10px;background:rgba(255,255,255,.04)"><div data-bar="100" style="height:100%;width:100%;background:rgba(255,255,255,.22)"></div></div></div>
-        <div style="display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px;align-items:center;font-size:12px"><span style="color:#9A9BA3">After</span><div style="height:10px;background:rgba(255,255,255,.04)"><div data-bar="25" data-bar-delay="500" style="height:100%;width:25%;background:#F2A93B"></div></div></div>
+        <div style="display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px;align-items:center;font-size:12px"><span style="color:#9A9BA3">{{ t.k148 }}</span><div style="height:10px;background:rgba(255,255,255,.04)"><div data-bar="100" style="height:100%;width:100%;background:rgba(255,255,255,.22)"></div></div></div>
+        <div style="display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px;align-items:center;font-size:12px"><span style="color:#9A9BA3">{{ t.k149 }}</span><div style="height:10px;background:rgba(255,255,255,.04)"><div data-bar="16" data-bar-delay="500" style="height:100%;width:16%;background:#F2A93B"></div></div></div>
       </div>
-      <div style="font-size:18px;font-weight:700">Average repair lead time</div>
-      <p style="margin:0;font-size:14px;line-height:1.55;color:#BDBCC2">From report to RFU, most of the remaining time is travel across a wide site.</p>
+      <div style="font-size:18px;font-weight:700">{{ t.k150 }}</div>
+      <p style="margin:0;font-size:14px;line-height:1.55;color:#BDBCC2">{{ t.k151 }}</p>
     </div>
     <div data-reveal="80" style="background:#12141A;border:1px solid rgba(255,255,255,.08);padding:clamp(22px,3vw,32px);display:flex;flex-direction:column;gap:18px">
-      <span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(56px,6vw,88px);line-height:.85;color:#F2A93B">≈<span data-count="15">15</span> min</span>
-      <div style="font-size:18px;font-weight:700">Information chain + take-up</div>
-      <p style="margin:0;font-size:14px;line-height:1.55;color:#BDBCC2">Reporting, the work order, and the repair itself now take about a quarter of an hour.</p>
+      <span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(56px,6vw,88px);line-height:.85;color:#F2A93B">≈<span data-count="15">15</span> {{ t.k152 }}</span>
+      <div style="font-size:18px;font-weight:700">{{ t.k153 }}</div>
+      <p style="margin:0;font-size:14px;line-height:1.55;color:#BDBCC2">{{ t.k154 }}</p>
     </div>
     <div data-reveal="160" style="background:#12141A;border:1px solid rgba(255,255,255,.08);padding:clamp(22px,3vw,32px);display:flex;flex-direction:column;gap:18px">
-      <span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(40px,4.4vw,64px);line-height:.9;text-transform:uppercase">Corrective<br><span style="color:#4C8DFF">+ preventive</span></span>
-      <div style="font-size:18px;font-weight:700">Maintenance that looks ahead</div>
-      <p style="margin:0;font-size:14px;line-height:1.55;color:#BDBCC2">Scheduled preventive maintenance based on repeat-failure data, plus traceable take-ups and clean shift handovers.</p>
+      <span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(40px,4.4vw,64px);line-height:.9;text-transform:uppercase">{{ t.k129 }}<br><span style="color:#4C8DFF">{{ t.k155 }}</span></span>
+      <div style="font-size:18px;font-weight:700">{{ t.k156 }}</div>
+      <p style="margin:0;font-size:14px;line-height:1.55;color:#BDBCC2">{{ t.k157 }}</p>
     </div>
   </div>
 </section>
@@ -379,34 +384,34 @@ a:hover{color:#F2A93B}
 <section id="dashboard" data-screen-label="08 Dashboard" style="max-width:1360px;margin:0 auto;padding:60px clamp(20px,4vw,56px) 120px;scroll-margin-top:60px">
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px 64px;align-items:end;margin-bottom:48px">
     <div style="display:flex;flex-direction:column;gap:20px">
-      <div data-reveal="0" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">( 08 ) Dashboard <span style="color:#F2A93B">overview</span></div>
-      <h2 data-reveal="60" style="margin:0;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(52px,7vw,104px);line-height:.86;text-transform:uppercase">The maintenance<br><span style="color:#F2A93B">portal.</span></h2>
+      <div data-reveal="0" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k158 }} <span style="color:#F2A93B">{{ t.k159 }}</span></div>
+      <h2 data-reveal="60" style="margin:0;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(52px,7vw,104px);line-height:.86;text-transform:uppercase">{{ t.k160 }}<br><span style="color:#F2A93B">{{ t.k161 }}</span></h2>
     </div>
-    <p data-reveal="120" style="margin:0;max-width:520px;font-size:17px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">A mock-up of the portal mechanics and supervisors work from. Click the tabs to explore. All data shown is sample data.</p>
+    <p data-reveal="120" style="margin:0;max-width:520px;font-size:17px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.k162 }}</p>
   </div>
   <div data-reveal="0" style="background:#0F1116;border:1px solid rgba(255,255,255,.1);box-shadow:0 30px 60px rgba(0,0,0,.45);display:flex;flex-direction:column;min-width:0">
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:12px 18px;border-bottom:1px solid rgba(255,255,255,.08);background:#12141A">
-      <div style="display:flex;align-items:center;gap:10px"><span style="width:26px;height:26px;background:#F2A93B;color:#0B0C10;display:flex;align-items:center;justify-content:center;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:13px">FM</span><span style="font-size:14px;font-weight:700">FMS Maintenance Portal</span></div>
+      <div style="display:flex;align-items:center;gap:10px"><span style="width:26px;height:26px;background:#F2A93B;color:#0B0C10;display:flex;align-items:center;justify-content:center;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:13px">FM</span><span style="font-size:14px;font-weight:700">{{ t.k163 }}</span></div>
       <div style="display:flex;flex-wrap:wrap;gap:4px">
         <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
           <button onClick="{{ t.on }}" style="white-space:nowrap;padding:8px 14px;border:0;border-bottom:2px solid {{ t.bd }};background:transparent;color:{{ t.fg }};font-family:'Archivo',sans-serif;font-size:13px;font-weight:600;cursor:pointer">{{ t.label }}</button>
         </sc-for>
       </div>
-      <span style="margin-left:auto;display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#9A9BA3"><span data-pulse="" style="width:6px;height:6px;border-radius:50%;background:#3DD6A3;display:block"></span>Day shift · {{ dnClock }}</span>
+      <span style="margin-left:auto;display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#9A9BA3"><span data-pulse="" style="width:6px;height:6px;border-radius:50%;background:#3DD6A3;display:block"></span>{{ t.dayshift }} · {{ dnClock }}</span>
     </div>
     <div style="padding:clamp(14px,2vw,22px);min-height:560px;box-sizing:border-box">
 
       <sc-if value="{{ tabDown }}" hint-placeholder-val="{{ true }}">
         <div style="display:flex;flex-direction:column;gap:16px">
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">
-            <div style="background:#12141A;border:1px solid rgba(255,255,255,.06);padding:14px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:32px;line-height:1;color:#FF6B5A">{{ dnDown }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">FMS down now</span></div>
-            <div style="background:#12141A;border:1px solid rgba(255,255,255,.06);padding:14px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:32px;line-height:1;color:#F2A93B">{{ dnWait }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Awaiting mechanic</span></div>
-            <div style="background:#12141A;border:1px solid rgba(255,255,255,.06);padding:14px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:32px;line-height:1;color:#8DB5FF">{{ dnProg }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">In progress</span></div>
-            <div style="background:#12141A;border:1px solid rgba(255,255,255,.06);padding:14px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:32px;line-height:1;color:#3DD6A3">{{ dnRfu }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">RFU this shift</span></div>
+            <div style="background:#12141A;border:1px solid rgba(255,255,255,.06);padding:14px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:32px;line-height:1;color:#FF6B5A">{{ dnDown }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k164 }}</span></div>
+            <div style="background:#12141A;border:1px solid rgba(255,255,255,.06);padding:14px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:32px;line-height:1;color:#F2A93B">{{ dnWait }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k165 }}</span></div>
+            <div style="background:#12141A;border:1px solid rgba(255,255,255,.06);padding:14px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:32px;line-height:1;color:#8DB5FF">{{ dnProg }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k166 }}</span></div>
+            <div style="background:#12141A;border:1px solid rgba(255,255,255,.06);padding:14px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:32px;line-height:1;color:#3DD6A3">{{ dnRfu }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k167 }}</span></div>
           </div>
           <div style="background:#12141A;border:1px solid rgba(255,255,255,.06);overflow-x:auto;overflow-y:hidden;scrollbar-color:#2A2D36 transparent;scrollbar-width:thin">
             <div style="min-width:760px">
-              <div style="display:grid;grid-template-columns:72px 72px minmax(0,1.4fr) minmax(0,1fr) 56px 60px 104px 50px;gap:10px;padding:10px 14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#9A9BA3;border-bottom:1px solid rgba(255,255,255,.06)"><span>WO</span><span>Unit</span><span>Reported issue</span><span>Location</span><span>Reported</span><span>Mechanic</span><span>Status</span><span>Elapsed</span></div>
+              <div style="display:grid;grid-template-columns:72px 72px minmax(0,1.4fr) minmax(0,1fr) 56px 60px 104px 50px;gap:10px;padding:10px 14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#9A9BA3;border-bottom:1px solid rgba(255,255,255,.06)"><span>WO</span><span>Unit</span><span>{{ t.k168 }}</span><span>{{ t.k169 }}</span><span>{{ t.k170 }}</span><span>{{ t.k171 }}</span><span>Status</span><span>{{ t.k96 }}</span></div>
               <sc-for list="{{ dnRows }}" as="r" hint-placeholder-count="6">
                 <div style="display:grid;grid-template-columns:72px 72px minmax(0,1.4fr) minmax(0,1fr) 56px 60px 104px 50px;gap:10px;align-items:center;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;background:{{ r.bg }};transition:background .6s">
                   <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#9A9BA3">{{ r.wo }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600">{{ r.unit }}</span><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.issue }}</span><span style="color:#BDBCC2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.loc }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#9A9BA3">{{ r.rep }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px">{{ r.mech }}</span>
@@ -416,7 +421,7 @@ a:hover{color:#F2A93B}
               </sc-for>
             </div>
           </div>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#6B6C73">Reports arrive from the dispatcher down-report form · WOs are created automatically</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#6B6C73">{{ t.k172 }}</span>
         </div>
       </sc-if>
 
@@ -424,14 +429,14 @@ a:hover{color:#F2A93B}
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">
           <sc-for list="{{ mechCards }}" as="m" hint-placeholder-count="6">
             <div style="background:#12141A;border:1px solid rgba(255,255,255,.06);padding:16px;display:flex;flex-direction:column;gap:12px">
-              <div style="display:flex;align-items:center;gap:10px"><span style="width:34px;height:34px;border-radius:50%;border:2px solid {{ m.color }};display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600">{{ m.ini }}</span><div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:14px;font-weight:700">{{ m.id }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:#9A9BA3">{{ m.shift }} shift</span></div><span style="margin-left:auto;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:30px;line-height:1;color:{{ m.color }}">{{ m.score }}</span></div>
+              <div style="display:flex;align-items:center;gap:10px"><span style="width:34px;height:34px;border-radius:50%;border:2px solid {{ m.color }};display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600">{{ m.ini }}</span><div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:14px;font-weight:700">{{ m.id }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:#9A9BA3">{{ t.shA }}{{ m.shift }}{{ t.shB }}</span></div><span style="margin-left:auto;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:30px;line-height:1;color:{{ m.color }}">{{ m.score }}</span></div>
               <div style="display:grid;grid-template-columns:1fr auto;gap:6px 10px;font-size:12px;color:#BDBCC2;border-top:1px solid rgba(255,255,255,.06);padding-top:10px">
-                <span>WOs closed (month)</span><span style="font-family:'JetBrains Mono',monospace;color:#EDEBE6">{{ m.closed }}</span>
-                <span>Avg response</span><span style="font-family:'JetBrains Mono',monospace;color:#EDEBE6">{{ m.resp }} min</span>
-                <span>Avg take-up</span><span style="font-family:'JetBrains Mono',monospace;color:#EDEBE6">{{ m.take }} min</span>
-                <span>First-time fix</span><span style="font-family:'JetBrains Mono',monospace;color:#3DD6A3">{{ m.ftf }}%</span>
-                <span>Repeat repairs</span><span style="font-family:'JetBrains Mono',monospace;color:#FF8A7D">{{ m.rep }}%</span>
-                <span>Preventive done</span><span style="font-family:'JetBrains Mono',monospace;color:#8DB5FF">{{ m.pm }}</span>
+                <span>{{ t.k173 }}</span><span style="font-family:'JetBrains Mono',monospace;color:#EDEBE6">{{ m.closed }}</span>
+                <span>{{ t.k174 }}</span><span style="font-family:'JetBrains Mono',monospace;color:#EDEBE6">{{ m.resp }} {{ t.u_min }}</span>
+                <span>{{ t.k175 }}</span><span style="font-family:'JetBrains Mono',monospace;color:#EDEBE6">{{ m.take }} {{ t.u_min }}</span>
+                <span>{{ t.k176 }}</span><span style="font-family:'JetBrains Mono',monospace;color:#3DD6A3">{{ m.ftf }}%</span>
+                <span>{{ t.k177 }}</span><span style="font-family:'JetBrains Mono',monospace;color:#FF8A7D">{{ m.rep }}%</span>
+                <span>{{ t.k178 }}</span><span style="font-family:'JetBrains Mono',monospace;color:#8DB5FF">{{ m.pm }}</span>
               </div>
             </div>
           </sc-for>
@@ -441,13 +446,13 @@ a:hover{color:#F2A93B}
       <sc-if value="{{ tabLb }}" hint-placeholder-val="{{ false }}">
         <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start">
           <div style="flex:2 1 460px;min-width:0;background:#12141A;border:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column">
-            <div style="display:flex;justify-content:space-between;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span>Mechanic leaderboard · this month</span><span>Score</span></div>
+            <div style="display:flex;justify-content:space-between;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.06);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span>{{ t.k179 }}</span><span>{{ t.k180 }}</span></div>
             <div style="position:relative;height:336px">
               <sc-for list="{{ lb }}" as="p" hint-placeholder-count="6">
                 <div style="position:absolute;left:0;right:0;top:{{ p.top }}px;height:56px;box-sizing:border-box;display:grid;grid-template-columns:44px 40px minmax(0,1fr) minmax(0,1.2fr) 40px;gap:12px;align-items:center;padding:0 16px;border-bottom:1px solid rgba(255,255,255,.04);background:{{ p.bg }};transition:top .7s cubic-bezier(.65,0,.35,1)">
                   <span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:22px;color:{{ p.rankColor }}">#{{ p.rank }}</span>
                   <span style="width:32px;height:32px;border-radius:50%;border:2px solid {{ p.color }};display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600">{{ p.ini }}</span>
-                  <span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:14px;font-weight:700">{{ p.id }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#9A9BA3;text-transform:uppercase">{{ p.shift }} · {{ p.closed }} WOs</span></span>
+                  <span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:14px;font-weight:700">{{ p.id }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#9A9BA3;text-transform:uppercase">{{ p.shift }} · {{ p.closed }} {{ t.wos }}</span></span>
                   <div style="height:8px;background:rgba(255,255,255,.06)"><div style="height:100%;width:{{ p.score }}%;background:{{ p.color }};transition:width 1s"></div></div>
                   <span style="font-family:'JetBrains Mono',monospace;font-size:13px;text-align:right">{{ p.score }}</span>
                 </div>
@@ -455,9 +460,9 @@ a:hover{color:#F2A93B}
             </div>
           </div>
           <div style="flex:1 1 240px;background:#12141A;border:1px solid rgba(255,255,255,.06);padding:16px;display:flex;flex-direction:column;gap:12px">
-            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">How the score is built</span>
-            <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:#BDBCC2"><span>· Response time to new WOs</span><span>· Take-up duration</span><span>· First-time fix rate</span><span>· Repeat repairs (penalty)</span><span>· WOs closed and preventive jobs done</span></div>
-            <span style="font-size:12px;color:#6B6C73">Weighting shown here is illustrative.</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k181 }}</span>
+            <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;color:#BDBCC2"><span>{{ t.k182 }}</span><span>{{ t.k183 }}</span><span>{{ t.k184 }}</span><span>{{ t.k185 }}</span><span>{{ t.k186 }}</span></div>
+            <span style="font-size:12px;color:#6B6C73">{{ t.k187 }}</span>
           </div>
         </div>
       </sc-if>
@@ -465,40 +470,40 @@ a:hover{color:#F2A93B}
       <sc-if value="{{ tabAna }}" hint-placeholder-val="{{ false }}">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px">
           <div style="background:#12141A;border:1px solid rgba(255,255,255,.06);padding:16px;display:flex;flex-direction:column;gap:10px">
-            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Most frequent failures · 30 days</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k188 }}</span>
             <sc-for list="{{ anaFail }}" as="a" hint-placeholder-count="5">
               <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 28px;gap:10px;align-items:center;font-size:12px"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ a.name }}</span><div style="height:8px;background:rgba(255,255,255,.06)"><div style="height:100%;width:{{ a.w }}%;background:#FF6B5A;transition:width .8s"></div></div><span style="font-family:'JetBrains Mono',monospace;text-align:right">{{ a.v }}</span></div>
             </sc-for>
           </div>
           <div style="background:#12141A;border:1px solid rgba(255,255,255,.06);padding:16px;display:flex;flex-direction:column;gap:10px">
-            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Units with most failures</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k189 }}</span>
             <sc-for list="{{ anaUnits }}" as="a" hint-placeholder-count="5">
               <div style="display:grid;grid-template-columns:70px minmax(0,1fr) 28px;gap:10px;align-items:center;font-size:12px"><span style="font-family:'JetBrains Mono',monospace;font-weight:600">{{ a.name }}</span><div style="height:8px;background:rgba(255,255,255,.06)"><div style="height:100%;width:{{ a.w }}%;background:#F2A93B;transition:width .8s"></div></div><span style="font-family:'JetBrains Mono',monospace;text-align:right">{{ a.v }}</span></div>
             </sc-for>
           </div>
           <div style="background:#12141A;border:1px solid rgba(255,255,255,.06);padding:16px;display:flex;flex-direction:column;gap:10px">
-            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Components failing most</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k190 }}</span>
             <sc-for list="{{ anaComp }}" as="a" hint-placeholder-count="5">
               <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 28px;gap:10px;align-items:center;font-size:12px"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ a.name }}</span><div style="height:8px;background:rgba(255,255,255,.06)"><div style="height:100%;width:{{ a.w }}%;background:#A78BFA;transition:width .8s"></div></div><span style="font-family:'JetBrains Mono',monospace;text-align:right">{{ a.v }}</span></div>
             </sc-for>
           </div>
           <div style="background:#12141A;border:1px solid rgba(255,255,255,.06);padding:16px;display:flex;flex-direction:column;gap:10px">
-            <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span>Component stock</span><span>Qty / min</span></div>
+            <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span>{{ t.k191 }}</span><span>{{ t.k192 }}</span></div>
             <sc-for list="{{ anaStock }}" as="a" hint-placeholder-count="6">
               <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 52px;gap:10px;align-items:center;font-size:12px"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:{{ a.nameColor }}">{{ a.name }}</span><div style="height:8px;background:rgba(255,255,255,.06)"><div style="height:100%;width:{{ a.w }}%;background:{{ a.color }};transition:width .8s"></div></div><span style="font-family:'JetBrains Mono',monospace;text-align:right;color:{{ a.nameColor }}">{{ a.q }} / {{ a.min }}</span></div>
             </sc-for>
           </div>
           <div style="background:#12141A;border:1px solid rgba(255,255,255,.06);padding:16px;display:flex;flex-direction:column;gap:8px">
-            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Pending jobs per unit</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k193 }}</span>
             <sc-for list="{{ anaPend }}" as="a" hint-placeholder-count="4">
               <div style="display:grid;grid-template-columns:70px minmax(0,1fr) 26px;gap:10px;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px"><span style="font-family:'JetBrains Mono',monospace;font-weight:600">{{ a.unit }}</span><span style="color:#BDBCC2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ a.note }}</span><span style="justify-self:end;min-width:20px;height:20px;border-radius:10px;background:rgba(167,139,250,.18);color:#C9B8FF;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px">{{ a.n }}</span></div>
             </sc-for>
           </div>
           <div style="background:#12141A;border:1px solid rgba(255,255,255,.06);padding:16px;display:flex;flex-direction:column;gap:12px">
-            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Corrective vs preventive · this month</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k194 }}</span>
             <div style="display:flex;height:28px;gap:2px"><div style="width:{{ corrPct }}%;background:#FF6B5A;transition:width .8s"></div><div style="flex:1;background:#4C8DFF"></div></div>
-            <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:12px"><span style="color:#FF8A7D">Corrective {{ corrPct }}%</span><span style="color:#8DB5FF">Preventive {{ prevPct }}%</span></div>
-            <span style="font-size:12px;color:#6B6C73">Before the system, almost all work was corrective.</span>
+            <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:12px"><span style="color:#FF8A7D">{{ t.k_corr }} {{ corrPct }}%</span><span style="color:#8DB5FF">{{ t.k_prev }} {{ prevPct }}%</span></div>
+            <span style="font-size:12px;color:#6B6C73">{{ t.k195 }}</span>
           </div>
         </div>
       </sc-if>
@@ -509,17 +514,17 @@ a:hover{color:#F2A93B}
 
 <footer data-screen-label="Footer" style="position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,.08);padding:100px clamp(20px,4vw,56px) 40px">
   <div style="position:relative;max-width:1360px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:40px">
-    <a data-build="prev" href="studi-kasus-shift-change.html" style="display:flex;flex-direction:column;gap:14px" style-hover="color:#F2A93B">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">Previous · 03</span>
-      <span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(48px,7vw,104px);line-height:.86;text-transform:uppercase">← Automated<br>shift-change scheduling</span>
+    <a data-build="prev" href="studi-kasus-shift-change.html?lang={{ lang }}" style="display:flex;flex-direction:column;gap:14px" style-hover="color:#F2A93B">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.k196 }}</span>
+      <span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(48px,7vw,104px);line-height:.86;text-transform:uppercase">{{ t.k197 }}<br>{{ t.k198 }}</span>
     </a>
     <div style="display:flex;flex-direction:column;gap:10px;text-align:right;font-size:14px">
-      <a href="./">← Back to portfolio</a>
+      <a href="./?lang={{ lang }}">{{ t.k199 }}</a>
       <a href="mailto:rezaardhana67@gmail.com">rezaardhana67@gmail.com</a>
     </div>
   </div>
   <div style="max-width:1360px;margin:64px auto 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">
-    <span>© 2026 Muhammad Reza Ardhana</span><span>Simulations and dashboard use sample data</span>
+    <span>© 2026 Muhammad Reza Ardhana</span><span>{{ t.k200 }}</span>
   </div>
   <div style="height:56px"></div>
 </footer>
@@ -531,7 +536,7 @@ a:hover{color:#F2A93B}
     <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(76,141,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(76,141,255,.07) 1px,transparent 1px);background-size:48px 48px"></div>
     <div style="position:relative;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:64px;line-height:1;color:#2A2D36;margin-top:-10vh">04</div>
     <div style="position:absolute;left:50%;bottom:48px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;padding:9px 16px;background:#12141A;border:1px solid rgba(255,255,255,.1);border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#9A9BA3;white-space:nowrap">
-      <span>Scanning case study…</span>
+      <span>{{ t.k201 }}</span>
       <span style="width:120px;height:3px;background:rgba(255,255,255,.1);position:relative;display:block"><span style="position:absolute;left:0;top:0;bottom:0;width:{{ scanPct }}%;background:#4C8DFF;display:block"></span></span>
       <span style="color:#EDEBE6;width:34px;text-align:right">{{ scanPct }}%</span>
     </div>
@@ -543,21 +548,467 @@ a:hover{color:#F2A93B}
     <div style="display:flex">
       <span style="width:12px;height:12px;border-radius:50%;background:#F2A93B;border:2px solid #12141A;display:block"></span><span style="width:12px;height:12px;border-radius:50%;background:#4C8DFF;border:2px solid #12141A;margin-left:-5px;display:block"></span><span style="width:12px;height:12px;border-radius:50%;background:#3DD6A3;border:2px solid #12141A;margin-left:-5px;display:block"></span><span style="width:12px;height:12px;border-radius:50%;background:#FF6B5A;border:2px solid #12141A;margin-left:-5px;display:block"></span><span style="width:12px;height:12px;border-radius:50%;background:#A78BFA;border:2px solid #12141A;margin-left:-5px;display:block"></span>
     </div>
-    <span><span style="color:#EDEBE6">{{ agentCount }}</span> agents</span>
+    <span><span style="color:#EDEBE6">{{ agentCount }}</span> {{ t.k202 }}</span>
     <span style="width:1px;height:14px;background:rgba(255,255,255,.12);display:block"></span>
-    <span><span style="color:#EDEBE6">{{ built }}</span> / {{ total }} layers</span>
+    <span><span style="color:#EDEBE6">{{ built }}</span> / {{ total }} {{ t.layers }}</span>
     <span style="width:64px;height:3px;background:rgba(255,255,255,.1);position:relative;display:block"><span style="position:absolute;left:0;top:0;bottom:0;width:{{ pct }}%;background:#4C8DFF;display:block"></span></span>
     <span style="display:flex;align-items:center;gap:6px;padding:4px 9px;border-radius:999px;background:rgba(76,141,255,.14);color:#8DB5FF"><span style="width:6px;height:6px;border-radius:50%;background:#4C8DFF;display:block"></span>{{ status }}</span>
-    <button onClick="{{ togglePause }}" title="Pause / resume agents" style="height:28px;padding:0 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#EDEBE6;font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer" style-hover="border-color:#4C8DFF">{{ pauseLabel }}</button>
-    <button onClick="{{ replay }}" title="Rebuild the page" style="height:28px;padding:0 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#EDEBE6;font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer" style-hover="border-color:#4C8DFF">Rebuild</button>
-    <button onClick="{{ toggleAgents }}" title="Show / hide agents" style="height:28px;padding:0 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#EDEBE6;font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer" style-hover="border-color:#4C8DFF">{{ hideLabel }}</button>
+    <button onClick="{{ togglePause }}" title="{{ t.ti_pause }}" style="height:28px;padding:0 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#EDEBE6;font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer" style-hover="border-color:#4C8DFF">{{ pauseLabel }}</button>
+    <button onClick="{{ replay }}" title="{{ t.ti_rebuild }}" style="height:28px;padding:0 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#EDEBE6;font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer" style-hover="border-color:#4C8DFF">{{ t.k203 }}</button>
+    <button onClick="{{ toggleAgents }}" title="{{ t.ti_hide }}" style="height:28px;padding:0 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#EDEBE6;font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer" style-hover="border-color:#4C8DFF">{{ hideLabel }}</button>
   </div>
 </sc-if>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;agents&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Agents&quot;},&quot;agentCount&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:14,&quot;min&quot;:4,&quot;max&quot;:32,&quot;step&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Agents&quot;},&quot;buildSpeed&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;slow&quot;,&quot;normal&quot;,&quot;fast&quot;],&quot;default&quot;:&quot;normal&quot;,&quot;tsType&quot;:&quot;'slow'|'normal'|'fast'&quot;,&quot;section&quot;:&quot;Agents&quot;},&quot;showHud&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Agents&quot;},&quot;skipIntro&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Agents&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;showProgress&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+const KAMUS = {
+"en": {
+"k0": "Case study 04",
+"k1": "FMS maintenance",
+"k2": "Hardware",
+"k3": "Data chain",
+"k4": "Scale",
+"k5": "Lead time",
+"k6": "System",
+"k7": "← Portfolio",
+"k8": "Case study 04 · FMS hardware maintenance",
+"k9": "Keep the data",
+"k10": "flowing.",
+"k11": "FMS maintenance monitoring",
+"k12": "A maintenance system for the FMS hardware on 500+ units: automatic work orders from dispatch to mechanics in one portal, clear evaluation of mechanic performance, and repeat-failure analysis that turns corrective repairs into scheduled preventive maintenance.",
+"k13": "h",
+"k14": "< 1 h",
+"k15": "Avg repair lead",
+"k16": "time, before",
+"k17": "Report to RFU,",
+"k18": "after",
+"k19": "Info chain",
+"k20": "Units with",
+"k21": "FMS hardware",
+"k22": "Role",
+"k23": "Maintenance scheme · Portal & evaluation system",
+"k24": "Unit wiring · UMPC · CPE",
+"k25": "Users",
+"k26": "Dispatchers · FMS mechanics · Supervisors",
+"k27": "Shift in approach",
+"k28": "Corrective → preventive",
+"k29": "( 01 ) The",
+"k30": "hardware",
+"k31": "Two devices",
+"k32": "on every unit.",
+"k33": "To run FMS, each unit carries extra hardware. A UMPC in the cab runs the FMS application, and a CPE connects the unit to the network so FMS can send its data to the database.",
+"k34": "Inside the cab · illustration",
+"k35": "Ultra-mobile PC · in the cab",
+"k36": "A rugged in-cab computer that runs the FMS application. It receives the unit's sensor data through the wiring, takes operator input, and processes the data before it is sent.",
+"k37": "Receives sensor data",
+"k38": "Runs FMS",
+"k39": "Operator login & status",
+"k40": "On the cab roof · illustration",
+"k41": "CAB ROOF",
+"k42": "Customer premises equipment · on the roof",
+"k43": "The unit's network bridge. It connects the UMPC to the internet connection so the data FMS has processed can be sent to the database.",
+"k44": "Network link",
+"k45": "Sends FMS data",
+"k46": "( 02 ) The data",
+"k47": "chain",
+"k48": "Three links",
+"k49": "must hold.",
+"k50": "For data to flow smoothly from the unit's sensors to the database, every link in the chain has to be in good condition: the wiring, the UMPC, and the CPE.",
+"k51": "Unit sensors",
+"k52": "Engine, payload, GPS and status signals",
+"k53": "02 · check",
+"k54": "03 · check",
+"k55": "04 · check",
+"k56": "Carries sensor signals to the UMPC",
+"k57": "Runs FMS and processes the data",
+"k58": "Sends processed data out of the unit",
+"k59": "Network",
+"k60": "Internet connection on site",
+"k61": "Where operational data is stored",
+"k62": "Wiring in good condition",
+"k63": "So the data from the unit's sensors is received by the UMPC properly.",
+"k64": "UMPC in good condition",
+"k65": "So it can process the volume of data coming in from the sensors.",
+"k66": "CPE in good condition",
+"k67": "So the data processed by FMS on the UMPC is sent to the database as it should be.",
+"k68": "( 03 ) When one",
+"k69": "breaks",
+"k70": "If any one component stops working, the data will not reach the database correctly. It either never arrives or arrives broken, and every report built on it inherits the problem.",
+"k71": "Try breaking a component · simulated",
+"k72": "Sensors",
+"k73": "Time",
+"k74": "Record in database",
+"k75": "Corrupt",
+"k76": "Missing",
+"k77": "( 04 ) Maintenance at",
+"k78": "scale",
+"k79": "500+ units.",
+"k80": "A small team.",
+"k81": "Keeping FMS data accurate and intact needs a proper maintenance scheme for the FMS hardware. Across a wide work area with more than 500 units, and only a limited number of mechanics dedicated to FMS, that is a real challenge.",
+"k82": "Site overview",
+"k83": "520 units · 3 FMS mechanics · simulated",
+"k84": "Waiting for a mechanic",
+"k85": "Mechanics busy",
+"k86": "Driven by mechanics",
+"k87": "Back to RFU",
+"k88": "Mechanic assigned",
+"k89": "FMS mechanic",
+"k90": "( 05 ) Repair",
+"k91": "lead time",
+"k92": "From 4–6 hours",
+"k93": "to under 1.",
+"k94": "Before the system, a repair took 4–6 hours: from the breakdown, reporting to dispatch, writing a work order, the mechanic driving out and taking up the unit, until FMS was ready for use again. With auto work orders in one portal and clear mechanic evaluation, report to RFU now takes under 1 hour. Most of that is travel across the site. The information chain and take-up together take about 15 minutes.",
+"k95": "One repair, two systems · same time scale",
+"k96": "Elapsed",
+"k97": "Before · manual chain",
+"k98": "Report to dispatch",
+"k99": "WO to mechanic",
+"k100": "Mechanic travels",
+"k101": "After · auto WO portal",
+"k102": "FMS back in service · ≈5 h earlier",
+"k103": "Report → auto WO + take-up ≈ 15 min",
+"k104": "Travel across the site ≈ 40 min",
+"k105": "The stage split in the \"before\" bar is illustrative; the bar shows 6 hours, the upper end of the measured 4–6 hour range.",
+"k106": "0 h",
+"k107": "1 h",
+"k108": "2 h",
+"k109": "3 h",
+"k110": "4 h",
+"k111": "5 h",
+"k112": "6 h",
+"k113": "( 06 ) The",
+"k114": "system",
+"k115": "One portal",
+"k116": "for every repair.",
+"k117": "Beyond speeding up the information chain, the system evaluates mechanic performance, analyses repeat failures so preventive action can be taken, makes take-ups traceable, and lets mechanics hand pending jobs to the opposite shift.",
+"k118": "Down report form",
+"k119": "AUTO",
+"k120": "MECHANIC",
+"k121": "Portal queue",
+"k122": "01 · Auto WO dispatch",
+"k123": "Report once, the mechanic knows",
+"k124": "Dispatchers report a down unit through a form. A work order is created automatically and appears in the mechanics' portal, with no calls or manual WO in between.",
+"k125": "02 · Mechanic evaluation",
+"k126": "Performance you can measure",
+"k127": "Response time, take-up time, first-time fixes, and repeat repairs are recorded for every mechanic, giving supervisors a fair and organised evaluation.",
+"k128": "HT-0412 · 14 days",
+"k129": "Corrective",
+"k130": "Preventive",
+"k131": "03 · Repeat-failure analysis",
+"k132": "From corrective to preventive",
+"k133": "Mechanics used to work only correctively. Repeat failures are now evaluated per unit and component, so scheduled preventive maintenance happens before the next breakdown.",
+"k134": "04 · Take-up tracing",
+"k135": "Every take-up on record",
+"k136": "Each unit has a full history of take-ups: what was done, which component, and by whom, so tracing a repair takes seconds.",
+"k137": "Day mechanic",
+"k138": "Night mechanic",
+"k139": "HT-0517 · GPS bracket ordered, fit on arrival",
+"k140": "EX-108 · Recheck CPE mount after rain",
+"k141": "05 · Mechanic pending jobs",
+"k142": "Handover between shifts",
+"k143": "Mechanics leave pending jobs on a unit for their opposite-shift colleague in the portal, so unfinished work continues without gaps.",
+"k144": "( 07 ) The",
+"k145": "impact",
+"k146": "Faster repairs,",
+"k147": "fewer repeats.",
+"k148": "Before",
+"k149": "After",
+"k150": "Average repair lead time",
+"k151": "From report to RFU, most of the remaining time is travel across a wide site.",
+"k152": "min",
+"k153": "Information chain + take-up",
+"k154": "Reporting, the work order, and the repair itself now take about a quarter of an hour.",
+"k155": "+ preventive",
+"k156": "Maintenance that looks ahead",
+"k157": "Scheduled preventive maintenance based on repeat-failure data, plus traceable take-ups and clean shift handovers.",
+"k158": "( 08 ) Dashboard",
+"k159": "overview",
+"k160": "The maintenance",
+"k161": "portal.",
+"k162": "A mock-up of the portal mechanics and supervisors work from. Click the tabs to explore. All data shown is sample data.",
+"k163": "FMS Maintenance Portal",
+"k164": "FMS down now",
+"k165": "Awaiting mechanic",
+"k166": "In progress",
+"k167": "RFU this shift",
+"k168": "Reported issue",
+"k169": "Location",
+"k170": "Reported",
+"k171": "Mechanic",
+"k172": "Reports arrive from the dispatcher down-report form · WOs are created automatically",
+"k173": "WOs closed (month)",
+"k174": "Avg response",
+"k175": "Avg take-up",
+"k176": "First-time fix",
+"k177": "Repeat repairs",
+"k178": "Preventive done",
+"k179": "Mechanic leaderboard · this month",
+"k180": "Score",
+"k181": "How the score is built",
+"k182": "· Response time to new WOs",
+"k183": "· Take-up duration",
+"k184": "· First-time fix rate",
+"k185": "· Repeat repairs (penalty)",
+"k186": "· WOs closed and preventive jobs done",
+"k187": "Weighting shown here is illustrative.",
+"k188": "Most frequent failures · 30 days",
+"k189": "Units with most failures",
+"k190": "Components failing most",
+"k191": "Component stock",
+"k192": "Qty / min",
+"k193": "Pending jobs per unit",
+"k194": "Corrective vs preventive · this month",
+"k195": "Before the system, almost all work was corrective.",
+"k196": "Previous · 03",
+"k197": "← Automated",
+"k198": "shift-change scheduling",
+"k199": "← Back to portfolio",
+"k200": "Simulations and dashboard use sample data",
+"k201": "Scanning case study…",
+"k202": "agents",
+"k203": "Rebuild",
+"shA": "",
+"shB": " shift",
+"u_min": "min",
+"wos": "WOs",
+"layers": "layers",
+"dayshift": "Day shift",
+"k_corr": "Corrective",
+"k_prev": "Preventive",
+"ti_pause": "Pause / resume agents",
+"ti_rebuild": "Rebuild the page",
+"ti_hide": "Show / hide agents"
+},
+"id": {
+"k0": "Studi kasus 04",
+"k1": "Perawatan FMS",
+"k2": "Perangkat keras",
+"k3": "Rantai data",
+"k4": "Skala",
+"k5": "Waktu perbaikan",
+"k6": "Sistem",
+"k7": "← Portofolio",
+"k8": "Studi kasus 04 · Perawatan perangkat FMS",
+"k9": "Jaga data",
+"k10": "tetap mengalir.",
+"k11": "Pemantauan perawatan FMS",
+"k12": "Sistem perawatan untuk perangkat FMS di 500+ unit: work order otomatis dari dispatch ke mekanik dalam satu portal, evaluasi kinerja mekanik yang jelas, dan analisis kerusakan berulang yang mengubah perbaikan korektif menjadi perawatan preventif terjadwal.",
+"k13": "jam",
+"k14": "< 1 jam",
+"k15": "Rata-rata waktu",
+"k16": "perbaikan, sebelum",
+"k17": "Laporan sampai RFU,",
+"k18": "sesudah",
+"k19": "Rantai info",
+"k20": "Unit dengan",
+"k21": "perangkat FMS",
+"k22": "Peran",
+"k23": "Skema perawatan · Portal & sistem evaluasi",
+"k24": "Wiring unit · UMPC · CPE",
+"k25": "Pengguna",
+"k26": "Dispatcher · Mekanik FMS · Supervisor",
+"k27": "Perubahan pendekatan",
+"k28": "Korektif → preventif",
+"k29": "( 01 )",
+"k30": "Perangkat keras",
+"k31": "Dua perangkat",
+"k32": "di setiap unit.",
+"k33": "Untuk menjalankan FMS, setiap unit membawa perangkat tambahan. UMPC di kabin menjalankan aplikasi FMS, dan CPE menghubungkan unit ke jaringan agar FMS bisa mengirim datanya ke database.",
+"k34": "Di dalam kabin · ilustrasi",
+"k35": "PC ultra-mobile · di kabin",
+"k36": "Komputer kabin tahan banting yang menjalankan aplikasi FMS. Menerima data sensor unit lewat wiring, menerima input operator, dan mengolah data sebelum dikirim.",
+"k37": "Menerima data sensor",
+"k38": "Menjalankan FMS",
+"k39": "Login & status operator",
+"k40": "Di atap kabin · ilustrasi",
+"k41": "ATAP KABIN",
+"k42": "Customer premises equipment · di atap",
+"k43": "Jembatan jaringan unit. Menghubungkan UMPC ke koneksi internet agar data yang sudah diolah FMS bisa dikirim ke database.",
+"k44": "Koneksi jaringan",
+"k45": "Mengirim data FMS",
+"k46": "( 02 ) Rantai",
+"k47": "data",
+"k48": "Tiga mata rantai",
+"k49": "harus kuat.",
+"k50": "Agar data mengalir lancar dari sensor unit ke database, setiap mata rantai harus dalam kondisi baik: wiring, UMPC, dan CPE.",
+"k51": "Sensor unit",
+"k52": "Sinyal mesin, payload, GPS, dan status",
+"k53": "02 · cek",
+"k54": "03 · cek",
+"k55": "04 · cek",
+"k56": "Membawa sinyal sensor ke UMPC",
+"k57": "Menjalankan FMS dan mengolah data",
+"k58": "Mengirim data olahan keluar dari unit",
+"k59": "Jaringan",
+"k60": "Koneksi internet di site",
+"k61": "Tempat data operasional disimpan",
+"k62": "Wiring dalam kondisi baik",
+"k63": "Agar data dari sensor unit diterima UMPC dengan baik.",
+"k64": "UMPC dalam kondisi baik",
+"k65": "Agar mampu mengolah volume data yang masuk dari sensor.",
+"k66": "CPE dalam kondisi baik",
+"k67": "Agar data yang diolah FMS di UMPC terkirim ke database sebagaimana mestinya.",
+"k68": "( 03 ) Saat satu",
+"k69": "rusak",
+"k70": "Jika satu komponen saja berhenti bekerja, data tidak akan sampai ke database dengan benar. Data tidak pernah tiba atau tiba dalam keadaan rusak, dan setiap laporan yang dibangun di atasnya ikut mewarisi masalahnya.",
+"k71": "Coba rusak satu komponen · simulasi",
+"k72": "Sensor",
+"k73": "Waktu",
+"k74": "Catatan di database",
+"k75": "Rusak",
+"k76": "Hilang",
+"k77": "( 04 ) Perawatan",
+"k78": "skala besar",
+"k79": "500+ unit.",
+"k80": "Tim kecil.",
+"k81": "Menjaga data FMS tetap akurat dan utuh butuh skema perawatan perangkat FMS yang baik. Di area kerja yang luas dengan lebih dari 500 unit dan jumlah mekanik khusus FMS yang terbatas, itu tantangan nyata.",
+"k82": "Gambaran site",
+"k83": "520 unit · 3 mekanik FMS · simulasi",
+"k84": "Menunggu mekanik",
+"k85": "Mekanik sibuk",
+"k86": "Ditempuh mekanik",
+"k87": "Kembali RFU",
+"k88": "Mekanik ditugaskan",
+"k89": "Mekanik FMS",
+"k90": "( 05 ) Waktu",
+"k91": "perbaikan",
+"k92": "Dari 4–6 jam",
+"k93": "jadi di bawah 1.",
+"k94": "Sebelum ada sistem, satu perbaikan memakan 4–6 jam: dari kerusakan, lapor ke dispatch, menulis work order, mekanik berangkat dan melakukan take-up, sampai FMS siap dipakai lagi. Dengan work order otomatis dalam satu portal dan evaluasi mekanik yang jelas, kini dari laporan sampai RFU kurang dari 1 jam. Sebagian besar waktunya untuk perjalanan di site. Rantai informasi dan take-up sendiri hanya sekitar 15 menit.",
+"k95": "Satu perbaikan, dua sistem · skala waktu sama",
+"k96": "Berjalan",
+"k97": "Sebelum · rantai manual",
+"k98": "Lapor ke dispatch",
+"k99": "WO ke mekanik",
+"k100": "Mekanik berangkat",
+"k101": "Sesudah · portal WO otomatis",
+"k102": "FMS kembali beroperasi · ≈5 jam lebih cepat",
+"k103": "Lapor → WO otomatis + take-up ≈ 15 mnt",
+"k104": "Perjalanan di site ≈ 40 mnt",
+"k105": "Pembagian tahap di bar \"sebelum\" hanya ilustrasi; bar menunjukkan 6 jam, batas atas rentang terukur 4–6 jam.",
+"k106": "0 jam",
+"k107": "1 jam",
+"k108": "2 jam",
+"k109": "3 jam",
+"k110": "4 jam",
+"k111": "5 jam",
+"k112": "6 jam",
+"k113": "( 06 )",
+"k114": "Sistemnya",
+"k115": "Satu portal",
+"k116": "untuk setiap perbaikan.",
+"k117": "Selain mempercepat rantai informasi, sistem ini mengevaluasi kinerja mekanik, menganalisis kerusakan berulang agar tindakan preventif bisa diambil, membuat take-up bisa ditelusuri, dan memungkinkan mekanik menitipkan pekerjaan tertunda ke shift berikutnya.",
+"k118": "Form laporan down",
+"k119": "OTOMATIS",
+"k120": "MEKANIK",
+"k121": "Antrean portal",
+"k122": "01 · Dispatch WO otomatis",
+"k123": "Lapor sekali, mekanik langsung tahu",
+"k124": "Dispatcher melaporkan unit down lewat form. Work order dibuat otomatis dan muncul di portal mekanik, tanpa telepon atau WO manual di antaranya.",
+"k125": "02 · Evaluasi mekanik",
+"k126": "Kinerja yang terukur",
+"k127": "Waktu respons, durasi take-up, perbaikan tuntas sekali jalan, dan perbaikan berulang tercatat untuk setiap mekanik, sehingga supervisor bisa menilai secara adil dan teratur.",
+"k128": "HT-0412 · 14 hari",
+"k129": "Korektif",
+"k130": "Preventif",
+"k131": "03 · Analisis kerusakan berulang",
+"k132": "Dari korektif ke preventif",
+"k133": "Dulu mekanik hanya bekerja korektif. Kini kerusakan berulang dievaluasi per unit dan komponen, sehingga perawatan preventif terjadwal dilakukan sebelum kerusakan berikutnya.",
+"k134": "04 · Penelusuran take-up",
+"k135": "Setiap take-up tercatat",
+"k136": "Setiap unit punya riwayat take-up lengkap: apa yang dikerjakan, komponen mana, dan oleh siapa, sehingga menelusuri perbaikan cukup beberapa detik.",
+"k137": "Mekanik siang",
+"k138": "Mekanik malam",
+"k139": "HT-0517 · Bracket GPS sudah dipesan, pasang saat tiba",
+"k140": "EX-108 · Cek ulang dudukan CPE setelah hujan",
+"k141": "05 · Pekerjaan tertunda mekanik",
+"k142": "Serah terima antar-shift",
+"k143": "Mekanik menitipkan pekerjaan tertunda pada unit untuk rekan shift berikutnya lewat portal, sehingga pekerjaan yang belum selesai berlanjut tanpa jeda.",
+"k144": "( 07 )",
+"k145": "Dampaknya",
+"k146": "Perbaikan lebih cepat,",
+"k147": "lebih sedikit berulang.",
+"k148": "Sebelum",
+"k149": "Sesudah",
+"k150": "Rata-rata waktu perbaikan",
+"k151": "Dari laporan sampai RFU, sisa waktunya kebanyakan untuk perjalanan di site yang luas.",
+"k152": "mnt",
+"k153": "Rantai informasi + take-up",
+"k154": "Pelaporan, work order, dan perbaikannya sendiri kini cukup sekitar seperempat jam.",
+"k155": "+ preventif",
+"k156": "Perawatan yang melihat ke depan",
+"k157": "Perawatan preventif terjadwal berdasarkan data kerusakan berulang, ditambah take-up yang bisa ditelusuri dan serah terima shift yang rapi.",
+"k158": "( 08 ) Ringkasan",
+"k159": "dashboard",
+"k160": "Portal",
+"k161": "perawatan.",
+"k162": "Tiruan portal yang dipakai mekanik dan supervisor. Klik tab untuk menjelajah. Semua data yang tampil adalah data contoh.",
+"k163": "Portal Perawatan FMS",
+"k164": "FMS down saat ini",
+"k165": "Menunggu mekanik",
+"k166": "Dikerjakan",
+"k167": "RFU shift ini",
+"k168": "Masalah dilaporkan",
+"k169": "Lokasi",
+"k170": "Dilaporkan",
+"k171": "Mekanik",
+"k172": "Laporan masuk dari form laporan down dispatcher · WO dibuat otomatis",
+"k173": "WO selesai (bulan ini)",
+"k174": "Rata-rata respons",
+"k175": "Rata-rata take-up",
+"k176": "Tuntas sekali jalan",
+"k177": "Perbaikan berulang",
+"k178": "Preventif selesai",
+"k179": "Peringkat mekanik · bulan ini",
+"k180": "Skor",
+"k181": "Cara skor dihitung",
+"k182": "· Waktu respons ke WO baru",
+"k183": "· Durasi take-up",
+"k184": "· Tingkat tuntas sekali jalan",
+"k185": "· Perbaikan berulang (penalti)",
+"k186": "· WO selesai dan pekerjaan preventif",
+"k187": "Bobot yang ditampilkan hanya ilustrasi.",
+"k188": "Kerusakan tersering · 30 hari",
+"k189": "Unit dengan kerusakan terbanyak",
+"k190": "Komponen paling sering rusak",
+"k191": "Stok komponen",
+"k192": "Jml / min",
+"k193": "Pekerjaan tertunda per unit",
+"k194": "Korektif vs preventif · bulan ini",
+"k195": "Sebelum ada sistem, hampir semua pekerjaan bersifat korektif.",
+"k196": "Sebelumnya · 03",
+"k197": "← Penjadwalan",
+"k198": "change shift otomatis",
+"k199": "← Kembali ke portofolio",
+"k200": "Simulasi dan dashboard memakai data contoh",
+"k201": "Memindai studi kasus…",
+"k202": "agen",
+"k203": "Bangun ulang",
+"shA": "Shift ",
+"shB": "",
+"u_min": "mnt",
+"wos": "WO",
+"layers": "lapisan",
+"dayshift": "Shift siang",
+"k_corr": "Korektif",
+"k_prev": "Preventif",
+"ti_pause": "Jeda / lanjutkan agen",
+"ti_rebuild": "Bangun ulang halaman",
+"ti_hide": "Tampilkan / sembunyikan agen"
+}
+};
+const TRS = {"No GPS signal": "Tidak ada sinyal GPS", "UMPC won't boot": "UMPC tidak mau menyala", "Touchscreen unresponsive": "Layar sentuh tidak merespons", "No payload data": "Tidak ada data payload", "Loose wiring harness": "Harness wiring longgar", "Status not sending": "Status tidak terkirim", "Power drops on start": "Daya drop saat start", "KM 4 haul road": "Jalan angkut KM 4", "Disposal North": "Disposal Utara", "Workshop bay 2": "Bay workshop 2", "Day": "Siang", "Night": "Malam", "Reported": "Dilaporkan", "WO sent": "WO terkirim", "On the way": "Dalam perjalanan", "All working": "Semua normal", "Wiring fault": "Wiring rusak", "UMPC fault": "UMPC rusak", "CPE fault": "CPE rusak", "Valid records": "Catatan valid", "Fault · signal lost": "Rusak · sinyal hilang", "Fault · bad processing": "Rusak · salah olah", "Fault · offline": "Rusak · offline", "Corrupt records": "Catatan rusak", "Missing records": "Catatan hilang", "Passing garbage": "Meneruskan sampah", "No data": "Tidak ada data", "All links healthy": "Semua mata rantai sehat", "Sensor data reaches the database complete and correct.": "Data sensor sampai ke database dengan lengkap dan benar.", "Sensor signals never reach the UMPC. The database is left with gaps for this unit.": "Sinyal sensor tidak pernah sampai ke UMPC. Data unit ini di database jadi bolong.", "Data arrives but is processed wrongly. Broken records reach the database: garbage in, garbage out.": "Data tiba tetapi salah diolah. Catatan rusak masuk ke database: garbage in, garbage out.", "FMS processes the data, but it cannot leave the unit. Nothing reaches the database.": "FMS mengolah data, tetapi data tidak bisa keluar dari unit. Tidak ada yang sampai ke database.", "Reporting to dispatch": "Melapor ke dispatch", "Writing WO to mechanic": "Menulis WO ke mekanik", "Mechanic travelling": "Mekanik dalam perjalanan", "RFU check": "Cek RFU", "Report → auto WO": "Lapor → WO otomatis", "RFU at 6 h 00 m": "RFU pada 6 jam 00 mnt", "RFU ✓ at 0 h 55 m": "RFU ✓ pada 0 jam 55 mnt", "Replaced GPS antenna": "Ganti antena GPS", "Re-terminated power cable": "Terminasi ulang kabel power", "PM · antenna mount check": "PM · cek dudukan antena", "CPE reset and re-aim": "Reset dan arahkan ulang CPE", "PM · harness inspection": "PM · inspeksi harness", "CPE radio": "Radio CPE", "GPS antenna": "Antena GPS", "Sensor harness": "Harness sensor", "Power cable": "Kabel power", "UMPC unit": "Unit UMPC", "Fuse / relay": "Sekring / relay", "Touchscreen": "Layar sentuh", "GPS antenna bracket on order": "Bracket antena GPS sedang dipesan", "Recheck CPE mount after rain": "Cek ulang dudukan CPE setelah hujan", "Re-route harness at frame": "Rutekan ulang harness di frame", "Replace UMPC screen protector": "Ganti pelindung layar UMPC", "Down units": "Unit down", "Mechanic performance": "Kinerja mekanik", "Leaderboard": "Peringkat", "Analytics": "Analitik", "Corrective only · GPS antenna ×4": "Hanya korektif · antena GPS ×4", "Repeat detected → PM scheduled": "Berulang terdeteksi → PM dijadwalkan", "— no data received —": "— tidak ada data diterima —", "LOST": "HILANG", "CORRUPT": "RUSAK", "NOT SENT": "TIDAK TERKIRIM", "Scanning": "Memindai", "Building": "Membangun", "Touring": "Berkeliling", "Paused": "Dijeda", "Resume": "Lanjut", "Pause": "Jeda", "Show": "Tampilkan", "Hide": "Sembunyikan"};
+const bacaLang = () => { const u = new URLSearchParams(location.search).get('lang'); if (u === 'id' || u === 'en') return u;
+  try { const s = localStorage.getItem('lang'); if (s === 'id' || s === 'en') return s; } catch (e) {}
+  return (navigator.language || 'en').toLowerCase().startsWith('id') ? 'id' : 'en'; };
+let LANG_AKTIF = bacaLang(); document.documentElement.lang = LANG_AKTIF;
+const TL = x => LANG_AKTIF === 'id' ? (TRS[x] ?? x) : x;
+/* terjemahkan string hasil render (baris tabel, label simulasi); ref & fungsi tidak disentuh */
+const TLobj = o => { if (LANG_AKTIF !== 'id') return o;
+  const f = v => typeof v === 'string' ? TL(v) : Array.isArray(v) ? v.map(x => x && Object.getPrototypeOf(x) === Object.prototype ? Object.fromEntries(Object.entries(x).map(([k, y]) => [k, f(y)])) : f(x)) : v;
+  return Object.fromEntries(Object.entries(o).map(([k, v]) => [k, f(v)])); };
 class Component extends DCLogic {
-  state = { loading: (this.props.agents ?? true) && !this.props.skipIntro, scanPct: 0, built: 0, total: 0, status: 'Scanning', paused: false, hidden: false,
+  state = { lang: LANG_AKTIF, loading: (this.props.agents ?? true) && !this.props.skipIntro, scanPct: 0, built: 0, total: 0, status: 'Scanning', paused: false, hidden: false,
     brk: -1, db: [], gOk: 0, gBad: 0, gMiss: 0, umpc: 0, rit: 7, rate: 42, tx: 1840, lt: 0, pm: 0, tr: 0, tab: 0, tabAuto: true, dn: [], rfu: 11, mechs: [], clock: 372, jit: 0 };
   rootRef = React.createRef(); progRef = React.createRef(); layerRef = React.createRef(); loaderRef = React.createRef(); mapRef = React.createRef();
   timers = []; intervals = []; manualUntil = 0; brkIdx = 0; seq = 3120;
@@ -577,7 +1028,7 @@ class Component extends DCLogic {
   later(fn, ms) { const id = setTimeout(fn, ms); this.timers.push(id); return id; }
   every(fn, ms) { const id = setInterval(() => { if (!document.hidden) fn(); }, ms); this.intervals.push(id); return id; }
   hm(m) { m = ((Math.round(m) % 1440) + 1440) % 1440; return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0'); }
-  fmtH(h) { const m = Math.round(h * 60); return `${Math.floor(m / 60)} h ${String(m % 60).padStart(2, '0')} m`; }
+  fmtH(h) { const m = Math.round(h * 60), id = LANG_AKTIF === 'id'; return `${Math.floor(m / 60)} ${id ? 'jam' : 'h'} ${String(m % 60).padStart(2, '0')} ${id ? 'mnt' : 'm'}`; }
   score(m) { return this.clamp(Math.round(0.5 * m.ftf + 2 * (20 - m.resp) + 1.2 * (25 - m.take) + 1.5 * (12 - m.rep) + 0.3 * m.closed - 10), 40, 99); }
   mkReport(clock, el, st) {
     this.seq++;
@@ -663,7 +1114,7 @@ class Component extends DCLogic {
   setBrk(v) { this.manualUntil = Date.now() + 15000; this.setState({ brk: v }); }
 
   burst(c, color, text) {
-    const t = document.createElement('div'); t.textContent = text;
+    const t = document.createElement('div'); t.textContent = TL(text);
     t.style.cssText = `position:absolute;right:-28px;bottom:12px;font:600 9px 'JetBrains Mono',monospace;letter-spacing:.06em;color:#0B0C10;background:${color};padding:2px 5px;white-space:nowrap;pointer-events:none;z-index:2`;
     c.appendChild(t);
     t.animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none', offset: .2 }, { opacity: 1, offset: .7 }, { opacity: 0, transform: 'translateY(-12px)' }], { duration: 1200, fill: 'forwards' }).onfinish = () => t.remove();
@@ -1017,9 +1468,9 @@ class Component extends DCLogic {
 
     const p = Math.min(1, s.lt), h = p * 6;
     const bCum = [0.72, 1.8, 4.08, 5.4, 6], bName = ['Reporting to dispatch', 'Writing WO to mechanic', 'Mechanic travelling', 'Take-up', 'RFU check'];
-    const aCum = [0.084, 1.334, 1.5], aName = ['Report → auto WO', 'Mechanic travelling', 'Take-up'];
+    const aCum = [0.084, 0.75, 0.917], aName = ['Report → auto WO', 'Mechanic travelling', 'Take-up'];
     const ltBefore = p >= 1 ? 'RFU at 6 h 00 m' : `${bName[bCum.findIndex(c => h < c)]}`;
-    const ltAfter = h >= 1.5 ? 'RFU ✓ at 1 h 30 m' : `${aName[aCum.findIndex(c => h < c)]}`;
+    const ltAfter = h >= 0.917 ? 'RFU ✓ at 0 h 55 m' : `${aName[aCum.findIndex(c => h < c)]}`;
 
     const mechs = s.mechs.map(m => ({ ...m, score: this.score(m) }));
     const sorted = mechs.slice().sort((a, b) => b.score - a.score);
@@ -1045,7 +1496,11 @@ class Component extends DCLogic {
     const dnRows = s.dn.map(r => ({ wo: r.wo, unit: r.unit, issue: r.issue, loc: r.loc, rep: r.rep, mech: r.mech, st: this.STATUS[r.st][0], stColor: this.STATUS[r.st][1], el: `${Math.floor(r.el / 60)}:${String(r.el % 60).padStart(2, '0')}`, bg: r.fresh ? 'rgba(255,107,90,.10)' : 'transparent' }));
     const tabs = ['Down units', 'Mechanic performance', 'Leaderboard', 'Analytics'].map((label, i) => ({ label, on: () => this.setState({ tab: i, tabAuto: false }), bd: i === s.tab ? '#F2A93B' : 'transparent', fg: i === s.tab ? '#EDEBE6' : '#9A9BA3' }));
 
-    return {
+    const isId = s.lang === 'id';
+    return TLobj({
+      t: KAMUS[s.lang], lang: s.lang, isId, isEn: !isId,
+      setId: () => this.gantiLang('id'), setEn: () => this.gantiLang('en'),
+      idBg: isId ? '#F2A93B' : 'transparent', idFg: isId ? '#0B0C10' : '#EDEBE6', enBg: isId ? 'transparent' : '#F2A93B', enFg: isId ? '#EDEBE6' : '#0B0C10',
       rootRef: this.rootRef, progRef: this.progRef, layerRef: this.layerRef, loaderRef: this.loaderRef, mapRef: this.mapRef,
       showProgress: this.props.showProgress ?? true,
       umpcBtns, rit: s.rit, umpcRate: s.rate, cpeTx: s.tx.toLocaleString('en-US'),
@@ -1066,8 +1521,10 @@ class Component extends DCLogic {
       togglePause: () => { (this.els || []).forEach(el => el.getAnimations().forEach(a => s.paused ? a.play() : a.pause())); this.setState({ paused: !s.paused }); },
       toggleAgents: () => { if (this.layer) this.layer.style.visibility = s.hidden ? 'visible' : 'hidden'; this.setState({ hidden: !s.hidden }); },
       replay: this.replay
-    };
+    });
   }
+
+  gantiLang(l) { try { localStorage.setItem('lang', l); } catch (e) {} LANG_AKTIF = l; document.documentElement.lang = l; this.setState({ lang: l }); }
 }
 </script>
 </body>
