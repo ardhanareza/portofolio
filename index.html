@@ -203,7 +203,7 @@ input,textarea,button{font-family:inherit}
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px 48px;align-items:start">
       <div data-build="num.04" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(120px,15vw,240px);line-height:.8">04<span style="color:#F2A93B">.</span></div>
-      <div data-build="card.mttr" style="background:#12141A;border:1px solid rgba(255,255,255,.08);padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:22px">
+      <div data-build="card.mttr" class="kartu-studi" style="position:relative;background:#12141A;border:1px solid rgba(255,255,255,.08);padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:22px">
         <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w4t1 }}</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w4t2 }}</span></div>
         <h3 style="margin:0;font-size:clamp(24px,2.4vw,32px);font-weight:700;line-height:1.15;letter-spacing:-.01em">{{ t.w4 }}</h3>
         <p style="margin:0;font-size:15px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.w4p }}</p>
@@ -213,6 +213,8 @@ input,textarea,button{font-family:inherit}
           <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.after }}</span><div style="height:10px;background:#F2A93B;width:16%"></div><span style="text-align:right">{{ t.w4a }}</span></div>
           <div style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:44px;line-height:1;color:#F2A93B;margin-top:6px">{{ t.w4big }}</div>
         </div>
+        <a href="studi-kasus-fms.html" style="position:relative;z-index:2;align-self:flex-start;display:flex;align-items:center;gap:10px;padding:11px 18px;border:1px solid rgba(255,255,255,.22);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="border-color:#F2A93B">{{ t.read_cs }} <span>→</span></a>
+        <a href="studi-kasus-fms.html" aria-hidden="true" tabindex="-1" style="position:absolute;inset:0;z-index:1"></a>
       </div>
     </div>
 
@@ -365,7 +367,7 @@ const KAMUS = {
 "since": "2023 — Present",
 "bigword": "Portfolio",
 "hello": "Hello, I'm",
-"summary": "Mining data professional turning ADS/FMS and timesheet records from a 500+ unit fleet into accurate, on-time operational reporting.",
+"summary": "Mining data professional turning FMS and timesheet records from a 500+ unit fleet into accurate, on-time operational reporting.",
 "view_work": "View work ",
 "cv": "Download CV ",
 "st_years1": "Years in mine",
@@ -390,10 +392,10 @@ const KAMUS = {
 "r1b": "→ PA / UA calculation",
 "r1c": "→ Timesheet management",
 "r2": "Data Validation & Reconciliation",
-"r2p": "Validate timesheet data against ADS/FMS records, and identify and resolve discrepancies so that operational data is accurate, complete, and on time.",
+"r2p": "Validate timesheet data against FMS records, and identify and resolve discrepancies so that operational data is accurate, complete, and on time.",
 "r2a": "→ Discrepancy analysis",
 "r2b": "→ Data quality control",
-"r2c": "→ FMS / ADS records",
+"r2c": "→ FMS records",
 "r3": "Database Design & Automation",
 "r3p": "Redesigned the SQL Server database architecture and validation workflow, and built Python automation tools for data entry, cleansing, and processing.",
 "r3a": "→ SQL Server design",
@@ -408,7 +410,7 @@ const KAMUS = {
 "lbl_car2": "education",
 "job1_dept": "PT Pamapersada Nusantara · Mine Optimization Dept.",
 "present": "Present",
-"job1p": "Central data hub consolidating ADS/FMS and timesheet data for 500+ units. Built Power BI dashboards, Python tools, and an internal dispatcher monitoring system.",
+"job1p": "Central data hub consolidating FMS and timesheet data for 500+ units. Built Power BI dashboards, Python tools, and an internal dispatcher monitoring system.",
 "job2": "Mathematics Instructor",
 "job2d": "Dec 2022 — Jul 2023",
 "job2p": "Delivered structured mathematics and problem-solving instruction to students.",
@@ -438,10 +440,10 @@ const KAMUS = {
 "w3b": "30 min",
 "w3a": "6 min",
 "w3big": "30 → 6 min",
-"w4t1": "ADS infrastructure",
+"w4t1": "FMS infrastructure",
 "w4t2": "Maintenance",
-"w4": "ADS maintenance monitoring",
-"w4p": "A maintenance monitoring system for ADS infrastructure that shortens time to repair.",
+"w4": "FMS maintenance monitoring",
+"w4p": "A maintenance monitoring system for FMS infrastructure that shortens time to repair.",
 "w4m": "Mean time to repair (MTTR)",
 "w4b": "4–6 h",
 "w4a": "< 1 h",
@@ -456,7 +458,7 @@ const KAMUS = {
 "ab1": "Mathematician, ",
 "ab2": "data specialist",
 "ab3": ", problem-solver/",
-"abp": "Mining data professional with 3+ years in the Mine Optimization Department of PT Pamapersada Nusantara, the central data hub that consolidates ADS/FMS and timesheet data for a fleet of 500+ units. Redesigned the database architecture and validation workflow, cutting data input time from about 10 hours to 3.5 hours per shift.",
+"abp": "Mining data professional with 3+ years in the Mine Optimization Department of PT Pamapersada Nusantara, the central data hub that consolidates FMS and timesheet data for a fleet of 500+ units. Redesigned the database architecture and validation workflow, cutting data input time from about 10 hours to 3.5 hours per shift.",
 "lang_id": "Indonesian — ",
 "native": "Native",
 "lang_en": "English — ",
@@ -471,7 +473,7 @@ const KAMUS = {
 "s4": "Reporting",
 "s4a": "Custom web dashboards",
 "s5": "Mining systems",
-"s5b": "ADS dispatch operations",
+"s5b": "FMS dispatch operations",
 "s6": "Analytics",
 "s6a": "Production data analysis",
 "lbl_rec1": "✦ Recognition & ",
@@ -539,7 +541,7 @@ const KAMUS = {
 "since": "2023 — Sekarang",
 "bigword": "Portofolio",
 "hello": "Halo, saya",
-"summary": "Profesional data tambang yang mengolah data ADS/FMS dan timesheet dari 500+ unit armada menjadi laporan operasional yang akurat dan tepat waktu.",
+"summary": "Profesional data tambang yang mengolah data FMS dan timesheet dari 500+ unit armada menjadi laporan operasional yang akurat dan tepat waktu.",
 "view_work": "Lihat proyek ",
 "cv": "Unduh CV ",
 "st_years1": "Tahun di mine",
@@ -564,10 +566,10 @@ const KAMUS = {
 "r1b": "→ Perhitungan PA / UA",
 "r1c": "→ Pengelolaan timesheet",
 "r2": "Validasi & Rekonsiliasi Data",
-"r2p": "Memvalidasi data timesheet terhadap catatan ADS/FMS, lalu menemukan dan menyelesaikan selisih agar data operasional akurat, lengkap, dan tepat waktu.",
+"r2p": "Memvalidasi data timesheet terhadap catatan FMS, lalu menemukan dan menyelesaikan selisih agar data operasional akurat, lengkap, dan tepat waktu.",
 "r2a": "→ Analisis selisih",
 "r2b": "→ Kontrol kualitas data",
-"r2c": "→ Catatan FMS / ADS",
+"r2c": "→ Catatan FMS",
 "r3": "Desain Database & Otomasi",
 "r3p": "Merancang ulang arsitektur database SQL Server dan alur validasi, serta membangun alat otomasi Python untuk input, pembersihan, dan pengolahan data.",
 "r3a": "→ Desain SQL Server",
@@ -582,7 +584,7 @@ const KAMUS = {
 "lbl_car2": "pendidikan",
 "job1_dept": "PT Pamapersada Nusantara · Dept. Mine Optimization",
 "present": "Sekarang",
-"job1p": "Pusat data yang mengonsolidasikan data ADS/FMS dan timesheet untuk 500+ unit. Membangun dashboard Power BI, alat Python, dan sistem pemantauan dispatcher internal.",
+"job1p": "Pusat data yang mengonsolidasikan data FMS dan timesheet untuk 500+ unit. Membangun dashboard Power BI, alat Python, dan sistem pemantauan dispatcher internal.",
 "job2": "Pengajar Matematika",
 "job2d": "Des 2022 — Jul 2023",
 "job2p": "Mengajar matematika dan pemecahan masalah secara terstruktur kepada siswa.",
@@ -612,10 +614,10 @@ const KAMUS = {
 "w3b": "30 menit",
 "w3a": "6 menit",
 "w3big": "30 → 6 menit",
-"w4t1": "Infrastruktur ADS",
+"w4t1": "Infrastruktur FMS",
 "w4t2": "Perawatan",
-"w4": "Pemantauan perawatan ADS",
-"w4p": "Sistem pemantauan perawatan infrastruktur ADS yang mempersingkat waktu perbaikan.",
+"w4": "Pemantauan perawatan FMS",
+"w4p": "Sistem pemantauan perawatan infrastruktur FMS yang mempersingkat waktu perbaikan.",
 "w4m": "Rata-rata waktu perbaikan (MTTR)",
 "w4b": "4–6 jam",
 "w4a": "< 1 jam",
@@ -630,7 +632,7 @@ const KAMUS = {
 "ab1": "Matematikawan, ",
 "ab2": "spesialis data",
 "ab3": ", pemecah masalah/",
-"abp": "Profesional data tambang dengan pengalaman 3+ tahun di Departemen Mine Optimization PT Pamapersada Nusantara, pusat data yang mengonsolidasikan data ADS/FMS dan timesheet untuk armada 500+ unit. Merancang ulang arsitektur database dan alur validasi, memangkas waktu input data dari sekitar 10 jam menjadi 3,5 jam per shift.",
+"abp": "Profesional data tambang dengan pengalaman 3+ tahun di Departemen Mine Optimization PT Pamapersada Nusantara, pusat data yang mengonsolidasikan data FMS dan timesheet untuk armada 500+ unit. Merancang ulang arsitektur database dan alur validasi, memangkas waktu input data dari sekitar 10 jam menjadi 3,5 jam per shift.",
 "lang_id": "Bahasa Indonesia — ",
 "native": "Bahasa ibu",
 "lang_en": "Bahasa Inggris — ",
@@ -645,7 +647,7 @@ const KAMUS = {
 "s4": "Pelaporan",
 "s4a": "Dashboard web kustom",
 "s5": "Sistem tambang",
-"s5b": "Operasi dispatch ADS",
+"s5b": "Operasi dispatch FMS",
 "s6": "Analitik",
 "s6a": "Analisis data produksi",
 "lbl_rec1": "✦ Penghargaan & ",
