@@ -519,12 +519,13 @@ html[lang=id] .angka-dampak{font-size:clamp(44px,4.6vw,68px)!important}
       <span style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(48px,7vw,104px);line-height:.86;text-transform:uppercase">{{ t.k197 }}<br>{{ t.k198 }}</span>
     </a>
     <div style="display:flex;flex-direction:column;gap:10px;text-align:right;font-size:14px">
-      <a href="./?lang={{ lang }}">{{ t.k199 }}</a>
+      <a href="studi-kasus-simulasi.html?lang={{ lang }}">{{ t.k199 }}</a>
+      <a href="./?lang={{ lang }}">{{ t.k200 }}</a>
       <a href="mailto:rezaardhana67@gmail.com">rezaardhana67@gmail.com</a>
     </div>
   </div>
   <div style="max-width:1360px;margin:64px auto 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">
-    <span>© 2026 Muhammad Reza Ardhana</span><span>{{ t.k200 }}</span>
+    <span>© 2026 Muhammad Reza Ardhana</span><span>{{ t.k201 }}</span>
   </div>
   <div style="height:56px"></div>
 </footer>
@@ -536,7 +537,7 @@ html[lang=id] .angka-dampak{font-size:clamp(44px,4.6vw,68px)!important}
     <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(76,141,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(76,141,255,.07) 1px,transparent 1px);background-size:48px 48px"></div>
     <div style="position:relative;font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:64px;line-height:1;color:#2A2D36;margin-top:-10vh">04</div>
     <div style="position:absolute;left:50%;bottom:48px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;padding:9px 16px;background:#12141A;border:1px solid rgba(255,255,255,.1);border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#9A9BA3;white-space:nowrap">
-      <span>{{ t.k201 }}</span>
+      <span>{{ t.k202 }}</span>
       <span style="width:120px;height:3px;background:rgba(255,255,255,.1);position:relative;display:block"><span style="position:absolute;left:0;top:0;bottom:0;width:{{ scanPct }}%;background:#4C8DFF;display:block"></span></span>
       <span style="color:#EDEBE6;width:34px;text-align:right">{{ scanPct }}%</span>
     </div>
@@ -548,13 +549,13 @@ html[lang=id] .angka-dampak{font-size:clamp(44px,4.6vw,68px)!important}
     <div style="display:flex">
       <span style="width:12px;height:12px;border-radius:50%;background:#F2A93B;border:2px solid #12141A;display:block"></span><span style="width:12px;height:12px;border-radius:50%;background:#4C8DFF;border:2px solid #12141A;margin-left:-5px;display:block"></span><span style="width:12px;height:12px;border-radius:50%;background:#3DD6A3;border:2px solid #12141A;margin-left:-5px;display:block"></span><span style="width:12px;height:12px;border-radius:50%;background:#FF6B5A;border:2px solid #12141A;margin-left:-5px;display:block"></span><span style="width:12px;height:12px;border-radius:50%;background:#A78BFA;border:2px solid #12141A;margin-left:-5px;display:block"></span>
     </div>
-    <span><span style="color:#EDEBE6">{{ agentCount }}</span> {{ t.k202 }}</span>
+    <span><span style="color:#EDEBE6">{{ agentCount }}</span> {{ t.k203 }}</span>
     <span style="width:1px;height:14px;background:rgba(255,255,255,.12);display:block"></span>
     <span><span style="color:#EDEBE6">{{ built }}</span> / {{ total }} {{ t.layers }}</span>
     <span style="width:64px;height:3px;background:rgba(255,255,255,.1);position:relative;display:block"><span style="position:absolute;left:0;top:0;bottom:0;width:{{ pct }}%;background:#4C8DFF;display:block"></span></span>
     <span style="display:flex;align-items:center;gap:6px;padding:4px 9px;border-radius:999px;background:rgba(76,141,255,.14);color:#8DB5FF"><span style="width:6px;height:6px;border-radius:50%;background:#4C8DFF;display:block"></span>{{ status }}</span>
     <button onClick="{{ togglePause }}" title="{{ t.ti_pause }}" style="height:28px;padding:0 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#EDEBE6;font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer" style-hover="border-color:#4C8DFF">{{ pauseLabel }}</button>
-    <button onClick="{{ replay }}" title="{{ t.ti_rebuild }}" style="height:28px;padding:0 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#EDEBE6;font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer" style-hover="border-color:#4C8DFF">{{ t.k203 }}</button>
+    <button onClick="{{ replay }}" title="{{ t.ti_rebuild }}" style="height:28px;padding:0 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#EDEBE6;font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer" style-hover="border-color:#4C8DFF">{{ t.k204 }}</button>
     <button onClick="{{ toggleAgents }}" title="{{ t.ti_hide }}" style="height:28px;padding:0 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#EDEBE6;font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer" style-hover="border-color:#4C8DFF">{{ hideLabel }}</button>
   </div>
 </sc-if>
@@ -762,11 +763,12 @@ const KAMUS = {
 "k196": "Previous · 03",
 "k197": "← Automated",
 "k198": "shift-change scheduling",
-"k199": "← Back to portfolio",
-"k200": "Simulations and dashboard use sample data",
-"k201": "Scanning case study…",
-"k202": "agents",
-"k203": "Rebuild",
+"k199": "Next · Production simulation tool →",
+"k200": "← Back to portfolio",
+"k201": "Simulations and dashboard use sample data",
+"k202": "Scanning case study…",
+"k203": "agents",
+"k204": "Rebuild",
 "shA": "",
 "shB": " shift",
 "u_min": "min",
@@ -979,11 +981,12 @@ const KAMUS = {
 "k196": "Sebelumnya · 03",
 "k197": "← Penjadwalan",
 "k198": "change shift otomatis",
-"k199": "← Kembali ke portofolio",
-"k200": "Simulasi dan dashboard memakai data contoh",
-"k201": "Memindai studi kasus…",
-"k202": "agen",
-"k203": "Bangun ulang",
+"k199": "Berikutnya · Alat simulasi produksi →",
+"k200": "← Kembali ke portofolio",
+"k201": "Simulasi dan dashboard memakai data contoh",
+"k202": "Memindai studi kasus…",
+"k203": "agen",
+"k204": "Bangun ulang",
 "shA": "Shift ",
 "shB": "",
 "u_min": "mnt",

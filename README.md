@@ -19,6 +19,8 @@ Website portofolio statis dengan animasi "agen" yang membangun halaman, ditambah
 - `studi-kasus-fms.html`: studi kasus proyek 04 (FMS maintenance monitoring), dipasang apa adanya dari ekspor design tool
   (dua bahasa, tanpa screenshot; "ADS" diganti "FMS"; angka MTTR disamakan dengan CV: 4–6 jam menjadi di bawah 1 jam).
   Dibuka dari kartu proyek 04 dan dari tautan "Berikutnya" di studi kasus 03.
+- `studi-kasus-simulasi.html`: studi kasus proyek 05 (Production simulation tool), dipasang apa adanya dari ekspor design tool,
+  dua bahasa, tanpa screenshot. Dibuka dari kartu proyek 05 dan dari tautan "Berikutnya" di studi kasus 04.
 - `demo/`: demo dashboard (ringkasan produksi, armada, performa tim, roster shift).
   **Semua data di demo adalah data dummy** (`assets/data.js`).
 - `assets/CV-Muhammad-Reza-Ardhana.pdf`: CV untuk tombol "Unduh CV".

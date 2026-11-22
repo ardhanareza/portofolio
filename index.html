@@ -220,10 +220,12 @@ input,textarea,button{font-family:inherit}
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px 48px;align-items:start">
       <div data-build="num.05" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(120px,15vw,240px);line-height:.8">05<span style="color:#F2A93B">.</span></div>
-      <div data-build="card.simulation" style="background:#12141A;border:1px solid rgba(255,255,255,.08);padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:22px">
+      <div data-build="card.simulation" class="kartu-studi" style="position:relative;background:#12141A;border:1px solid rgba(255,255,255,.08);padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:22px">
         <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w5t1 }}</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w5t2 }}</span></div>
         <h3 style="margin:0;font-size:clamp(24px,2.4vw,32px);font-weight:700;line-height:1.15;letter-spacing:-.01em">{{ t.w5 }}</h3>
         <p style="margin:0;font-size:15px;line-height:1.6;color:#BDBCC2;text-wrap:pretty">{{ t.w5p }}</p>
+        <a href="studi-kasus-simulasi.html?lang={{ lang }}" style="position:relative;z-index:2;align-self:flex-start;display:flex;align-items:center;gap:10px;padding:11px 18px;border:1px solid rgba(255,255,255,.22);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="border-color:#F2A93B">{{ t.read_cs }} <span>→</span></a>
+        <a href="studi-kasus-simulasi.html?lang={{ lang }}" aria-hidden="true" tabindex="-1" style="position:absolute;inset:0;z-index:1"></a>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:20px;font-size:13px;font-weight:600">
           <span style="border:1px solid rgba(255,255,255,.18);padding:10px 14px">{{ t.w5a }}</span><span style="color:#9A9BA3">+</span><span style="border:1px solid rgba(255,255,255,.18);padding:10px 14px">{{ t.w5b }}</span><span style="color:#F2A93B">→</span><span style="background:#F2A93B;color:#0B0C10;padding:10px 14px">{{ t.w5c }}</span>
         </div>
