@@ -21,6 +21,8 @@ Website portofolio statis dengan animasi "agen" yang membangun halaman, dengan l
   Dibuka dari kartu proyek 04 dan dari tautan "Berikutnya" di studi kasus 03.
 - `studi-kasus-simulasi.html`: studi kasus proyek 05 (Production simulation tool), dipasang apa adanya dari ekspor design tool,
   dua bahasa, tanpa screenshot. Dibuka dari kartu proyek 05 dan dari tautan "Berikutnya" di studi kasus 04.
+- `assets/logo/`: logo PAMA, CoLearn, dan IPB University di daftar Karier & pendidikan, diambil dari situs resmi masing-masing
+  (pamapersada.com, colearn.id, ipb.ac.id) dan dipotong menjadi lambang persegi. Merek dagang milik pemiliknya.
 - `assets/CV-Muhammad-Reza-Ardhana.pdf`: CV untuk tombol "Unduh CV".
 
 Catatan teknis: `index.html` memuat React dan Babel dari unpkg.com saat dibuka, lalu mengompilasi halaman di browser.
