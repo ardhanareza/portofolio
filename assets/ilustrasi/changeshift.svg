@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" fill="none">
+<!-- Putaran DT front -> disposal. Tiap truk berhenti sebentar di titik CS (ganti operator) pada waktu berbeda: tidak menumpuk. -->
+<style>
+.k{animation:putar 9s linear infinite}
+.k2{animation-delay:-3s}.k3{animation-delay:-6s}
+.b{animation:muatan 9s linear infinite}
+.k2 .b{animation-delay:-3s}.k3 .b{animation-delay:-6s}
+.o{animation:operator 9s linear infinite}
+.k2 .o{animation-delay:-3s}.k3 .o{animation-delay:-6s}
+.l{font:600 9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em;fill:#6B6C73}
+@keyframes putar{
+0%{transform:translate(80px,50px) rotate(0deg)}
+26.1%{transform:translate(240px,50px) rotate(0deg)}
+36.6%{transform:translate(280px,100px) rotate(90deg)}
+47%{transform:translate(240px,150px) rotate(180deg)}
+60%,66%{transform:translate(160px,150px) rotate(180deg)}
+79.1%{transform:translate(80px,150px) rotate(180deg)}
+89.6%{transform:translate(40px,100px) rotate(270deg)}
+100%{transform:translate(80px,50px) rotate(360deg)}}
+@keyframes muatan{0%,36%{fill:#A07A4E}37%,89%{fill:#0B0C10}90%,100%{fill:#A07A4E}}
+@keyframes operator{0%,59%{fill:#4A4D57}60%,66%{fill:#F2A93B}67%,100%{fill:#4A4D57}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.k{transform:translate(80px,50px)}.k2{transform:translate(260px,100px) rotate(90deg)}.k3{transform:translate(160px,150px) rotate(180deg)}}
+</style>
+<!-- jalan angkut -->
+<rect x="40" y="50" width="240" height="100" rx="46" stroke="#1C1F27" stroke-width="18"/>
+<rect x="40" y="50" width="240" height="100" rx="46" stroke="#2A2D36" stroke-width="1" stroke-dasharray="4 6"/>
+<!-- front: loader -->
+<rect x="4" y="94" width="22" height="14" rx="2" fill="#F2A93B"/><path d="M24 96L34 84L40 90" stroke="#C98A2B" stroke-width="3" stroke-linecap="round"/>
+<text class="l" x="15" y="124" text-anchor="middle">FRONT</text>
+<!-- disposal -->
+<path d="M292 112L302 90L316 112Z" fill="#A07A4E"/>
+<text class="l" x="318" y="126" text-anchor="end">DUMP</text>
+<!-- titik change shift -->
+<path d="M160 136V164" stroke="#F2A93B" stroke-width="1.5" stroke-dasharray="3 3"/>
+<text class="l" x="168" y="176" style="fill:#F2A93B">CS</text>
+<!-- tiga truk, jarak waktu merata -->
+<g class="k"><rect x="-11" y="-6" width="22" height="12" rx="2" fill="#F2A93B"/><rect class="b" x="-8" y="-4" width="12" height="8" rx="1"/><circle class="o" cx="8" cy="0" r="2.5"/></g>
+<g class="k k2"><rect x="-11" y="-6" width="22" height="12" rx="2" fill="#F2A93B"/><rect class="b" x="-8" y="-4" width="12" height="8" rx="1"/><circle class="o" cx="8" cy="0" r="2.5"/></g>
+<g class="k k3"><rect x="-11" y="-6" width="22" height="12" rx="2" fill="#F2A93B"/><rect class="b" x="-8" y="-4" width="12" height="8" rx="1"/><circle class="o" cx="8" cy="0" r="2.5"/></g>
+</svg>
