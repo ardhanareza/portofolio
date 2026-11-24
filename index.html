@@ -38,6 +38,20 @@ input,textarea,button{font-family:inherit}
 .tombol:active,.kembali:active,.nav-studi a:active{transform:translateY(1px)}
 .tombol:focus-visible,.kembali:focus-visible,.nav-studi a:focus-visible{outline:2px solid #F2A93B;outline-offset:3px}
 @media (prefers-reduced-motion:reduce){.tombol,.kembali,.nav-studi a,.tombol .panah,.kembali .panah,.nav-studi .panah{transition:none}}
+
+/* animasi kartu proyek: hanya aktif bila JS memasang html.anim-kartu (tidak untuk kurangi gerakan); sekali jalan saat kartu .tampil */
+@keyframes bar-gerak{from{width:var(--dari)}}
+@keyframes angka-muncul{from{opacity:0;transform:translateY(8px)}}
+@keyframes alur-muncul{from{opacity:.2}}
+@keyframes hasil-isi{from{background:transparent;color:#EDEBE6;box-shadow:inset 0 0 0 1px rgba(242,169,59,.6)}}
+.anim-kartu .kartu-studi:not(.tampil) .bar-sesudah{width:var(--dari)!important}
+.anim-kartu .kartu-studi:not(.tampil) .angka-besar{opacity:0}
+.anim-kartu .kartu-studi:not(.tampil) .alur{opacity:.2}
+.anim-kartu .kartu-studi:not(.tampil) .alur.hasil{background:transparent!important;color:#EDEBE6!important;box-shadow:inset 0 0 0 1px rgba(242,169,59,.6)}
+.anim-kartu .tampil .bar-sesudah{animation:bar-gerak 1.1s cubic-bezier(.2,.8,.2,1) .2s both}
+.anim-kartu .tampil .angka-besar{animation:angka-muncul .5s ease-out 1.05s both}
+.anim-kartu .tampil .alur{animation:alur-muncul .4s ease-out calc(.2s + var(--i) * .22s) both}
+.anim-kartu .tampil .alur.hasil{animation:alur-muncul .4s ease-out 1.08s both,hasil-isi .5s ease-out 1.2s both}
 </style>
 </helmet>
 <div ref="{{ rootRef }}" style="position:relative;min-height:100vh;background:#0B0C10;color:#EDEBE6;overflow-x:clip">
@@ -173,8 +187,8 @@ input,textarea,button{font-family:inherit}
         <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:20px">
           <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.w1m }}</div>
           <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.before }}</span><div style="height:10px;background:rgba(255,255,255,.18);width:100%"></div><span style="text-align:right">{{ t.w1b }}</span></div>
-          <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.after }}</span><div style="height:10px;background:#F2A93B;width:35%"></div><span style="text-align:right">{{ t.w1a }}</span></div>
-          <div style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:44px;line-height:1;color:#F2A93B;margin-top:6px">−65%</div>
+          <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.after }}</span><div class="bar-sesudah" style="--dari:100%;height:10px;background:#F2A93B;width:35%"></div><span style="text-align:right">{{ t.w1a }}</span></div>
+          <div style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:44px;line-height:1;color:#F2A93B;margin-top:6px" class="angka-besar">−65%</div>
         </div>
       </div>
     </div>
@@ -190,8 +204,8 @@ input,textarea,button{font-family:inherit}
         <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:20px">
           <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.w2m }}</div>
           <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.before }}</span><div style="height:10px;background:rgba(255,255,255,.18);width:71%"></div><span style="text-align:right">{{ t.w2b }}</span></div>
-          <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.after }}</span><div style="height:10px;background:#F2A93B;width:100%"></div><span style="text-align:right">+40%</span></div>
-          <div style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:44px;line-height:1;color:#F2A93B;margin-top:6px">≈ +40%</div>
+          <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.after }}</span><div class="bar-sesudah" style="--dari:71%;height:10px;background:#F2A93B;width:100%"></div><span style="text-align:right">+40%</span></div>
+          <div style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:44px;line-height:1;color:#F2A93B;margin-top:6px" class="angka-besar">≈ +40%</div>
         </div>
       </div>
     </div>
@@ -207,8 +221,8 @@ input,textarea,button{font-family:inherit}
         <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:20px">
           <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.w3m }}</div>
           <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.before }}</span><div style="height:10px;background:rgba(255,255,255,.18);width:100%"></div><span style="text-align:right">{{ t.w3b }}</span></div>
-          <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.after }}</span><div style="height:10px;background:#F2A93B;width:20%"></div><span style="text-align:right">{{ t.w3a }}</span></div>
-          <div style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:44px;line-height:1;color:#F2A93B;margin-top:6px">{{ t.w3big }}</div>
+          <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.after }}</span><div class="bar-sesudah" style="--dari:100%;height:10px;background:#F2A93B;width:20%"></div><span style="text-align:right">{{ t.w3a }}</span></div>
+          <div style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:44px;line-height:1;color:#F2A93B;margin-top:6px" class="angka-besar">{{ t.w3big }}</div>
         </div>
       </div>
     </div>
@@ -223,8 +237,8 @@ input,textarea,button{font-family:inherit}
         <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:20px">
           <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3">{{ t.w4m }}</div>
           <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.before }}</span><div style="height:10px;background:rgba(255,255,255,.18);width:100%"></div><span style="text-align:right">{{ t.w4b }}</span></div>
-          <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.after }}</span><div style="height:10px;background:#F2A93B;width:16%"></div><span style="text-align:right">{{ t.w4a }}</span></div>
-          <div style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:44px;line-height:1;color:#F2A93B;margin-top:6px">{{ t.w4big }}</div>
+          <div style="display:grid;grid-template-columns:60px minmax(0,1fr) 54px;gap:12px;align-items:center;font-size:13px"><span style="color:#9A9BA3">{{ t.after }}</span><div class="bar-sesudah" style="--dari:100%;height:10px;background:#F2A93B;width:16%"></div><span style="text-align:right">{{ t.w4a }}</span></div>
+          <div style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:44px;line-height:1;color:#F2A93B;margin-top:6px" class="angka-besar">{{ t.w4big }}</div>
         </div>
         <a href="studi-kasus-fms.html?lang={{ lang }}" aria-hidden="true" tabindex="-1" style="position:absolute;inset:0;z-index:1"></a>
       </div>
@@ -239,7 +253,7 @@ input,textarea,button{font-family:inherit}
         <a href="studi-kasus-simulasi.html?lang={{ lang }}" class="tombol utama" style="position:relative;z-index:2;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:13px 20px;background:#F2A93B;color:#0B0C10;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase" style-hover="background:#FFC266;color:#0B0C10">{{ t.read_cs }} <span class="panah" aria-hidden="true">→</span></a>
         <a href="studi-kasus-simulasi.html?lang={{ lang }}" aria-hidden="true" tabindex="-1" style="position:absolute;inset:0;z-index:1"></a>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:20px;font-size:13px;font-weight:600">
-          <span style="border:1px solid rgba(255,255,255,.18);padding:10px 14px">{{ t.w5a }}</span><span style="color:#9A9BA3">+</span><span style="border:1px solid rgba(255,255,255,.18);padding:10px 14px">{{ t.w5b }}</span><span style="color:#F2A93B">→</span><span style="background:#F2A93B;color:#0B0C10;padding:10px 14px">{{ t.w5c }}</span>
+          <span class="alur" style="--i:0;border:1px solid rgba(255,255,255,.18);padding:10px 14px">{{ t.w5a }}</span><span class="alur" style="--i:1;color:#9A9BA3">+</span><span class="alur" style="--i:2;border:1px solid rgba(255,255,255,.18);padding:10px 14px">{{ t.w5b }}</span><span class="alur" style="--i:3;color:#F2A93B">→</span><span class="alur hasil" style="--i:4;background:#F2A93B;color:#0B0C10;padding:10px 14px">{{ t.w5c }}</span>
         </div>
       </div>
     </div>
@@ -745,6 +759,12 @@ class Component extends DCLogic {
       this.els.forEach(el => this.hide(el));
       this.phase = 'intro'; this.introStart = performance.now();
     }
+    this.kartu = [...this.root.querySelectorAll('.kartu-studi')]; this.kartuTerlihat = new Set();
+    if (!GERAK_MIN && 'IntersectionObserver' in window) {
+      document.documentElement.classList.add('anim-kartu');
+      this.io = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) this.kartuTerlihat.add(e.target); }); this.cekKartu(); }, { threshold: 0.3 });
+      this.kartu.forEach(k => this.io.observe(k));
+    }
     this.setState({ total: this.els.length, built: this.built.size });
     this.last = performance.now();
     this.raf = requestAnimationFrame(this.tick);
@@ -756,6 +776,7 @@ class Component extends DCLogic {
     window.removeEventListener('resize', this.onResize);
     ['wheel', 'touchstart', 'keydown'].forEach(ev => window.removeEventListener(ev, this.stopFollow));
     clearTimeout(this.watchdog);
+    this.io && this.io.disconnect();
     this.marq && this.marq.cancel();
     (this.els || []).forEach(el => { el.getAnimations().forEach(a => a.cancel()); el.style.clipPath = ''; });
     if (this.layer) this.layer.innerHTML = '';
@@ -858,7 +879,7 @@ class Component extends DCLogic {
     el.style.clipPath = '';
     const anim = el.animate([{ clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)' }], { duration: a.dur, easing: 'cubic-bezier(.65,0,.35,1)' });
     anim.onfinish = () => {
-      this.built.add(el); this.queued.delete(el);
+      this.built.add(el); this.queued.delete(el); this.cekKartu();
       const g = this.ghosts.get(el); if (g) { this.fadeOut(g, 200); this.ghosts.delete(el); }
       const b = a.boxEl; setTimeout(() => this.fadeOut(b), 280 * this.speed);
       a.state = 'idle'; a.task = null; a.wanderT = 0;
@@ -946,8 +967,13 @@ class Component extends DCLogic {
     if (l) l.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 380, fill: 'forwards' }).onfinish = done; else done();
   }
 
+  cekKartu() {
+    (this.kartu || []).forEach(k => { if (!k.classList.contains('tampil') && this.built.has(k) && this.kartuTerlihat.has(k)) { k.classList.add('tampil'); this.io && this.io.unobserve(k); } });
+  }
+
   revealAll() {
     (this.els || []).forEach(el => { el.getAnimations().forEach(a => a.cancel()); el.style.clipPath = ''; this.built.add(el); });
+    this.cekKartu();
     this.ghosts && this.ghosts.forEach(g => g.remove()); this.ghosts && this.ghosts.clear();
     this.queue = []; this.pending = []; this.follow = false;
     this.setState({ loading: false, built: this.built.size, status: 'Touring' });
