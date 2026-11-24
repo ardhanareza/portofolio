@@ -1,40 +1,97 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" fill="none">
-<!-- Putaran DT front -> disposal. Tiap truk berhenti sebentar di titik CS (ganti operator) pada waktu berbeda: tidak menumpuk. -->
-<style>
-.k{animation:putar 9s linear infinite}
-.k2{animation-delay:-3s}.k3{animation-delay:-6s}
-.b{animation:muatan 9s linear infinite}
-.k2 .b{animation-delay:-3s}.k3 .b{animation-delay:-6s}
-.o{animation:operator 9s linear infinite}
-.k2 .o{animation-delay:-3s}.k3 .o{animation-delay:-6s}
-.l{font:600 9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em;fill:#6B6C73}
-@keyframes putar{
-0%{transform:translate(80px,50px) rotate(0deg)}
-26.1%{transform:translate(240px,50px) rotate(0deg)}
-36.6%{transform:translate(280px,100px) rotate(90deg)}
-47%{transform:translate(240px,150px) rotate(180deg)}
-60%,66%{transform:translate(160px,150px) rotate(180deg)}
-79.1%{transform:translate(80px,150px) rotate(180deg)}
-89.6%{transform:translate(40px,100px) rotate(270deg)}
-100%{transform:translate(80px,50px) rotate(360deg)}}
-@keyframes muatan{0%,36%{fill:#A07A4E}37%,89%{fill:#0B0C10}90%,100%{fill:#A07A4E}}
-@keyframes operator{0%,59%{fill:#4A4D57}60%,66%{fill:#F2A93B}67%,100%{fill:#4A4D57}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important}.k{transform:translate(80px,50px)}.k2{transform:translate(260px,100px) rotate(90deg)}.k3{transform:translate(160px,150px) rotate(180deg)}}
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200" fill="none" role="img" aria-label="Tiga dump truck bergiliran change shift di titik CS"><style>text{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.06em}
+.k{animation:jalan 10.5s linear infinite}
+.fl{animation:arah 10.5s linear infinite}
+.bed{transform-origin:-21px -14px;animation:tuang 10.5s ease-in-out infinite}
+.ld{transform-box:fill-box;transform-origin:50% 100%;animation:muatan 10.5s ease-out infinite}
+.pl{animation:jatuh 10.5s ease-in infinite}
+.pd{animation:tumpah 10.5s ease-in infinite}
+.hl{transform-box:fill-box;transform-origin:center;animation:sorot 10.5s ease-out infinite}
+.op{animation:operator 10.5s linear infinite}
+.csr{animation:csbox 10.5s linear infinite}
+.cst{animation:cstext 10.5s linear infinite}
+@keyframes jalan{
+0%,12%{transform:translate(58px,92px);opacity:1;animation-timing-function:ease-in-out}
+36%,45%{transform:translate(250px,92px);opacity:1;animation-timing-function:ease-in}
+46.5%{transform:translate(262px,92px);opacity:1}
+47.5%{transform:translate(280px,96px);opacity:0}
+48%{transform:translate(287.5px,102.5px);opacity:0}
+49.5%{transform:translate(298px,128px);opacity:0}
+51%{transform:translate(287.5px,153.5px);opacity:0}
+51.5%{transform:translate(280px,160px);opacity:0}
+52.5%{transform:translate(262px,164px);opacity:1;animation-timing-function:ease-out}
+65%,73%{transform:translate(160px,164px);opacity:1;animation-timing-function:ease-in}
+85.5%{transform:translate(58px,164px);opacity:1}
+86.5%{transform:translate(40px,160px);opacity:0}
+87%{transform:translate(32.5px,153.5px);opacity:0}
+88.5%{transform:translate(22px,128px);opacity:0}
+90%{transform:translate(32.5px,102.5px);opacity:0}
+90.5%{transform:translate(40px,96px);opacity:0;animation-timing-function:ease-out}
+91.5%,100%{transform:translate(58px,92px);opacity:1}}
+@keyframes arah{0%,49.4%{transform:scaleX(1)}49.5%,88.4%{transform:scaleX(-1)}88.5%,100%{transform:scaleX(1)}}
+@keyframes tuang{0%,37%{transform:rotate(0deg)}39.5%,42%{transform:rotate(-26deg)}44.5%,100%{transform:rotate(0deg)}}
+@keyframes muatan{0%,1.5%{transform:scaleY(0);opacity:0}3%{opacity:1}11%,38%{transform:scaleY(1);opacity:1}41%,100%{transform:scaleY(.2);opacity:0}}
+@keyframes jatuh{0%,1.5%{transform:translateY(-4px);opacity:0}3%{opacity:1}6%{transform:translateY(14px);opacity:0}6.1%{transform:translateY(-4px);opacity:0}7.5%{opacity:1}10.5%,100%{transform:translateY(14px);opacity:0}}
+@keyframes tumpah{0%,38.5%{transform:translate(0,0);opacity:0}39.5%{opacity:1}43%,100%{transform:translate(-4px,14px);opacity:0}}
+@keyframes sorot{0%,65.5%{opacity:0;transform:scale(.6)}67%{opacity:1;transform:scale(1.15)}70%{opacity:1;transform:scale(1)}72.5%,100%{opacity:0;transform:scale(1)}}
+@keyframes operator{0%,66%{fill:#9A9BA3}67%,72%{fill:#F2A93B}73%,100%{fill:#9A9BA3}}
+@keyframes csbox{0%,6%{stroke:#F2A93B;stroke-opacity:1}7%,31.5%{stroke:#EDEBE6;stroke-opacity:.45}32.5%,39.5%{stroke:#F2A93B;stroke-opacity:1}40.5%,64.5%{stroke:#EDEBE6;stroke-opacity:.45}65.5%,72.5%{stroke:#F2A93B;stroke-opacity:1}73.5%,97.5%{stroke:#EDEBE6;stroke-opacity:.45}98.5%,100%{stroke:#F2A93B;stroke-opacity:1}}
+@keyframes cstext{0%,6%{fill:#F2A93B}7%,31.5%{fill:#9A9BA3}32.5%,39.5%{fill:#F2A93B}40.5%,64.5%{fill:#9A9BA3}65.5%,72.5%{fill:#F2A93B}73.5%,97.5%{fill:#9A9BA3}98.5%,100%{fill:#F2A93B}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.pl,.pd,.hl{opacity:0}}
 </style>
-<!-- jalan angkut -->
-<rect x="40" y="50" width="240" height="100" rx="46" stroke="#1C1F27" stroke-width="18"/>
-<rect x="40" y="50" width="240" height="100" rx="46" stroke="#2A2D36" stroke-width="1" stroke-dasharray="4 6"/>
-<!-- front: loader -->
-<rect x="4" y="94" width="22" height="14" rx="2" fill="#F2A93B"/><path d="M24 96L34 84L40 90" stroke="#C98A2B" stroke-width="3" stroke-linecap="round"/>
-<text class="l" x="15" y="124" text-anchor="middle">FRONT</text>
-<!-- disposal -->
-<path d="M292 112L302 90L316 112Z" fill="#A07A4E"/>
-<text class="l" x="318" y="126" text-anchor="end">DUMP</text>
-<!-- titik change shift -->
-<path d="M160 136V164" stroke="#F2A93B" stroke-width="1.5" stroke-dasharray="3 3"/>
-<text class="l" x="168" y="176" style="fill:#F2A93B">CS</text>
-<!-- tiga truk, jarak waktu merata -->
-<g class="k"><rect x="-11" y="-6" width="22" height="12" rx="2" fill="#F2A93B"/><rect class="b" x="-8" y="-4" width="12" height="8" rx="1"/><circle class="o" cx="8" cy="0" r="2.5"/></g>
-<g class="k k2"><rect x="-11" y="-6" width="22" height="12" rx="2" fill="#F2A93B"/><rect class="b" x="-8" y="-4" width="12" height="8" rx="1"/><circle class="o" cx="8" cy="0" r="2.5"/></g>
-<g class="k k3"><rect x="-11" y="-6" width="22" height="12" rx="2" fill="#F2A93B"/><rect class="b" x="-8" y="-4" width="12" height="8" rx="1"/><circle class="o" cx="8" cy="0" r="2.5"/></g>
-</svg>
+<text x="8" y="16" font-size="7" fill="#9A9BA3">FRONT</text>
+<text x="312" y="16" font-size="7" fill="#9A9BA3" text-anchor="end">DUMP</text>
+<path d="M0 60H8L14 50H24L30 40H40L46 30H58" stroke="#EDEBE6" stroke-opacity=".28"></path>
+<path d="M0 60H8L14 50H24L30 40H40L46 30H58V60Z" fill="#9C6B2E" fill-opacity=".14"></path>
+<path d="M206 92C216 80 228 70 242 71C252 72 258 82 266 92Z" fill="#9C6B2E" fill-opacity=".3" stroke="#F2A93B" stroke-opacity=".35"></path>
+<path d="M58 92H262A36 36 0 0 1 262 164H58A36 36 0 0 1 58 92Z" stroke="#EDEBE6" stroke-opacity=".18" stroke-width="1.2"></path>
+<path d="M66 92H254M66 164H254" stroke="#EDEBE6" stroke-opacity=".1" stroke-dasharray="1 5" transform="translate(0 4)"></path>
+<text x="112" y="108" font-size="6" fill="#9A9BA3" fill-opacity=".7">LOADED →</text>
+<text x="208" y="180" font-size="6" fill="#9A9BA3" fill-opacity=".7">← EMPTY</text>
+<path d="M160 129V164" stroke="#EDEBE6" stroke-opacity=".35" stroke-dasharray="2 2"></path>
+<rect class="csr" x="150" y="118" width="20" height="11" rx="1.5" fill="#0B0C10" stroke="#EDEBE6" stroke-opacity=".45"></rect>
+<text class="cst" x="160.6" y="125.8" font-size="6.5" fill="#9A9BA3" text-anchor="middle">CS</text>
+<g class="k" style="animation-delay:0s;transform:translate(58px,92px)"><g class="fl" style="animation-delay:0s;transform:scaleX(1)">
+<rect class="pl" style="animation-delay:0s" x="-15" y="-50" width="2.2" height="2.2" fill="#9C6B2E"></rect><rect class="pl" style="animation-delay:0s" x="-9" y="-55" width="2.6" height="2.6" fill="#9C6B2E"></rect><rect class="pl" style="animation-delay:0s" x="-3" y="-49" width="2" height="2" fill="#9C6B2E"></rect>
+<g class="bed" style="animation-delay:0s"><path class="ld" style="animation-delay:0s" d="M-26.5 -29C-18 -38.5 0 -38.5 8 -29Z" fill="#9C6B2E" stroke="#F2A93B" stroke-width=".8"></path>
+<path d="M-28 -29L-21 -14H9V-29Z" fill="#0B0C10" stroke="#EDEBE6" stroke-width="1.3" stroke-linejoin="round"></path>
+<path d="M-15 -27V-16M-6 -27V-16M2 -27V-16" stroke="#EDEBE6" stroke-opacity=".28"></path>
+<path d="M9 -29V-32H24V-29.5" stroke="#EDEBE6" stroke-width="1.3" stroke-linejoin="round"></path></g>
+<rect class="pd" style="animation-delay:0s" x="-31" y="-21" width="2.2" height="2.2" fill="#9C6B2E"></rect><rect class="pd" style="animation-delay:0s" x="-28" y="-18" width="2.6" height="2.6" fill="#9C6B2E"></rect><rect class="pd" style="animation-delay:0s" x="-33" y="-16" width="1.8" height="1.8" fill="#9C6B2E"></rect>
+<path d="M11 -14V-27H19L24 -19V-14Z" fill="#0B0C10" stroke="#EDEBE6" stroke-width="1.3" stroke-linejoin="round"></path>
+<path d="M13 -25H18.3L21.6 -19.6H13Z" stroke="#EDEBE6" stroke-opacity=".5" stroke-width=".8"></path>
+<circle class="hl" style="animation-delay:0s" cx="15.8" cy="-21.6" r="4" stroke="#F2A93B" stroke-width=".9"></circle>
+<circle class="op" style="animation-delay:0s" cx="15.8" cy="-21.6" r="1.6" fill="#9A9BA3"></circle>
+<path d="M-24 -13.5H25" stroke="#EDEBE6" stroke-width="1.3"></path>
+<circle cx="-15" cy="-6.5" r="6.5" fill="#0B0C10" stroke="#EDEBE6" stroke-width="1.3"></circle><circle cx="-15" cy="-6.5" r="2" stroke="#EDEBE6" stroke-opacity=".6"></circle>
+<circle cx="15" cy="-6.5" r="6.5" fill="#0B0C10" stroke="#EDEBE6" stroke-width="1.3"></circle><circle cx="15" cy="-6.5" r="2" stroke="#EDEBE6" stroke-opacity=".6"></circle>
+</g></g>
+<g class="k" style="animation-delay:-3.5s;transform:translate(250px,92px)"><g class="fl" style="animation-delay:-3.5s;transform:scaleX(1)">
+<rect class="pl" style="animation-delay:-3.5s" x="-15" y="-50" width="2.2" height="2.2" fill="#9C6B2E"></rect><rect class="pl" style="animation-delay:-3.5s" x="-9" y="-55" width="2.6" height="2.6" fill="#9C6B2E"></rect><rect class="pl" style="animation-delay:-3.5s" x="-3" y="-49" width="2" height="2" fill="#9C6B2E"></rect>
+<g class="bed" style="animation-delay:-3.5s"><path class="ld" style="animation-delay:-3.5s" d="M-26.5 -29C-18 -38.5 0 -38.5 8 -29Z" fill="#9C6B2E" stroke="#F2A93B" stroke-width=".8"></path>
+<path d="M-28 -29L-21 -14H9V-29Z" fill="#0B0C10" stroke="#EDEBE6" stroke-width="1.3" stroke-linejoin="round"></path>
+<path d="M-15 -27V-16M-6 -27V-16M2 -27V-16" stroke="#EDEBE6" stroke-opacity=".28"></path>
+<path d="M9 -29V-32H24V-29.5" stroke="#EDEBE6" stroke-width="1.3" stroke-linejoin="round"></path></g>
+<rect class="pd" style="animation-delay:-3.5s" x="-31" y="-21" width="2.2" height="2.2" fill="#9C6B2E"></rect><rect class="pd" style="animation-delay:-3.5s" x="-28" y="-18" width="2.6" height="2.6" fill="#9C6B2E"></rect><rect class="pd" style="animation-delay:-3.5s" x="-33" y="-16" width="1.8" height="1.8" fill="#9C6B2E"></rect>
+<path d="M11 -14V-27H19L24 -19V-14Z" fill="#0B0C10" stroke="#EDEBE6" stroke-width="1.3" stroke-linejoin="round"></path>
+<path d="M13 -25H18.3L21.6 -19.6H13Z" stroke="#EDEBE6" stroke-opacity=".5" stroke-width=".8"></path>
+<circle class="hl" style="animation-delay:-3.5s" cx="15.8" cy="-21.6" r="4" stroke="#F2A93B" stroke-width=".9"></circle>
+<circle class="op" style="animation-delay:-3.5s" cx="15.8" cy="-21.6" r="1.6" fill="#9A9BA3"></circle>
+<path d="M-24 -13.5H25" stroke="#EDEBE6" stroke-width="1.3"></path>
+<circle cx="-15" cy="-6.5" r="6.5" fill="#0B0C10" stroke="#EDEBE6" stroke-width="1.3"></circle><circle cx="-15" cy="-6.5" r="2" stroke="#EDEBE6" stroke-opacity=".6"></circle>
+<circle cx="15" cy="-6.5" r="6.5" fill="#0B0C10" stroke="#EDEBE6" stroke-width="1.3"></circle><circle cx="15" cy="-6.5" r="2" stroke="#EDEBE6" stroke-opacity=".6"></circle>
+</g></g>
+<g class="k" style="animation-delay:-7s;transform:translate(160px,164px)"><g class="fl" style="animation-delay:-7s;transform:scaleX(-1)">
+<rect class="pl" style="animation-delay:-7s" x="-15" y="-50" width="2.2" height="2.2" fill="#9C6B2E"></rect><rect class="pl" style="animation-delay:-7s" x="-9" y="-55" width="2.6" height="2.6" fill="#9C6B2E"></rect><rect class="pl" style="animation-delay:-7s" x="-3" y="-49" width="2" height="2" fill="#9C6B2E"></rect>
+<g class="bed" style="animation-delay:-7s"><path class="ld" style="animation-delay:-7s" d="M-26.5 -29C-18 -38.5 0 -38.5 8 -29Z" fill="#9C6B2E" stroke="#F2A93B" stroke-width=".8"></path>
+<path d="M-28 -29L-21 -14H9V-29Z" fill="#0B0C10" stroke="#EDEBE6" stroke-width="1.3" stroke-linejoin="round"></path>
+<path d="M-15 -27V-16M-6 -27V-16M2 -27V-16" stroke="#EDEBE6" stroke-opacity=".28"></path>
+<path d="M9 -29V-32H24V-29.5" stroke="#EDEBE6" stroke-width="1.3" stroke-linejoin="round"></path></g>
+<rect class="pd" style="animation-delay:-7s" x="-31" y="-21" width="2.2" height="2.2" fill="#9C6B2E"></rect><rect class="pd" style="animation-delay:-7s" x="-28" y="-18" width="2.6" height="2.6" fill="#9C6B2E"></rect><rect class="pd" style="animation-delay:-7s" x="-33" y="-16" width="1.8" height="1.8" fill="#9C6B2E"></rect>
+<path d="M11 -14V-27H19L24 -19V-14Z" fill="#0B0C10" stroke="#EDEBE6" stroke-width="1.3" stroke-linejoin="round"></path>
+<path d="M13 -25H18.3L21.6 -19.6H13Z" stroke="#EDEBE6" stroke-opacity=".5" stroke-width=".8"></path>
+<circle class="hl" style="animation-delay:-7s" cx="15.8" cy="-21.6" r="4" stroke="#F2A93B" stroke-width=".9"></circle>
+<circle class="op" style="animation-delay:-7s" cx="15.8" cy="-21.6" r="1.6" fill="#9A9BA3"></circle>
+<path d="M-24 -13.5H25" stroke="#EDEBE6" stroke-width="1.3"></path>
+<circle cx="-15" cy="-6.5" r="6.5" fill="#0B0C10" stroke="#EDEBE6" stroke-width="1.3"></circle><circle cx="-15" cy="-6.5" r="2" stroke="#EDEBE6" stroke-opacity=".6"></circle>
+<circle cx="15" cy="-6.5" r="6.5" fill="#0B0C10" stroke="#EDEBE6" stroke-width="1.3"></circle><circle cx="15" cy="-6.5" r="2" stroke="#EDEBE6" stroke-opacity=".6"></circle>
+</g></g></svg>

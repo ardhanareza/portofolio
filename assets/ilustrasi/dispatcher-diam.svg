@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" fill="none">
+<!-- Dispatcher di depan monitor: unit bergerak di peta, pekerjaan diselesaikan satu per satu dan dicentang. -->
+<style>
+.s{stroke:#4A4D57;stroke-width:1.5}
+.u{fill:#F2A93B;animation:unit 6s linear infinite}
+.u2{animation-delay:-3s;fill:#EDEBE6}
+.p{transform-box:fill-box;transform-origin:left center;fill:#F2A93B;animation:isi 8s ease-out infinite}
+.c{stroke:#3DD6A3;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;animation:cek 8s ease-out infinite}
+.g{stroke:#F2A93B;stroke-width:1.5;transform-box:fill-box;transform-origin:center;animation:ping 2s ease-out infinite}
+@keyframes unit{0%{transform:translate(0,0)}25%{transform:translate(46px,0)}50%{transform:translate(46px,58px)}75%{transform:translate(0,58px)}100%{transform:translate(0,0)}}
+@keyframes isi{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+@keyframes cek{0%,99%{opacity:1}100%{opacity:1}}
+@keyframes ping{0%{opacity:.9;transform:scale(.4)}35%,100%{opacity:0;transform:scale(1.8)}}
+.j1 .p{animation-name:j1}.j2 .p{animation-name:j2}.j3 .p{animation-name:j3}.j4 .p{animation-name:j4}
+.j1 .c{animation-name:c1}.j2 .c{animation-name:c2}.j3 .c{animation-name:c3}.j4 .c{animation-name:c4}
+@keyframes j1{0%{transform:scaleX(0)}18%,92%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+@keyframes j2{0%,20%{transform:scaleX(0)}38%,92%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+@keyframes j3{0%,40%{transform:scaleX(0)}58%,92%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+@keyframes j4{0%,60%{transform:scaleX(0)}78%,92%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+@keyframes c1{0%,18%{opacity:0}20%,92%{opacity:1}96%,100%{opacity:0}}
+@keyframes c2{0%,38%{opacity:0}40%,92%{opacity:1}96%,100%{opacity:0}}
+@keyframes c3{0%,58%{opacity:0}60%,92%{opacity:1}96%,100%{opacity:0}}
+@keyframes c4{0%,78%{opacity:0}80%,92%{opacity:1}96%,100%{opacity:0}}
+*{animation:none!important}
+</style>
+<!-- monitor -->
+<rect class="s" x="62" y="14" width="196" height="118" rx="4" fill="#12141A"/>
+<path class="s" d="M160 132V146M132 146H188"/>
+<!-- peta mini -->
+<rect x="72" y="24" width="72" height="98" fill="#0B0C10" stroke="#2A2D36" stroke-width="1"/>
+<path d="M84 40H130V98H84Z" stroke="#2A2D36" stroke-width="5" stroke-linejoin="round"/>
+<circle class="u" cx="84" cy="40" r="3.5"/>
+<circle class="u u2" cx="84" cy="40" r="3"/>
+<!-- daftar pekerjaan -->
+<g class="j1"><rect x="154" y="28" width="62" height="5" fill="#2A2D36"/><rect class="p" x="154" y="28" width="62" height="5"/><rect x="154" y="37" width="38" height="3" fill="#2A2D36"/><path class="c" d="M228 31l4 4 7-8"/></g>
+<g class="j2"><rect x="154" y="54" width="62" height="5" fill="#2A2D36"/><rect class="p" x="154" y="54" width="62" height="5"/><rect x="154" y="63" width="30" height="3" fill="#2A2D36"/><path class="c" d="M228 57l4 4 7-8"/></g>
+<g class="j3"><rect x="154" y="80" width="62" height="5" fill="#2A2D36"/><rect class="p" x="154" y="80" width="62" height="5"/><rect x="154" y="89" width="44" height="3" fill="#2A2D36"/><path class="c" d="M228 83l4 4 7-8"/></g>
+<g class="j4"><rect x="154" y="106" width="62" height="5" fill="#2A2D36"/><rect class="p" x="154" y="106" width="62" height="5"/><rect x="154" y="115" width="34" height="3" fill="#2A2D36"/><path class="c" d="M228 109l4 4 7-8"/></g>
+<!-- dispatcher (tampak belakang) dengan headset -->
+<path d="M118 200Q120 170 160 168Q200 170 202 200Z" fill="#2A2D36" stroke="#4A4D57" stroke-width="1.5"/>
+<circle cx="160" cy="152" r="16" fill="#1C1F27" stroke="#4A4D57" stroke-width="1.5"/>
+<path d="M142 152A18 18 0 0 1 178 152" stroke="#9A9BA3" stroke-width="2"/>
+<rect x="138" y="148" width="6" height="10" rx="2" fill="#9A9BA3"/><rect x="176" y="148" width="6" height="10" rx="2" fill="#9A9BA3"/>
+<circle class="g" cx="184" cy="146" r="6"/>
+</svg>

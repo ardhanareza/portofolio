@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" fill="none">
+<!-- Data historis, lalu banyak jalur simulasi menyebar ke depan; pita peluang dan garis median (P50) terhadap target. -->
+<style>
+.l{font:600 9px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em;fill:#6B6C73}
+.m{stroke:#F2A93B;stroke-width:1;opacity:.45;stroke-dasharray:100;animation:jalur 9s ease-out infinite}
+.m2{animation-delay:.25s}.m3{animation-delay:.5s}.m4{animation-delay:.75s}.m5{animation-delay:1s}.m6{animation-delay:1.25s}
+.band{fill:#F2A93B;opacity:.1;animation:pita 9s ease-out infinite}
+.p50{stroke:#F2A93B;stroke-width:2.5;stroke-dasharray:100;animation:median 9s ease-out infinite}
+@keyframes jalur{0%{stroke-dashoffset:100;opacity:.45}30%,86%{stroke-dashoffset:0;opacity:.45}96%,100%{stroke-dashoffset:0;opacity:0}}
+@keyframes pita{0%,38%{opacity:0}50%,86%{opacity:.1}96%,100%{opacity:0}}
+@keyframes median{0%,48%{stroke-dashoffset:100}64%,86%{stroke-dashoffset:0;opacity:1}96%,100%{stroke-dashoffset:0;opacity:0}}
+*{animation:none!important}
+</style>
+<!-- sumbu -->
+<path d="M30 20V170H304" stroke="#2A2D36" stroke-width="1.5"/>
+<path d="M30 132H304M30 94H304M30 56H304" stroke="#1C1F27" stroke-width="1"/>
+<!-- target -->
+<path d="M30 70H304" stroke="#3DD6A3" stroke-width="1.2" stroke-dasharray="5 4"/>
+<text class="l" x="300" y="64" text-anchor="end" style="fill:#3DD6A3">TARGET</text>
+<!-- historis -->
+<path d="M30 128L48 120L64 126L82 112L98 116L114 104L132 108L150 98" stroke="#9A9BA3" stroke-width="2" stroke-linejoin="round"/>
+<path d="M150 26V170" stroke="#4A4D57" stroke-width="1" stroke-dasharray="3 4"/>
+<!-- pita peluang P10-P90 -->
+<path class="band" d="M150 98L300 46L300 132Z"/>
+<!-- jalur Monte Carlo -->
+<path class="m" pathLength="100" d="M150 98L180 86L204 90L230 72L256 66L280 58L300 50"/>
+<path class="m m2" pathLength="100" d="M150 98L176 100L202 92L228 96L254 86L278 90L300 82"/>
+<path class="m m3" pathLength="100" d="M150 98L178 92L206 98L232 84L258 80L280 70L300 66"/>
+<path class="m m4" pathLength="100" d="M150 98L174 104L200 110L226 106L252 116L276 112L300 124"/>
+<path class="m m5" pathLength="100" d="M150 98L180 94L204 82L232 78L256 72L282 76L300 60"/>
+<path class="m m6" pathLength="100" d="M150 98L176 102L204 100L228 108L254 100L278 104L300 100"/>
+<!-- median -->
+<path class="p50" pathLength="100" d="M150 98L180 94L206 92L232 86L258 82L282 76L300 72" stroke-linejoin="round"/>
+<text class="l" x="300" y="150" text-anchor="end">P10–P90</text>
+</svg>

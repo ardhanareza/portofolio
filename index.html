@@ -55,6 +55,7 @@ input,textarea,button{font-family:inherit}
 
 /* ilustrasi proyek di kolom nomor: desktop di bawah nomor, layar sempit di samping nomor */
 .kolom-ilu{display:flex;flex-direction:column;gap:clamp(28px,4vw,56px)}
+.ilu-wrap{display:block}
 .ilu{display:block;width:min(100%,380px);height:auto;pointer-events:none;user-select:none}
 @media (max-width:760px){.kolom-ilu{flex-direction:row;align-items:flex-end;justify-content:space-between;gap:16px}.ilu{width:min(52vw,230px)}}
 </style>
@@ -184,7 +185,7 @@ input,textarea,button{font-family:inherit}
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px 48px;align-items:start">
       <div class="kolom-ilu">
         <div data-build="num.01" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(120px,15vw,240px);line-height:.8">01<span style="color:#F2A93B">.</span></div>
-        <img data-build="ilu.01" class="ilu" src="assets/ilustrasi/database.svg" alt="" width="320" height="200" loading="lazy" decoding="async">
+        <picture class="ilu-wrap"><source media="(prefers-reduced-motion: reduce)" srcset="assets/ilustrasi/database-diam.svg"><img data-build="ilu.01" class="ilu" src="assets/ilustrasi/database.svg" alt="" width="320" height="200" loading="lazy" decoding="async"></picture>
       </div>
       <div data-build="card.database" class="kartu-studi" style="position:relative;background:#12141A;border:1px solid rgba(255,255,255,.08);padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:22px">
         <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">SQL Server</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w1t2 }}</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w1t3 }}</span></div>
@@ -204,7 +205,7 @@ input,textarea,button{font-family:inherit}
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px 48px;align-items:start">
       <div class="kolom-ilu">
         <div data-build="num.02" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(120px,15vw,240px);line-height:.8">02<span style="color:#F2A93B">.</span></div>
-        <img data-build="ilu.02" class="ilu" src="assets/ilustrasi/dispatcher.svg" alt="" width="320" height="200" loading="lazy" decoding="async">
+        <picture class="ilu-wrap"><source media="(prefers-reduced-motion: reduce)" srcset="assets/ilustrasi/dispatcher-diam.svg"><img data-build="ilu.02" class="ilu" src="assets/ilustrasi/dispatcher.svg" alt="" width="320" height="200" loading="lazy" decoding="async"></picture>
       </div>
       <div data-build="card.dispatcher" class="kartu-studi" style="position:relative;background:#12141A;border:1px solid rgba(255,255,255,.08);padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:22px">
         <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">Web app</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w2t2 }}</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w2t3 }}</span></div>
@@ -224,7 +225,7 @@ input,textarea,button{font-family:inherit}
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px 48px;align-items:start">
       <div class="kolom-ilu">
         <div data-build="num.03" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(120px,15vw,240px);line-height:.8">03<span style="color:#F2A93B">.</span></div>
-        <img data-build="ilu.03" class="ilu" src="assets/ilustrasi/changeshift.svg" alt="" width="320" height="200" loading="lazy" decoding="async">
+        <picture class="ilu-wrap"><source media="(prefers-reduced-motion: reduce)" srcset="assets/ilustrasi/changeshift-diam.svg"><img data-build="ilu.03" class="ilu" src="assets/ilustrasi/changeshift.svg" alt="" width="320" height="200" loading="lazy" decoding="async"></picture>
       </div>
       <div data-build="card.shift" class="kartu-studi" style="position:relative;background:#12141A;border:1px solid rgba(255,255,255,.08);padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:22px">
         <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">Haul trucks</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w3t2 }}</span></div>
@@ -244,7 +245,7 @@ input,textarea,button{font-family:inherit}
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px 48px;align-items:start">
       <div class="kolom-ilu">
         <div data-build="num.04" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(120px,15vw,240px);line-height:.8">04<span style="color:#F2A93B">.</span></div>
-        <img data-build="ilu.04" class="ilu" src="assets/ilustrasi/fms.svg" alt="" width="320" height="200" loading="lazy" decoding="async">
+        <picture class="ilu-wrap"><source media="(prefers-reduced-motion: reduce)" srcset="assets/ilustrasi/fms-diam.svg"><img data-build="ilu.04" class="ilu" src="assets/ilustrasi/fms.svg" alt="" width="320" height="200" loading="lazy" decoding="async"></picture>
       </div>
       <div data-build="card.mttr" class="kartu-studi" style="position:relative;background:#12141A;border:1px solid rgba(255,255,255,.08);padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:22px">
         <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w4t1 }}</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w4t2 }}</span></div>
@@ -264,7 +265,7 @@ input,textarea,button{font-family:inherit}
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px 48px;align-items:start">
       <div class="kolom-ilu">
         <div data-build="num.05" style="font-family:'Archivo',sans-serif;font-stretch:62%;font-weight:900;font-size:clamp(120px,15vw,240px);line-height:.8">05<span style="color:#F2A93B">.</span></div>
-        <img data-build="ilu.05" class="ilu" src="assets/ilustrasi/simulasi.svg" alt="" width="320" height="200" loading="lazy" decoding="async">
+        <picture class="ilu-wrap"><source media="(prefers-reduced-motion: reduce)" srcset="assets/ilustrasi/simulasi-diam.svg"><img data-build="ilu.05" class="ilu" src="assets/ilustrasi/simulasi.svg" alt="" width="320" height="200" loading="lazy" decoding="async"></picture>
       </div>
       <div data-build="card.simulation" class="kartu-studi" style="position:relative;background:#12141A;border:1px solid rgba(255,255,255,.08);padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:22px">
         <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9A9BA3"><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w5t1 }}</span><span style="border:1px solid rgba(255,255,255,.14);padding:5px 8px">{{ t.w5t2 }}</span></div>
